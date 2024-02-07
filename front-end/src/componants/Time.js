@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
+// import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { Card } from '@mui/material';
 

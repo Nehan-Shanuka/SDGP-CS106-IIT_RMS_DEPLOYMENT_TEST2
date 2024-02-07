@@ -1,7 +1,8 @@
 import React from 'react';
-import { useState } from 'react';
+// import { useState } from 'react';
 import Calender from './Calender';
 import Time from './Time';
+import Location from './Location';
 import { Button, Card } from '@mui/material';
 import HallList from './HallList';
 // import { TimePicker } from '@mui/x-date-pickers/TimePicker';
@@ -21,6 +22,7 @@ export default function BasicGrid() {
         <div>
           <Calender />
           <Time />
+          <Location />
           <Button variant="contained" color="primary" sx={{ marginTop: 2, width: '100%' }}>Search</Button>
         </div>
         

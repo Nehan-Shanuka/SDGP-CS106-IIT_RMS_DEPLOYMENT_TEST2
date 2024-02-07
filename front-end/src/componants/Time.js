@@ -16,16 +16,16 @@ export default function Calender() {
   return (
     <Card sx={{
         // width: '320px'
-        marginTop: 2
+        marginTop: 1
     }}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={['TimePicker', 'TimePicker']} 
+            {/* <DemoContainer components={['TimePicker', 'TimePicker']} 
                 sx={{
                     display: 'flex', 
                     justifyContent: 'center', 
                     marginBottom: 1
                 }}
-            >
+            > */}
                 {/* <TimePicker
                     label="Uncontrolled picker"
                     defaultValue={dayjs('2022-04-17T15:30')}
@@ -34,8 +34,12 @@ export default function Calender() {
                     label="Controlled picker"
                     value={selectedTime}
                     onChange={(newValue) => setSelectedTime(newValue)}
+
+                    sx={{
+                        width: '100%'
+                    }}
                 />
-            </DemoContainer>
+            {/* </DemoContainer> */}
         </LocalizationProvider>
     </Card>
   )

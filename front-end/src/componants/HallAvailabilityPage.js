@@ -23,7 +23,18 @@ export default function BasicGrid() {
           <Calender />
           <Time />
           <Location />
-          <Button variant="contained" color="primary" sx={{ marginTop: 2, width: '100%' }}>Search</Button>
+          <Button variant="contained" color="primary" sx={{ 
+            marginTop: 1, 
+            width: '100%',
+            backgroundColor: '#D9D9D9',
+            color: '#000',
+
+            ":hover": {
+              backgroundColor: '#3E737A',
+              color: '#fff'
+            }
+          }}>
+            Search</Button>
         </div>
         
         <HallList />

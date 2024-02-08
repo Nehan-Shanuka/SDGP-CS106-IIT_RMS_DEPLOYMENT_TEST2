@@ -5,6 +5,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { Card } from '@mui/material';
 
+import '../componants_styles/Calender.css'
+
 export default function Calender() {
 
   const [selectedDate, setSelectedDate] = useState(null);
@@ -12,8 +14,25 @@ export default function Calender() {
   console.log(selectedDate);
 
   return (
-    <Card sx={{
+    <Card className='test' sx={{
         // width: '320px'
+        '& .MuiPickersToolbar-root': {
+            paddingTop: 0,
+            paddingBottom: 0,
+        },
+
+        '& .MuiDialogActions-root': {
+            paddingTop: 0,
+            paddingBottom: 0,
+        },
+
+        '& .MuiPickersSlideTransition-root': {
+            minHeight: '200px'
+        },
+
+        '& .MuiDateCalendar-root': {
+            height: '294px'
+        }
     }}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <StaticDatePicker 

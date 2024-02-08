@@ -5,14 +5,16 @@ The IIT RMS is a Resource Management System for the Informatics Institute of Tec
 
 ### Facilitates the IIT RMS is proposed to provide
 
-    1. Real-time Hall Management Facility (Critical)
-        _The users can search the available lecture halls according to search terms and make a reservation._
+1. **Real-time Hall Management Facility (Critical)**
+_The users can search the available lecture halls according to search terms and make a reservation._
 
-    2. Intelligent Student Grouping Facility (Desirable)
-        _The system provides options for student groups according to the given student information and IIT-specific constraints and requirements. It also provides the manual changing facility._
+2. **Intelligent Student Grouping Facility (Desirable)**
+_The system provides options for student groups according to the given student information and_
+_IIT-specific constraints and requirements. It also provides the manual changing facility._
 
-    3. Timetable Creation Facility (Desirable)
-        _The system creates timetable options for student groups, allocating available resources. It also provides the manual changing facility._
+3. **Timetable Creation Facility (Desirable)**
+_The system creates timetable options for student groups, allocating available resources._
+_It also provides the manual changing facility._
 
 ### Technologies are proposed to use
 

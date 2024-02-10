@@ -1,9 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { Card } from '@mui/material';
 
@@ -19,27 +17,15 @@ export default function Calender() {
         marginTop: 1
     }}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            {/* <DemoContainer components={['TimePicker', 'TimePicker']} 
-                sx={{
-                    display: 'flex', 
-                    justifyContent: 'center', 
-                    marginBottom: 1
-                }}
-            > */}
-                {/* <TimePicker
-                    label="Uncontrolled picker"
-                    defaultValue={dayjs('2022-04-17T15:30')}
-                /> */}
-                <TimePicker
-                    label="Controlled picker"
-                    value={selectedTime}
-                    onChange={(newValue) => setSelectedTime(newValue)}
+            <TimePicker
+                label="Controlled picker"
+                value={selectedTime}
+                onChange={(newValue) => setSelectedTime(newValue)}
 
-                    sx={{
-                        width: '100%'
-                    }}
-                />
-            {/* </DemoContainer> */}
+                sx={{
+                    width: '100%'
+                }}
+            />
         </LocalizationProvider>
     </Card>
   )

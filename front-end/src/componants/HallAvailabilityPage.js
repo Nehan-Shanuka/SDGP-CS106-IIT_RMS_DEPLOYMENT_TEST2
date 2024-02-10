@@ -5,6 +5,7 @@ import Time from './Time';
 import Location from './Location';
 import { Button, Card } from '@mui/material';
 import HallList from './HallList';
+import MenuAppBar from './AppBar';
 // import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
 export default function BasicGrid() {
@@ -14,6 +15,7 @@ export default function BasicGrid() {
 
   return (
     <>
+      <MenuAppBar />
       <Card sx={{
         display: 'flex',
         justifyContent: 'space-between',

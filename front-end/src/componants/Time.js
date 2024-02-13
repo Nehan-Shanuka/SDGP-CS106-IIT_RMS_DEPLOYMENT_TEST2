@@ -18,7 +18,7 @@ export default function Calender() {
     }}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <TimePicker
-                label="Controlled picker"
+                label="Select Time"
                 value={selectedTime}
                 onChange={(newValue) => setSelectedTime(newValue)}
 

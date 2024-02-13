@@ -1,20 +1,35 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { Card } from '@mui/material';
 
 import '../componants_styles/Calender.css'
+// import { Home } from './NavBar';
+// import { navBarStatus } from './NavBar';
 
 export default function Calender() {
 
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  console.log(selectedDate);
+    // const [responsive, setResponsive] = useState(navBarStatus());
+    const [selectedDate, setSelectedDate] = useState(null);
+  
+    // useEffect(() => {
+    //   const handleResponsiveChange = () => {
+    //     setResponsive(navBarStatus());
+    //   };
+  
+    //   window.addEventListener('resize', handleResponsiveChange);
+    //   return () => {
+    //     window.removeEventListener('resize', handleResponsiveChange);
+    //   };
+    // }, []);
 
   return (
-    <Card className='test' sx={{
+    <>
+        {/* {!responsive ?  */}
+
+        <Card className='test' sx={{
         // width: '320px'
         '& .MuiPickersToolbar-root': {
             paddingTop: 0,
@@ -35,7 +50,12 @@ export default function Calender() {
         }
     }}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <StaticDatePicker 
+            <StaticDatePicker sx={{
+                '.MuiPickersToolbar-root': {
+                    visibility: 'hidden',
+                    height: '0px'
+                }
+            }}
               orientation="portrait"
               renderInput={(params) => <input {...params} />}
               value={selectedDate}
@@ -44,5 +64,9 @@ export default function Calender() {
             
         </LocalizationProvider>
     </Card>
+        
+        {/* : null} */}
+    </>
+    
   )
 }

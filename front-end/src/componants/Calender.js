@@ -4,8 +4,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { Card } from '@mui/material';
-
-import '../componants_styles/Calender.css'
 // import { Home } from './NavBar';
 // import { navBarStatus } from './NavBar';
 

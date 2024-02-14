@@ -7,6 +7,7 @@ import PlannedSessions from "./scenes/plannedSessions";
 import Reservation from "./scenes/reservation";
 import StdGrouping from "./scenes/stdGrouping";
 import ReservationReview from "./scenes/reservationReview"
+import MyTimetable from "./scenes/myTimetable";
 
 function App() {
   const [isSidebar, setIsSidebar] = useState(true);
@@ -18,6 +19,7 @@ function App() {
         <main className="content">
           <Topbar setIsSidebar={setIsSidebar} />
           <Routes>
+            <Route path="/my-timetable" element={<MyTimetable />} />
             <Route path="/reservations" element={<Reservation />} />
             <Route path="/planned-sessions" element={<PlannedSessions />} />
             <Route path="/student-grouping" element={<StdGrouping />} />

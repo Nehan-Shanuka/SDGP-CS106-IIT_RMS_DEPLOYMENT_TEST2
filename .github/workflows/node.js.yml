@@ -19,27 +19,20 @@ jobs:
         node-version: [18.x]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3  # Checkout the repository
 
-    # Backend tests
-    - name: Backend Tests
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
     - name: Install Backend Dependencies
-      run: npm ci
+      run: npm install
       working-directory: ./backend
 
-    # Frontend tests
-    - name: Frontend Tests
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+    - name: Run Backend Tests
+      run: npm test
+      working-directory: ./backend
+
     - name: Install Frontend Dependencies
-      run: npm ci
-      working-directory: frontend
-    - name: Build Frontend
-      run: npm run build
+      run: npm install
+      working-directory: ./frontend
+
+    - name: Run Frontend Tests
+      run: npm test
       working-directory: ./frontend

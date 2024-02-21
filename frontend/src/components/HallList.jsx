@@ -81,42 +81,16 @@ export default function HallList({ color, status, newcourses }) {
 
                 <div>
                   <div>
-                    <p style={{ fontSize: "20px", margin: "20 0" }}>
+                    <p className="text-xl my-2 mx-0">
                       {course.moduleName}
                     </p>
-                    <p style={{ margin: "20 0" }}>{course.time}</p>
+                    <p className="my-1 mx-0">{course.time}</p>
                   </div>
                 </div>
 
-                <div
-                  style={{
-                    width: "150px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "relative",
-                      width: "80px",
-                      height: "80px",
-                      textAlign: "center",
-                      borderRadius: "50%",
-                      backgroundColor: "#D9D9D9",
-                      display: "flex",
-                      justifyContent: "center",
-                      color: "#000",
-                    }}
-                  >
-                    <p
-                      style={{
-                        fontSize: "40px",
-                        textAlign: "center",
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
+                <div className="flex justify-center items-center w-36">
+                  <div className="flex justify-center w-20 h-20 rounded-full bg-gray-300 text-black">
+                    <p className="flex justify-center items-center text-4xl">
                       {course.building}
                     </p>
                   </div>
@@ -139,19 +113,16 @@ export default function HallList({ color, status, newcourses }) {
               >
                 <div>
                   {status === "Planned Sessions" ? (
-                    <div
+                    <div className="flex flex-col pl-5"
                       style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        paddingLeft: 30,
                         transition: "height 0.5s ease-in-out",
                       }}
                     >
-                      <p style={{ margin: 2 }}>
+                      <p className="m-1">
                         Conducted By: {course.lecturer}
                       </p>
-                      <p style={{ margin: 2 }}>Course: {course.course}</p>
-                      <p style={{ margin: 2 }}>
+                      <p className="m-1">Course: {course.course}</p>
+                      <p className="m-1">
                         Groups: {course.groups.join(" | ")}
                       </p>
                     </div>
@@ -164,16 +135,16 @@ export default function HallList({ color, status, newcourses }) {
                         transition: "height 0.5s ease-in-out",
                       }}
                     >
-                      <p style={{ margin: 2 }}>
+                      <p className="m-1">
                         Projectors: {course.projector_count}
                       </p>
-                      <p style={{ margin: 2 }}>
+                      <p className="m-1">
                         Whiteboard:{" "}
                         {course.whiteboard_availability
-                          ? "Availability"
+                          ? "Available"
                           : "Not Available"}
                       </p>
-                      <p style={{ margin: 2 }}>
+                      <p className="m-1">
                         Mic:{" "}
                         {course.mic_speacker ? "Available" : "Not Available"}
                       </p>
@@ -182,22 +153,15 @@ export default function HallList({ color, status, newcourses }) {
                 </div>
 
                 {status === "Planned Sessions" ? (
-                  <Button
+                  <Button className="w-36"
                     style={{
                       backgroundColor:
                         hoveredItem === index ? "#D9D9D9" : "#3E737A",
-                      color: "#000",
                       marginRight: 30,
-                      width: "180px",
+                      color: "#000",
                     }}
                   >
-                    <h4
-                      style={{
-                        margin: 0,
-                      }}
-                    >
                       {course.type}
-                    </h4>
                   </Button>
                 ) : status === "Reservation" ? (
                   <div style={{

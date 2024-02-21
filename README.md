@@ -16,6 +16,8 @@ _IIT-specific constraints and requirements. It also provides the manual changing
 _The system creates timetable options for student groups, allocating available resources._
 _It also provides the manual changing facility._
 
+### Figma UI Design: (Click Here)[https://www.figma.com/file/3lbFqd6MdT9JXScMQdCovu/IIT-RMS-System?type=design&node-id=0%3A1&mode=design&t=rdfKkPRR530ho09R-1]
+
 ### Technologies are proposed to use
 
     1. ReactJs - FrontEnd Development

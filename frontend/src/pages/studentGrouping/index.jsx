@@ -60,40 +60,9 @@ const courses = [
     groups: ["CS-I", "CS-J", "CS-K", "CS-L"],
     type: "Lecture",
   },
-  {
-    hallNumber: "7LB",
-    building: "SP",
-    moduleName: "Object Oriented Programming",
-    time: "08.30-10.30",
-    lecturer: "Mr. A. Smith",
-    course: "BSc Computer Science (Level 5)",
-    groups: ["CS-I", "CS-J", "CS-K", "CS-L"],
-    type: "Lecture",
-  },
-  {
-    hallNumber: "7LB",
-    building: "SP",
-    moduleName: "Object Oriented Programming",
-    time: "08.30-10.30",
-    lecturer: "Mr. A. Smith",
-    course: "BSc Computer Science (Level 5)",
-    groups: ["CS-I", "CS-J", "CS-K", "CS-L"],
-    type: "Lecture",
-  },
-  {
-    hallNumber: "7LB",
-    building: "SP",
-    moduleName: "Object Oriented Programming",
-    time: "08.30-10.30",
-    lecturer: "Mr. A. Smith",
-    course: "BSc Computer Science (Level 5)",
-    groups: ["CS-I", "CS-J", "CS-K", "CS-L"],
-    type: "Lecture",
-  },
 ];
 
-export default function PlannedSessions() {
-
+export default function StdGrouping() {
   return (
     <>
       <section className="flex gap-0 bg-gray-200">
@@ -138,7 +107,7 @@ export default function PlannedSessions() {
 
           <HallList
             color={"#3E737A"}
-            status={"Planned Sessions"}
+            status={"strGouping"}
             newcourses={courses}
           />
         </Card>

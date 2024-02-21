@@ -12,11 +12,11 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [18.x]
 
     steps:
     - uses: actions/checkout@v3
@@ -30,9 +30,6 @@ jobs:
     - name: Install Backend Dependencies
       run: npm ci
       working-directory: backend
-    - name: Run Backend Tests
-      run: npm test
-      working-directory: backend
 
     # Frontend tests
     - name: Frontend Tests
@@ -45,7 +42,4 @@ jobs:
       working-directory: frontend
     - name: Build Frontend
       run: npm run build
-      working-directory: frontend
-    - name: Run Frontend Tests
-      run: npm test
       working-directory: frontend

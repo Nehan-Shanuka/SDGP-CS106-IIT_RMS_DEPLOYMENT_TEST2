@@ -3,6 +3,7 @@ import { useState } from "react"
 import SideNavbar from "./pages/global/SideNavbar"
 import Topbar from "./pages/global/Topbar";
 import { Routes, Route } from "react-router-dom";
+import MyTimetable from "./pages/myTimetable/index";
 
 export default function App() {
   const [isSidebar, setIsSidebar] = useState(true);
@@ -14,11 +15,11 @@ export default function App() {
         <main className="w-full">
           <Topbar setIsSidebar={setIsSidebar} />
           <Routes>
-            <Route path="/my-timetable" element={{}} />
-            <Route path="/reservations" element={{}} />
-            <Route path="/planned-sessions" element={{}} />
-            <Route path="/student-grouping" element={{}} />
-            <Route path="/review-requests" element={{}} />
+            <Route path="/my-timetable" element={<MyTimetable />} />
+            <Route path="/reservations" element={<MyTimetable />} />
+            <Route path="/planned-sessions" element={<MyTimetable />} />
+            <Route path="/student-grouping" element={<MyTimetable />} />
+            <Route path="/review-requests" element={<MyTimetable />} />
           </Routes>
         </main>
       </div>

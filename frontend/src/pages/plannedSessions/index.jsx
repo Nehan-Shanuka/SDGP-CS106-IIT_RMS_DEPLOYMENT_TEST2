@@ -1,13 +1,13 @@
 import Calender from "../../components/Calender";
 import { Button, Card } from "@mui/material";
 import HallList from "../../components/HallList";
-// import Time from "../../componants/Time";
-// import Location from "../../componants/Location";
-// import Degree from "../../componants/Degree";
-// import Level from "../../componants/Level";
-// import Module from "../../componants/Modules";
-// import Type from "../../componants/Type";
-// import Group from "../../componants/Group";
+import Time from "../../components/TimeSlection";
+import Location from "../../components/LocationSelection";
+import Degree from "../../components/DegreeSelection";
+import Level from "../../components/LevelSelection";
+import Module from "../../components/ModuleSelection";
+import Type from "../../components/TypeSelection";
+import Group from "../../components/GroupSelection";
 
 const courses = [
   {
@@ -110,13 +110,13 @@ export default function PlannedSessions() {
           </div>
 
           <div>
-            {/* <Time />
+            <Time />
             <Location />
             <Degree />
             <Level />
             <Module />
             <Type />
-            <Group /> */}
+            <Group />
             <Button
               variant="contained"
               color="primary"

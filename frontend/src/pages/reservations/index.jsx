@@ -1,63 +1,27 @@
+import { useState, useEffect } from "react";
 import { Button, Card } from "@mui/material";
 import Calender from "../../components/Calender";
 import Time from "../../components/TimeSlection";
 import Location from "../../components/LocationSelection";
 import HallList from "../../components/HallList";
-
-const courses = [
-  {
-    hallNumber: "AUD",
-    building: "GP",
-    moduleName: "Object Oriented Programming",
-    time: "08.30-10.30",
-    projector_count: "2",
-    whiteboard_availability: true,
-    mic_speacker: false,
-    type: "Lecture",
-  },
-  {
-    hallNumber: "1LB",
-    building: "JB",
-    moduleName: "Object Oriented Programming",
-    time: "08.30-10.30",
-    projector_count: "2",
-    whiteboard_availability: false,
-    mic_speacker: false,
-    type: "Lecture",
-  },
-  {
-    hallNumber: "5LB",
-    building: "GP",
-    moduleName: "Object Oriented Programming",
-    time: "08.30-10.30",
-    projector_count: "2",
-    whiteboard_availability: false,
-    mic_speacker: true,
-    type: "Lecture",
-  },
-  {
-    hallNumber: "4LC",
-    building: "JB",
-    moduleName: "Object Oriented Programming",
-    time: "08.30-10.30",
-    projector_count: "2",
-    whiteboard_availability: true,
-    mic_speacker: false,
-    type: "Lecture",
-  },
-  {
-    hallNumber: "7LB",
-    building: "SP",
-    moduleName: "Object Oriented Programming",
-    time: "08.30-10.30",
-    projector_count: "2",
-    whiteboard_availability: false,
-    mic_speacker: true,
-    type: "Lecture",
-  },
-];
+import axios from "axios";
 
 export default function Reservation() {
+
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:5555/courses")
+    .then((response) => {
+      setCourses(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }, []);
+
+  console.log(courses);
+
   return (
     <>
       <section className="flex gap-0 bg-gray-200">

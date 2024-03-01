@@ -2,6 +2,9 @@ import express from "express";
 import { PORT, MONGODB } from "./config.js";
 import mongoose from "mongoose";
 import courseRoutes from "./routes/courseRoutes.js";
+import buildingRoutes from "./routes/buildingRoutes.js";
+import hallRoutes from "./routes/hallRoutes.js";
+import reservationRoutes from "./routes/reservationRoutes.js";
 import cors from "cors";
 
 const app = express();
@@ -16,6 +19,12 @@ app.get("/", (request, response) => {
 });
 
 app.use("/courses", courseRoutes);
+
+app.use("/buildings", buildingRoutes);
+
+app.use("/halls", hallRoutes);
+
+app.use("/reservations", reservationRoutes);
 
 mongoose
   .connect(MONGODB)

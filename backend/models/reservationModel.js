@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const reservationSchema = new mongoose.Schema({
+    hallID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Hall",
+    },
     date: {
         type: Date,
         required: true,
@@ -11,6 +15,10 @@ const reservationSchema = new mongoose.Schema({
     },
     subject: {
         type: String,
+    },
+    type: {
+        type: String,
+        required: true,
     },
     lecturer: {
         type: String,

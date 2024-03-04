@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { Button, Card } from "@mui/material";
 import Calender from "../../components/Calender";
 import Time from "../../components/TimeSlection";
 import Location from "../../components/LocationSelection";
 import HallList from "../../components/HallList";
+import AvailableHallList from "../../components/AvailableHallList";
 import axios from "axios";
 
 export default function Reservation() {
@@ -11,7 +13,7 @@ export default function Reservation() {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5555/courses")
+    axios.get("http://localhost:5555/halls")
     .then((response) => {
       setCourses(response.data);
     })
@@ -20,7 +22,17 @@ export default function Reservation() {
     });
   }, []);
 
-  console.log(courses);
+  const [buildings, setBuildings] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:5555/buildings")
+    .then((response) => {
+      setBuildings(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }, []);
 
   return (
     <>
@@ -56,10 +68,11 @@ export default function Reservation() {
             </Button>
           </div>
 
-          <HallList
+          <AvailableHallList
             color={"#723E7A"}
             status={"Reservation"}
             newcourses={courses}
+            newbuildings={buildings}
           />
         </Card>
       </section>

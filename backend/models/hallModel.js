@@ -5,6 +5,10 @@ const hallSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    buildingID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Building",
+    },
     capacity: {
         type: Number,
         required: true,

@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
+import { useState, useEffect } from "react";
 import { Button, Card } from "@mui/material";
 import Calender from "../../components/Calender";
-import HallList from "../../components/HallList";
+import ReservationHallList from "../../components/PlannedSessionHallList";
 import Time from "../../components/TimeSlection";
 import Location from "../../components/LocationSelection";
 import Degree from "../../components/DegreeSelection";
@@ -8,91 +10,43 @@ import Level from "../../components/LevelSelection";
 import Module from "../../components/ModuleSelection";
 import Type from "../../components/TypeSelection";
 import Group from "../../components/GroupSelection";
-
-const courses = [
-  {
-    hallNumber: "AUD",
-    building: "GP",
-    moduleName: "Object Oriented Programming",
-    time: "08.30-10.30",
-    lecturer: "Mr. A. Smith",
-    course: "BSc Computer Science (Level 5)",
-    groups: ["CS-I", "CS-J", "CS-K", "CS-L"],
-    type: "Lecture",
-  },
-  {
-    hallNumber: "1LB",
-    building: "JB",
-    moduleName: "Object Oriented Programming",
-    time: "08.30-10.30",
-    lecturer: "Mr. A. Smith",
-    course: "BSc Computer Science (Level 5)",
-    groups: ["CS-I", "CS-J", "CS-K", "CS-L"],
-    type: "Lecture",
-  },
-  {
-    hallNumber: "5LB",
-    building: "GP",
-    moduleName: "Object Oriented Programming",
-    time: "08.30-10.30",
-    lecturer: "Mr. A. Smith",
-    course: "BSc Computer Science (Level 5)",
-    groups: ["CS-I", "CS-J", "CS-K", "CS-L"],
-    type: "Lecture",
-  },
-  {
-    hallNumber: "4LC",
-    building: "JB",
-    moduleName: "Object Oriented Programming",
-    time: "08.30-10.30",
-    lecturer: "Mr. A. Smith",
-    course: "BSc Computer Science (Level 5)",
-    groups: ["CS-I", "CS-J", "CS-K", "CS-L"],
-    type: "Lecture",
-  },
-  {
-    hallNumber: "7LB",
-    building: "SP",
-    moduleName: "Object Oriented Programming",
-    time: "08.30-10.30",
-    lecturer: "Mr. A. Smith",
-    course: "BSc Computer Science (Level 5)",
-    groups: ["CS-I", "CS-J", "CS-K", "CS-L"],
-    type: "Lecture",
-  },
-  {
-    hallNumber: "7LB",
-    building: "SP",
-    moduleName: "Object Oriented Programming",
-    time: "08.30-10.30",
-    lecturer: "Mr. A. Smith",
-    course: "BSc Computer Science (Level 5)",
-    groups: ["CS-I", "CS-J", "CS-K", "CS-L"],
-    type: "Lecture",
-  },
-  {
-    hallNumber: "7LB",
-    building: "SP",
-    moduleName: "Object Oriented Programming",
-    time: "08.30-10.30",
-    lecturer: "Mr. A. Smith",
-    course: "BSc Computer Science (Level 5)",
-    groups: ["CS-I", "CS-J", "CS-K", "CS-L"],
-    type: "Lecture",
-  },
-  {
-    hallNumber: "7LB",
-    building: "SP",
-    moduleName: "Object Oriented Programming",
-    time: "08.30-10.30",
-    lecturer: "Mr. A. Smith",
-    course: "BSc Computer Science (Level 5)",
-    groups: ["CS-I", "CS-J", "CS-K", "CS-L"],
-    type: "Lecture",
-  },
-];
+import axios from "axios";
 
 export default function PlannedSessions() {
+
+  const [reservations, setReservations] = useState([]);
+  const [halls, setHalls] = useState([]);
+  const [buildings, setBuildings] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:5555/reservations")
+    .then((response) => {
+      setReservations(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get("http://localhost:5555/halls")
+    .then((response) => {
+      setHalls(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get("http://localhost:5555/buildings")
+    .then((response) => {
+      setBuildings(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }, []);
 
   return (
     <>
@@ -135,11 +89,12 @@ export default function PlannedSessions() {
               Search
             </Button>
           </div>
-
-          <HallList
+          <ReservationHallList
             color={"#3E737A"}
             status={"Planned Sessions"}
-            newcourses={courses}
+            newcourses={reservations}
+            newhalls={halls}
+            newbuildings={buildings}
           />
         </Card>
       </section>

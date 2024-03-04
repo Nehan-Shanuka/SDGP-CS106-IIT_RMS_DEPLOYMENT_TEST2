@@ -15,10 +15,21 @@ router.post("/:buildingId", async (request, response) => {
             { $push: { lectureHalls: savedHall._id } },
             { new: true }
         );
+        await savedHall.updateOne({ buildingID: buildingId });
 
         return response.status(201).json(savedHall);
 
     } catch (error) {     
+        response.status(500).send({ message: error.message });
+    }
+});
+
+// Get all halls
+router.get("/", async (request, response) => {
+    try {
+        const halls = await Hall.find();
+        return response.status(201).json(halls);
+    } catch (error) {
         response.status(500).send({ message: error.message });
     }
 });

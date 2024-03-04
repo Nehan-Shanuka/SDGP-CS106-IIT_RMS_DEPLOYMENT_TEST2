@@ -18,10 +18,11 @@ const Item = styled(Paper)(({ color }) => ({
   borderRadius: 15,
 }));
 
-export default function HallList({ color, status, newcourses }) {
+export default function HallList({ color, status, newcourses, newbuildings }) {
   const [hoveredItem, setHoveredItem] = useState(null);
 
   const courses = newcourses;
+  const buildings = newbuildings;
 
   return (
     <Card
@@ -67,7 +68,8 @@ export default function HallList({ color, status, newcourses }) {
               onMouseLeave={() => setHoveredItem(null)}
               color={color}
             >
-              <div className="flex justify-between items-center"
+              <div
+                className="flex justify-between items-center"
                 style={{
                   width: hoveredItem === index ? "95%" : "100%",
                   paddingTop: hoveredItem === index ? "0" : "0",
@@ -75,24 +77,26 @@ export default function HallList({ color, status, newcourses }) {
                 }}
               >
                 <div className="w-1/4">
-                  <p className="pl-5 text-5xl">
-                    {course.hallNumber}
-                  </p>
+                  <p className="pl-5 text-5xl">{course.hallID}</p>
                 </div>
 
                 <div>
                   <div>
                     <p className="text-xl my-2 mx-0">
-                      {course.moduleName}
+                      Capacity: {course.capacity}
                     </p>
-                    <p className="my-1 mx-0">{course.time}</p>
+                    {/* <p className="my-1 mx-0">{course.time}</p> */}
                   </div>
                 </div>
 
                 <div className="flex justify-center items-center w-36">
                   <div className="flex justify-center w-20 h-20 rounded-full bg-gray-300 text-black">
                     <p className="flex justify-center items-center text-4xl">
-                      {course.building}
+                      {
+                        buildings.find(
+                          (building) => building._id === course.buildingID
+                        ).buildingID
+                      }
                     </p>
                   </div>
                 </div>
@@ -113,85 +117,56 @@ export default function HallList({ color, status, newcourses }) {
                 }}
               >
                 <div>
-                  {status === "Planned Sessions" ? (
-                    <div className="flex flex-col pl-5"
-                      style={{
-                        transition: "height 0.5s ease-in-out",
-                      }}
-                    >
-                      <p className="m-1">
-                        Conducted By: {course.lecturer}
-                      </p>
-                      <p className="m-1">Course: {course.course}</p>
-                      <p className="m-1">
-                        Groups: {course.groups}
-                      </p>
-                    </div>
-                  ) : status === "Reservation" ? (
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        paddingLeft: 30,
-                        transition: "height 0.5s ease-in-out",
-                      }}
-                    >
-                      <p className="m-1">
-                        Projectors: {course.projector_count}
-                      </p>
-                      <p className="m-1">
-                        Whiteboard:{" "}
-                        {course.whiteboard_availability
-                          ? "Available"
-                          : "Not Available"}
-                      </p>
-                      <p className="m-1">
-                        Mic:{" "}
-                        {course.mic_speacker ? "Available" : "Not Available"}
-                      </p>
-                    </div>
-                  ) : null}
-                </div>
-
-                {status === "Planned Sessions" ? (
-                  <Button className="w-36"
+                  <div
                     style={{
-                      backgroundColor:
-                        hoveredItem === index ? "#D9D9D9" : "#3E737A",
-                      marginRight: 30,
-                      color: "#000",
+                      display: "flex",
+                      flexDirection: "column",
+                      paddingLeft: 30,
+                      transition: "height 0.5s ease-in-out",
                     }}
                   >
-                      {course.type}
-                  </Button>
-                ) : status === "Reservation" ? (
-                  <div style={{
+                    <p className="m-1">Projectors: {course.projectorCount}</p>
+                    <p className="m-1">
+                      Whiteboard:{" "}
+                      {course.whiteboardAvailability
+                        ? "Available"
+                        : "Not Available"}
+                    </p>
+                    <p className="m-1">
+                      Mic & Speaker:{" "}
+                      {course.micAndSpeacker ? "Available" : "Not Available"}
+                    </p>
+                  </div>
+                </div>
+                <div
+                  style={{
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                    <Button
+                    marginRight: 30,
+                  }}
+                >
+                  <Button
+                    style={{
+                      backgroundColor:
+                        hoveredItem === index ? "#D9D9D9" : "#723E7A",
+                      color: "#000",
+                      width: "150px",
+                      alignItems: "center",
+                      borderRadius: 25,
+                    }}
+                  >
+                    <h5
                       style={{
-                        backgroundColor:
-                          hoveredItem === index ? "#D9D9D9" : "#723E7A",
-                        color: "#000",
-                        marginRight: 30,
-                        width: "150px",
-                        alignItems: "center",
-                        borderRadius: 25,
+                        margin: 0,
                       }}
                     >
-                      <h5
-                        style={{
-                          margin: 0,
-                        }}
-                      >
-                        Request Here
-                      </h5>
-                    </Button>
-                      <NavigationIcon sx={{ transform: "rotate(90deg)" }} />
-                  </div>
-                ) : null}
+                      Request Here
+                    </h5>
+                  </Button>
+                  <NavigationIcon
+                    sx={{ transform: "rotate(90deg)", color: "#D9D9D9" }}
+                  />
+                </div>
               </div>
             </Item>
           ))}

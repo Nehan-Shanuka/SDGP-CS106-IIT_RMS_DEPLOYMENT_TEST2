@@ -9,6 +9,11 @@ import Reservation from "./pages/reservations";
 import PlannedSessions from "./pages/plannedSessions";
 import StudentGrouping from "./pages/studentGrouping";
 import ReviewReservations from "./pages/reviewReservations";
+import Welcome from "./pages/home";
+import SigninForme from "./pages/registation";
+import Navbar from "./components/Navbar";
+// import intro from "./components/FlashScreen";
+import ProfilePage from "./pages/UserProfile";
 import NestedGrid from "./components/weeklytimetable/NestedGrid";
 
 export default function App() {
@@ -16,7 +21,7 @@ export default function App() {
 
   return (
     <>
-      <div className="flex relative h-screen">
+      <div className="relative flex h-screen">
         <SideNavbar isSidebar={isSidebar} />
         <main className="w-full">
           <Topbar setIsSidebar={setIsSidebar} />

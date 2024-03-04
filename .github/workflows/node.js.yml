@@ -21,6 +21,24 @@ jobs:
     steps:
     - uses: actions/checkout@v3  # Checkout the repository
 
+    - name: Rename Long Paths in Backend
+      run: |
+        Get-ChildItem -Path ./backend -Recurse | ForEach-Object {
+          if ($_.FullName.length -gt 255) {
+            $newName = $_.Name.substring(0, 200) + $_.Name.substring($_.Name.length - 50)
+            Rename-Item -Path $_.FullName -NewName $newName
+          }
+        }
+
+    - name: Rename Long Paths in Frontend
+      run: |
+        Get-ChildItem -Path ./frontend -Recurse | ForEach-Object {
+          if ($_.FullName.length -gt 255) {
+            $newName = $_.Name.substring(0, 200) + $_.Name.substring($_.Name.length - 50)
+            Rename-Item -Path $_.FullName -NewName $newName
+          }
+        }
+
     - name: Install Backend Dependencies
       run: npm ci
       working-directory: ./backend

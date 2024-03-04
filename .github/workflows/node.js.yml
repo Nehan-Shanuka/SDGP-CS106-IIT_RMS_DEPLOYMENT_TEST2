@@ -19,6 +19,9 @@ jobs:
         node-version: [18.x]
 
     steps:
+    - name: Configure Git
+      run: git config --global core.symlinks false
+      
     - uses: actions/checkout@v3  # Checkout the repository
 
     - name: Rename Long Paths in Backend

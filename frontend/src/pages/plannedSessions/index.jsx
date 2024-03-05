@@ -13,40 +13,51 @@ import Group from "../../components/GroupSelection";
 import axios from "axios";
 
 export default function PlannedSessions() {
-
   const [reservations, setReservations] = useState([]);
   const [halls, setHalls] = useState([]);
   const [buildings, setBuildings] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5555/reservations")
-    .then((response) => {
-      setReservations(response.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    const buildingID = "SP";
+    const url = `http://localhost:5555/reservations?buildingID=${buildingID}`;
+    axios
+      .get(url)
+      .then((response) => {
+        setReservations(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:5555/halls")
-    .then((response) => {
-      setHalls(response.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    const buildingID = "All";
+    const url = `http://localhost:5555/halls?buildingID=${buildingID}`;
+    axios
+      .get(url)
+      .then((response) => {
+        setHalls(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:5555/buildings")
-    .then((response) => {
-      setBuildings(response.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    axios
+      .get("http://localhost:5555/buildings")
+      .then((response) => {
+        setBuildings(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
+
+  const handleLocationChange = (locationName) => {
+    console.log("Selected locations:", locationName);
+    // Do something with locationName
+  };
 
   return (
     <>
@@ -65,7 +76,7 @@ export default function PlannedSessions() {
 
           <div>
             <Time />
-            <Location />
+            <Location onLocationChange={handleLocationChange} />
             <Degree />
             <Level />
             <Module />

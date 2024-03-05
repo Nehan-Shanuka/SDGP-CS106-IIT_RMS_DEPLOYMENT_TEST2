@@ -1,4 +1,5 @@
-import { useState } from 'react';
+/* eslint-disable react/prop-types */
+import { useState, useEffect } from 'react';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -19,14 +20,14 @@ const MenuProps = {
 };
 
 const names = [
-  'Spencer Building (SP)',
-  'GP Square (GP)',
-  'Java Building (JB)',
-  'Dialog Building (DB)',
-  'Ramakrishna Building (RB)',
+  'SP',
+  'GP',
+  'JB',
+  'DB',
+  'RB',
 ];
 
-export default function MultipleSelectCheckmarks() {
+export default function MultipleSelectCheckmarks({ onLocationChange }) {
   const [locationName, setLocationName] = useState([]);
 
   const handleChange = (event) => {
@@ -39,6 +40,10 @@ export default function MultipleSelectCheckmarks() {
     );
   };
   console.log(locationName);
+
+  useEffect(() => {
+    onLocationChange(locationName);
+  }, [locationName, onLocationChange]);
 
   return (
     <div>

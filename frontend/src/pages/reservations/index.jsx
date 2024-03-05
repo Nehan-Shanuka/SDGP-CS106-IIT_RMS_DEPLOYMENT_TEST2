@@ -9,30 +9,38 @@ import AvailableHallList from "../../components/AvailableHallList";
 import axios from "axios";
 
 export default function Reservation() {
-
   const [courses, setCourses] = useState([]);
-
-  useEffect(() => {
-    axios.get("http://localhost:5555/halls")
-    .then((response) => {
-      setCourses(response.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  }, []);
-
+  const [buildingID, setBuildingID] = useState("All");
   const [buildings, setBuildings] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5555/buildings")
-    .then((response) => {
-      setBuildings(response.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    const url = `http://localhost:5555/halls?buildingID=${buildingID}`;
+    axios
+      .get(url)
+      .then((response) => {
+        setCourses(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [buildingID]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5555/buildings")
+      .then((response) => {
+        setBuildings(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
+
+  const handleLocationChange = (locationName) => {
+    setBuildingID(locationName);
+    console.log("Selected locations:", locationName);
+    // Do something with locationName
+  };
 
   return (
     <>
@@ -48,8 +56,9 @@ export default function Reservation() {
           <div>
             <Calender />
             <Time />
-            <Location />
+            <Location onLocationChange={handleLocationChange} />
             <Button
+              onClick={() => {}}
               variant="contained"
               color="primary"
               sx={{

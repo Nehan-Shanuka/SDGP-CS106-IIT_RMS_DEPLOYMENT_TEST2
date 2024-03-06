@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -8,7 +7,6 @@ import CardContent from "@mui/material/CardContent";
 import Paper from "@mui/material/Paper";
 import styled from "@mui/material/styles/styled";
 import { Button } from "@mui/material";
-import NavigationIcon from "@mui/icons-material/Navigation";
 
 const Item = styled(Paper)(({ color }) => ({
   backgroundColor: color,
@@ -88,10 +86,11 @@ export default function ReservationHallList({
                 <div className="flex">
                   <div className="w-28 item-center">
                     <p className="pl-5 text-5xl">
-                      {
-                        halls.find((hall) => hall._id === reservation.hallID)
-                          .hallID
-                      }
+                      {halls.map((hall, index) => {
+                        if (hall._id === reservation.hallID) {
+                          return hall.hallID;
+                        }
+                      })}
                     </p>
                   </div>
 
@@ -106,15 +105,15 @@ export default function ReservationHallList({
                 <div className="flex justify-center items-center w-36">
                   <div className="flex justify-center w-20 h-20 rounded-full bg-gray-200 text-black">
                     <p className="flex justify-center items-center text-4xl">
-                      {
-                        buildings.find(
-                          (building) =>
-                            building._id ===
-                            halls.find(
-                              (hall) => hall._id === reservation.hallID
-                            ).buildingID
-                        ).buildingID
-                      }
+                      {halls.map((hall, index) => {
+                        if (hall._id === reservation.hallID) {
+                          return buildings.map((building, index) => {
+                            if (building._id === hall.buildingID) {
+                              return building.buildingID;
+                            }
+                          });
+                        }
+                      })}
                     </p>
                   </div>
                 </div>

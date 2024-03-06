@@ -16,10 +16,10 @@ export default function PlannedSessions() {
   const [reservations, setReservations] = useState([]);
   const [halls, setHalls] = useState([]);
   const [buildings, setBuildings] = useState([]);
+  const [buildingID, setBuildingID] = useState([]);
 
   useEffect(() => {
-    const buildingID = "SP";
-    const url = `http://localhost:5555/reservations?buildingID=${buildingID}`;
+    const url = `http://localhost:5555/reservations`;
     axios
       .get(url)
       .then((response) => {
@@ -31,7 +31,6 @@ export default function PlannedSessions() {
   }, []);
 
   useEffect(() => {
-    const buildingID = "All";
     const url = `http://localhost:5555/halls?buildingID=${buildingID}`;
     axios
       .get(url)
@@ -41,7 +40,7 @@ export default function PlannedSessions() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [buildingID]);
 
   useEffect(() => {
     axios
@@ -55,8 +54,7 @@ export default function PlannedSessions() {
   }, []);
 
   const handleLocationChange = (locationName) => {
-    console.log("Selected locations:", locationName);
-    // Do something with locationName
+    setBuildingID(locationName);
   };
 
   return (

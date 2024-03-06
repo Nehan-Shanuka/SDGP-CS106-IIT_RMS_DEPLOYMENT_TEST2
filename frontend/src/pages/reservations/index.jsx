@@ -4,14 +4,13 @@ import { Button, Card } from "@mui/material";
 import Calender from "../../components/Calender";
 import Time from "../../components/TimeSlection";
 import Location from "../../components/LocationSelection";
-import HallList from "../../components/HallList";
 import AvailableHallList from "../../components/AvailableHallList";
 import axios from "axios";
 
 export default function Reservation() {
   const [courses, setCourses] = useState([]);
-  const [buildingID, setBuildingID] = useState("All");
   const [buildings, setBuildings] = useState([]);
+  const [buildingID, setBuildingID] = useState([]);
 
   useEffect(() => {
     const url = `http://localhost:5555/halls?buildingID=${buildingID}`;
@@ -38,8 +37,6 @@ export default function Reservation() {
 
   const handleLocationChange = (locationName) => {
     setBuildingID(locationName);
-    console.log("Selected locations:", locationName);
-    // Do something with locationName
   };
 
   return (

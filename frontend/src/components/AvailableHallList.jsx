@@ -21,7 +21,7 @@ const Item = styled(Paper)(({ color }) => ({
 export default function HallList({ color, status, newcourses, newbuildings }) {
   const [hoveredItem, setHoveredItem] = useState(null);
 
-  const courses = newcourses;
+  const halls = newcourses;
   const buildings = newbuildings;
 
   return (
@@ -49,7 +49,7 @@ export default function HallList({ color, status, newcourses, newbuildings }) {
             },
           }}
         >
-          {courses.map((course, index) => (
+          {halls.map((hall, index) => (
             <Item
               sx={{
                 height: hoveredItem === index ? "200px" : "115px", // Enlarged height when hovered
@@ -77,15 +77,14 @@ export default function HallList({ color, status, newcourses, newbuildings }) {
                 }}
               >
                 <div className="w-1/4">
-                  <p className="pl-5 text-5xl">{course.hallID}</p>
+                  <p className="pl-5 text-5xl">{hall.hallID}</p>
                 </div>
 
                 <div>
                   <div>
                     <p className="text-xl my-2 mx-0">
-                      Capacity: {course.capacity}
+                      Capacity: {hall.capacity}
                     </p>
-                    {/* <p className="my-1 mx-0">{course.time}</p> */}
                   </div>
                 </div>
 
@@ -94,7 +93,7 @@ export default function HallList({ color, status, newcourses, newbuildings }) {
                     <p className="flex justify-center items-center text-4xl">
                       {
                         buildings.find(
-                          (building) => building._id === course.buildingID
+                          (building) => building._id === hall.buildingID
                         ).buildingID
                       }
                     </p>
@@ -125,16 +124,16 @@ export default function HallList({ color, status, newcourses, newbuildings }) {
                       transition: "height 0.5s ease-in-out",
                     }}
                   >
-                    <p className="m-1">Projectors: {course.projectorCount}</p>
+                    <p className="m-1">Projectors: {hall.projectorCount}</p>
                     <p className="m-1">
                       Whiteboard:{" "}
-                      {course.whiteboardAvailability
+                      {hall.whiteboardAvailability
                         ? "Available"
                         : "Not Available"}
                     </p>
                     <p className="m-1">
                       Mic & Speaker:{" "}
-                      {course.micAndSpeacker ? "Available" : "Not Available"}
+                      {hall.micAndSpeacker ? "Available" : "Not Available"}
                     </p>
                   </div>
                 </div>

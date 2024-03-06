@@ -26,23 +26,24 @@ router.post("/:buildingId", async (request, response) => {
 // Get all halls
 router.get("/", async (request, response) => {
   try {
-    const buildingShortNameOptions = (
-      await Building.find().select("buildingID")
-    ).toString();
 
-    let buildingShortName = request.query.buildingID.toUpperCase() || "All";
+    let buildingShortName = request.query.buildingID;
 
-    buildingShortName = buildingShortNameOptions.includes(buildingShortName)
-      ? buildingShortName
-      : "All";
+    console.log("buildingName: ", buildingShortName);
+
+    if (buildingShortName.length === 0) {
+      buildingShortName = "All";
+    } else {
+      buildingShortName = request.query.buildingID.split(",");
+    }
+
+    const buildingIDs = await Building.find({ buildingID: { $in: [...buildingShortName] } }).select("_id");
 
     const halls = await Hall.find(
       buildingShortName === "All"
         ? {}
         : {
-            buildingID: await Building.find({
-              buildingID: buildingShortName,
-            }).select("_id"),
+            buildingID: { $in: buildingIDs },
           }
     );
 

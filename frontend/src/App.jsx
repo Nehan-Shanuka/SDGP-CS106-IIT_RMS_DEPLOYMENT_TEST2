@@ -16,6 +16,8 @@ import Navbar from "./components/Navbar";
 import ProfilePage from "./pages/UserProfile";
 import NestedGrid from "./components/weeklytimetable/NestedGrid";
 import ExpandableReviewReservation from "./pages/expandableReviewPage";
+import UploadsPage from "./pages/Upload";
+
 
 export default function App() {
   const [isSidebar, setIsSidebar] = useState(true);
@@ -30,7 +32,7 @@ export default function App() {
             <Route path="/my-timetable" element={<MyTimetable />} />
             <Route path="/reservations" element={<Reservation />} />
             <Route path="/planned-sessions" element={<PlannedSessions />} />
-            <Route path="/student-grouping" element={<StudentGrouping />} />
+            <Route path="/student-grouping" element={<UploadsPage  />} />
             <Route path="/review-requests" element={<ExpandableReviewReservation />} />
           </Routes>
         </main>

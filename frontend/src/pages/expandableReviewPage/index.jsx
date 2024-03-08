@@ -46,9 +46,29 @@ export default function ExpandableReviewReservation() {
       });
   }, []);
 
-  const handleConfirmationChange = (id) => {
+  const handleConfirmReservation = (id) => {
     axios
       .put(`http://localhost:5555/reservations/${id}`, { confirmation: true })
+      .then((response) => {
+        axios
+          .get(
+            `http://localhost:5555/reservations?confirmation=${confirmation}`
+          )
+          .then((response) => {
+            setReservations(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleDropReservation = (id) => {
+    axios
+      .delete(`http://localhost:5555/reservations/${id}`)
       .then((response) => {
         axios
           .get(
@@ -177,7 +197,7 @@ export default function ExpandableReviewReservation() {
                     <div className="grid pl-5">
                       <Button
                         onClick={() =>
-                          handleConfirmationChange(reservation._id)
+                          handleConfirmReservation(reservation._id)
                         }
                         sx={{
                           backgroundColor: "#9DF06A",
@@ -201,6 +221,7 @@ export default function ExpandableReviewReservation() {
                         Accept
                       </Button>
                       <Button
+                        onClick={() => handleDropReservation(reservation._id)}
                         sx={{
                           backgroundColor: "#EF6666",
                           border: 0.5,

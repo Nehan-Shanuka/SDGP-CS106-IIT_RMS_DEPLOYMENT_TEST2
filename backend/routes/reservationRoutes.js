@@ -61,4 +61,19 @@ router.put("/:id", async (request, response) => {
   }
 });
 
+// Delete a reservation
+router.delete("/:id", async (request, response) => {
+  try {
+    const reservation = await Reservation.findByIdAndDelete(request.params.id);
+
+    if (!reservation) {
+      return response.status(404).send({ message: "Reservation not found" });
+    }
+
+    return response.status(201).json(reservation);
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+  }
+});
+
 export default router;

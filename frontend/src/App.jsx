@@ -29,7 +29,7 @@ export default function App() {
         <main className="w-full">
           <Topbar setIsSidebar={setIsSidebar} />
           <Routes>
-            <Route path="/my-timetable" element={<MyTimetable />} />
+            <Route path="/my-timetable" element={<ProfilePage />} />
             <Route path="/reservations" element={<Reservation />} />
             <Route path="/planned-sessions" element={<PlannedSessions />} />
             <Route path="/student-grouping" element={<UploadsPage  />} />

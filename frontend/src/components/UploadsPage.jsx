@@ -5,7 +5,9 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 const StyledUploadsContainer = styled('div')({
   display: 'flex',
-  justifyContent: 'space-between', // Adjust spacing as needed (e.g., 'space-around', 'flex-start')
+  marginTop: "30%",  
+
+  justifyContent: 'space-around', // Adjust spacing as needed (e.g., 'space-around', 'flex-start')
 });
 
 const VisuallyHiddenInput = styled('input')({

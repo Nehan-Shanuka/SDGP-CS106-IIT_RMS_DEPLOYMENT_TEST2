@@ -29,8 +29,6 @@ router.get("/", async (request, response) => {
 
     let buildingShortName = request.query.buildingID;
 
-    console.log("buildingName: ", buildingShortName);
-
     if (buildingShortName.length === 0) {
       buildingShortName = "All";
     } else {

@@ -57,6 +57,7 @@ export default function MyTimetable() {
           display: "flex",
           justifyContent: "space-between",
           padding: 5,
+          width: "100%",
         }}
       >
         <div>

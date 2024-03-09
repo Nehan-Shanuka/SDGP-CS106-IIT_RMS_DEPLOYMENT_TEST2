@@ -19,6 +19,7 @@ import ExpandableReviewReservation from "./pages/expandableReviewPage";
 import UploadsPage from "./pages/Upload";
 
 
+
 export default function App() {
   const [isSidebar, setIsSidebar] = useState(true);
 
@@ -33,7 +34,8 @@ export default function App() {
             <Route path="/reservations" element={<Reservation />} />
             <Route path="/planned-sessions" element={<PlannedSessions />} />
             <Route path="/student-grouping" element={<UploadsPage  />} />
-            <Route path="/review-requests" element={<ExpandableReviewReservation />} />
+            <Route path="/review-requests" element={<ExpandableReviewReservation/>} />
+            <Route path="/weekly-timetble" element={<WeeklyTimetable/>} />
           </Routes>
         </main>
       </div>

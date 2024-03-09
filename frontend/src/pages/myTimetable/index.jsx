@@ -1,6 +1,9 @@
 import Calender from "../../components/Calender";
+import RedirectButton from "../../components/RedirectButto"
+import WeeklyTimetable from "../../pages/weeklyTimetable/"
 import { Button, Card } from "@mui/material";
 import { Box } from "@mui/system";
+
 
 const timeSlotes = [
   {
@@ -49,7 +52,8 @@ export default function MyTimetable() {
   return (
     <div className="flex">
       <div>
-        {/* Button heree */}
+      <RedirectButton path="/weekly-timetble" text="Go to Weekly Timetable" />
+
       </div>
 
       <Box

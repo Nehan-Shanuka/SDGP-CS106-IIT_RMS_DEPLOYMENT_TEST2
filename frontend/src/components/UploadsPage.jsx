@@ -6,7 +6,7 @@ import Uploadicon from '../images/6323.jpg'
 
 
 const VisuallyHiddenInput = styled('input')({
-  clip: 'rect(0 100 0 0)',
+  clip: 'rect(0 0 0 0)',
   clipPath: 'inset(50%)',
   height: 1,
   overflow: 'hidden',
@@ -20,14 +20,14 @@ const VisuallyHiddenInput = styled('input')({
 
 export default function InputFileUpload() {
   return (
-    <div className = "ButtonContainer" style={{}}>
+    <div className = "ButtonContainer" style={{border:'3px solid black',paddingBottom:"6rem", marginLeft:"20px", marginRight:"1rem"}}>
       
       <div style={{display:"flex",marginTop:"30px"}}>
         
           <div> 
             <img src={Uploadicon} style={{width:"10rem",marginLeft:"17rem"}}/>
             <Button
-              style={{width:"15rem", marginLeft:"15rem",marginRight:"20rem"}}
+              style={{width:"15rem", marginLeft:"14rem",marginRight:"20rem"}}
               component="label"
               role={undefined}
               variant="contained"
@@ -55,12 +55,12 @@ export default function InputFileUpload() {
           </div>
         </div>
 
-        <div style={{display:"flex",marginTop:"75px"}}>
+        <div style={{display:"flex",marginTop:"75px",borderTop:"3px solid black"}}>
           
           <div>
           <img src={Uploadicon} style={{width:"10rem",marginLeft:"17rem",}}/>
             <Button
-              style={{width:"15rem",marginLeft:"15rem", marginRight:"20rem"}}
+              style={{width:"15rem",marginLeft:"14rem", marginRight:"20rem"}}
               component="label"
               role={undefined}
               variant="contained"

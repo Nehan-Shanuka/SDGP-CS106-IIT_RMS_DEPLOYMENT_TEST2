@@ -52,7 +52,7 @@ export default function MyTimetable() {
   return (
     <div className="flex">
       <div>
-      <RedirectButton path="/weekly-timetble" text="Go to Weekly Timetable" />
+      <RedirectButton path="/weekly-timetble" text="Show Weekly" />
 
       </div>
 

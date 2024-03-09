@@ -25,7 +25,7 @@ export default function InputFileUpload() {
       
         <div style={{display:"flex",marginTop:"30px", justifyContent:"space-between", padding:"0 12rem" }}>
 
-          <Card sx={{border:1, borderColor:"black",}}>
+          <Card sx={{border:2, borderColor:"black",}}>
           <div> 
             <img src={Uploadicon} style={{width:"10rem",marginLeft:"17%"}}/>
             
@@ -44,7 +44,7 @@ export default function InputFileUpload() {
           </Card>     
         
 
-        <Card sx={{border:1, borderColor:"black",}}>
+        <Card sx={{border:2, borderColor:"black",}}>
           <div>
             <img src={Uploadicon} style={{width:"10rem",marginLeft:"17%"}}/>
             
@@ -68,7 +68,7 @@ export default function InputFileUpload() {
 
         <div style={{display:"flex",marginTop:"30px", justifyContent:"space-between", padding:"0 12rem",marginTop:"5rem"}}>
           
-        <Card sx={{border:1, borderColor:"black",}}>
+        <Card sx={{border:2, borderColor:"black",}}>
           <div>
           <img src={Uploadicon} style={{width:"10rem",marginLeft:"17%"}}/>
             <Button
@@ -87,7 +87,7 @@ export default function InputFileUpload() {
         
 
         
-        <Card sx={{border:1, borderColor:"black",}}>
+        <Card sx={{border:2, borderColor:"black",}}>
           <div>
             <img src={Uploadicon} style={{width:"10rem",marginLeft:"17%"}}/>
               <Button

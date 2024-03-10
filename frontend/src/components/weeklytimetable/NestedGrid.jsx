@@ -1,11 +1,9 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/jsx-key */
-/* eslint-disable react/prop-types */
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
 
 const Item = styled(Paper)(({ theme, color }) => ({
   backgroundColor: color,
@@ -14,106 +12,62 @@ const Item = styled(Paper)(({ theme, color }) => ({
   textAlign: "center",
   color: theme.palette.text.secondary,
   cursor: "pointer",
-  width: "190px",
-  height: "70px",
-  borderRadius: "20px",
-  // Media Query for responsiveness
-//   "@media (max-width: 600px)": {
-//     width: "120px",
-//     height: "50px",
-//     borderRadius: "10px",
-//   },
+  // width: "190px",
+  // height: "70px",
+  borderRadius: "10px",
+  margin: "10px",
 }));
 
 const NestedGrid = () => {
   const itemNames = [
-    {
-      id: "1",
-      text: "Object Oriented Programming",
-      detail1: "3LA || LEC || GP",
-      detail2:
-        "testin 1 ea are the  champian mot lovelekmrgb krgbrkbrbro igjtgちgちy daye",
-    },
-    { id: "2", text: "Object Oriented Programming", detail1: "3LA ~ LEC ~ GP" },
-    { id: "3", text: "Object Oriented Programming", detail1: "3LA  LEC  GP" },
-    { id: "4", text: "Object Oriented Programming", detail1: "3LA  LEC  GP" },
-    { id: "5", text: "Object Oriented Programming", detail1: "3LA  LEC  GP" },
-    { id: "6", text: "Object Oriented Programming", detail1: "3LA  LEC  GP" },
-    { id: "7", text: "Object Oriented Programming", detail1: "3LA  LEC  GP" },
-    { id: "8", text: "Object Oriented Programming", detail1: "3LA  LEC  GP" },
-    { id: "9", text: "Object Oriented Programming", detail1: "3LA  LEC  GP" },
-    { id: "10", text: "Object Oriented Programming", detail1: "3LA  LEC  GP" },
-    { id: "11", text: "Object Oriented Programming", detail1: "3LA  LEC  GP" },
-    { id: "12", text: "Object Oriented Programming", detail1: "3LA  LEC  GP" },
-    { id: "13", text: "Object Oriented Programming", detail1: "3LA  LEC  GP" },
-    { id: "14", text: "Object Oriented Programming", detail1: "3LA  LEC  GP" },
-    { id: "15", text: "Object Oriented Programming", detail1: "3LA  LEC  GP" },
-    { id: "16", text: "Object Oriented Programming", detail1: "3LA  LEC  GP" },
-    { id: "17", text: "Object Oriented Programming", detail1: "3LA  LEC  GP" },
-    { id: "18", text: "Object Oriented Programming", detail1: "3LA  LEC  GP" },
-    { id: "19", text: "Object Oriented Programming", detail1: "3LA  LEC  GP" },
-    { id: "20", text: "Object Oriented Programming", detail1: "3LA  LEC  GP" },
+    { id: "1", text: "Object Oriented Programming", detail1: "3LA || LEC || GP", detail2: "testin 1 ea are the  champian mot lovelekmrgb krgbrkbrbro igjtgちgちy daye", weekday: "Monday" },
+    { id: "2", text: "Object Oriented Programming", detail1: "3LA ~ LEC ~ GP", weekday: "Tuesday" },
+    { id: "3", text: "Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Wednesday" },
+    { id: "4", text: "Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Thursday" },
+    { id: "5", text: "Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Friday" },
+    { id: "6", text: "Object Oriented Programming", detail1: "3LA || LEC || GP", detail2: "testin 1 ea are the  champian mot lovelekmrgb krgbrkbrbro igjtgちgちy daye", weekday: "Monday" },
+    { id: "7", text: "Object Oriented Programming", detail1: "3LA ~ LEC ~ GP", weekday: "Tuesday" },
+    { id: "8", text: "Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Wednesday" },
+    { id: "9", text: "Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Thursday" },
+    { id: "10", text: "Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Friday" },
+    { id: "11", text: "Object Oriented Programming", detail1: "3LA || LEC || GP", detail2: "testin 1 ea are the  champian mot lovelekmrgb krgbrkbrbro igjtgちgちy daye", weekday: "Monday" },
+    { id: "12", text: "Object Oriented Programming", detail1: "3LA ~ LEC ~ GP", weekday: "Tuesday" },
+    { id: "13", text: "Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Wednesday" },
+    { id: "14", text: "Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Thursday" },
+    { id: "15", text: "Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Friday" },
+    { id: "16", text: "16Object Oriented Programming", detail1: "3LA || LEC || GP", detail2: "testin 1 ea are the  champian mot lovelekmrgb krgbrkbrbro igjtgちgちy daye", weekday: "Monday" },
+    { id: "17", text: "17Object Oriented Programming", detail1: "3LA ~ LEC ~ GP", weekday: "Tuesday" },
+    { id: "18", text: "18Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Wednesday" },
+    { id: "19", text: "19Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Thursday" },
+    { id: "20", text: "20Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Friday" },
+    // Add more items as needed
   ];
 
-  const colors = ['#ff9999', '#99ff99', /* ...other colors... */];
+  const colors = ['#FF9999', '#99FF99', '#9999FF', '#FFFF99', '#FF99FF', '#99FFFF', '#FFCCCC', '#CCFFCC', '#CCCCFF', '#FFFFCC', '#FFCCFF', '#CCFFFF', '#FF6666', '#66FF66', '#6666FF', '#FFFF66', '#FF66FF', '#66FFFF', '#FF9966', '#66FF99'];
 
   return (
-    <Box
-      sx={{
-        flexGrow: 1,
-        // marginTop: "-700px",
-        marginLeft: "100px",
-        marginRight:"50px",
-        border: "2px solid black",
-        borderColor: "black",
-        padding: "40px",
-        width: "90%",
-        // height: "100%",
-        borderRadius: "30px",
-        backgroundColor: "lightgrey",
-        "@media screen and (max-width: 768px)": {
-          marginLeft: "0",
-          marginTop: "20px",
-          width: "90%",
-          padding: "20px",
-        },
-      }}
-    >
-      <Grid
-        container
-        spacing={2}
-        alignItems="flex-start"
-        justifyContent="space-between"
-        rows={5} // Set the number of rows to 5
-        columns={4} // Set the number of columns to 4
-                sx={{
-          overflowX: 'auto', // Enable horizontal scrolling on smaller screens
-          '&::-webkit-scrollbar': {
-            display: 'none', // Hide scrollbar
-          },
-        }}
-      >
+    <Box sx={{ flexGrow: 1, marginTop: "50px", marginLeft: "50px", marginRight:"0px", border: "2px solid black", borderColor: "black", padding: "40px", width: "90%", borderRadius: "30px", backgroundColor: "lightgrey", "@media screen and (max-width: 768px)": { marginLeft: "0", marginTop: "20px", width: "90%", padding: "20px", } }}>
+      <Grid container spacing={2} alignItems="flex-start" justifyContent="space-between" sx={{ overflowX: 'auto', '&::-webkit-scrollbar': { display: 'none', }, }}>
+        {/* Weekdays row */}
         <Grid container item spacing={4}>
-          {/* <FormRow items={itemNames} /> */}
-          {itemNames.map((item, index) => (
-          <Grid item xs={2.4} key={item.id}>
-            <Tooltip 
-              title={
-                <>
-                  <div>{item.detail2}</div>
-                  {/* Add more details as needed */}
-                </>
-              }
-              interactive
-              placement="top"
-            >
-                  <Item color={colors[index]} width="250px" height="90px" borderRadius="30px">
-                <div style={{ fontSize: '20px' }}>{item.detail1}</div>
-                <div style={{ fontSize: '12px' }}>{item.text}</div>
-              </Item>
-            </Tooltip>
-          </Grid>
-        ))}
+          {/* Render items for each weekday */}
+          {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].map(weekday => (
+            <Grid item xs={12} sm={6} md={4} lg={2.4} key={weekday}>
+              <Box sx={{ backgroundColor: "#fff", padding: "10px", borderRadius: "10px" }}>
+              <Typography variant="h6" sx={{ marginBottom: "20px", textAlign: "center" }}>{weekday}</Typography>
+                {itemNames
+                  .filter(item => item.weekday === weekday)
+                  .map((item, index) => (
+                    <Tooltip key={item.id} title={<><div>{item.detail2}</div></>} interactive placement="top">
+                      <Item color={colors[(item.id - 1) % colors.length]} width="300px" height="90px" borderRadius="30px">
+                        <div style={{ fontSize: '15px' }}>{item.detail1}</div>
+                        <div style={{ fontSize: '12px' }}>{item.text}</div>
+                      </Item>
+                    </Tooltip>
+                  ))}
+              </Box>
+            </Grid>
+          ))}
         </Grid>
       </Grid>
     </Box>
@@ -121,3 +75,4 @@ const NestedGrid = () => {
 };
 
 export default NestedGrid;
+

@@ -8,6 +8,7 @@ import Paper from "@mui/material/Paper";
 import styled from "@mui/material/styles/styled";
 import { Button } from "@mui/material";
 import NavigationIcon from "@mui/icons-material/Navigation";
+import RequestForm from "./requestForm";
 
 const Item = styled(Paper)(({ color }) => ({
   backgroundColor: color,
@@ -20,9 +21,14 @@ const Item = styled(Paper)(({ color }) => ({
 
 export default function HallList({ color, status, newcourses, newbuildings }) {
   const [hoveredItem, setHoveredItem] = useState(null);
+  const [registationForm, setRegistationForm] = useState(false);
 
   const halls = newcourses;
   const buildings = newbuildings;
+
+  const handleChangedRegistationForm = (changedRegistationForm) => {
+    setRegistationForm(changedRegistationForm);
+  };
 
   return (
     <Card
@@ -43,132 +49,143 @@ export default function HallList({ color, status, newcourses, newbuildings }) {
             justifyContent: "center",
             overflowY: "auto",
             scrollBehavior: "smooth",
-            maxHeight: "79.5vh",
+            height: "79.5vh",
             "&::-webkit-scrollbar": {
               display: "none", // Hide scrollbar for Chrome
             },
           }}
         >
-          {halls.map((hall, index) => (
-            <Item
-              sx={{
-                height: hoveredItem === index ? "200px" : "115px", // Enlarged height when hovered
-                width: hoveredItem === index ? "100%" : "97%", // Enlarged width when hovered
+          {registationForm === false ? (
+            halls.map((hall, index) => (
+              <Item
+                sx={{
+                  height: hoveredItem === index ? "200px" : "115px", // Enlarged height when hovered
+                  width: hoveredItem === index ? "100%" : "97%", // Enlarged width when hovered
 
-                transition: "height 0.5s ease-in-out", // Smooth transition effect
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 0,
-                justifyContent: "center",
-                alignContent: "center",
-                alignItems: "center",
-              }}
-              key={index}
-              onMouseEnter={() => setHoveredItem(index)}
-              onMouseLeave={() => setHoveredItem(null)}
-              color={color}
-            >
-              <div
-                className="flex justify-between items-center"
-                style={{
-                  width: hoveredItem === index ? "95%" : "100%",
-                  paddingTop: hoveredItem === index ? "0" : "0",
-                  height: hoveredItem === index ? "auto" : "auto",
-                }}
-              >
-                <div className="w-1/4">
-                  <p className="pl-5 text-5xl">{hall.hallID}</p>
-                </div>
-
-                <div>
-                  <div>
-                    <p className="text-xl my-2 mx-0">
-                      Capacity: {hall.capacity}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex justify-center items-center w-36">
-                  <div className="flex justify-center w-20 h-20 rounded-full bg-gray-300 text-black">
-                    <p className="flex justify-center items-center text-4xl">
-                      {
-                        buildings.find(
-                          (building) => building._id === hall.buildingID
-                        ).buildingID
-                      }
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                style={{
+                  transition: "height 0.5s ease-in-out", // Smooth transition effect
                   display: "flex",
-                  justifyContent: "space-between",
+                  flexWrap: "wrap",
+                  gap: 0,
+                  justifyContent: "center",
+                  alignContent: "center",
                   alignItems: "center",
-                  gridTemplateColumns: "auto auto",
-                  width: "100%",
-                  visibility: hoveredItem === index ? "visible" : "hidden",
-                  height: hoveredItem === index ? "auto" : "0",
-                  transition: "height 1.5s ease-in-out",
-
-                  paddingBottom: hoveredItem === index ? "10px" : "0",
                 }}
+                key={index}
+                onMouseEnter={() => setHoveredItem(index)}
+                onMouseLeave={() => setHoveredItem(null)}
+                color={color}
               >
-                <div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      paddingLeft: 30,
-                      transition: "height 0.5s ease-in-out",
-                    }}
-                  >
-                    <p className="m-1">Projectors: {hall.projectorCount}</p>
-                    <p className="m-1">
-                      Whiteboard:{" "}
-                      {hall.whiteboardAvailability
-                        ? "Available"
-                        : "Not Available"}
-                    </p>
-                    <p className="m-1">
-                      Mic & Speaker:{" "}
-                      {hall.micAndSpeacker ? "Available" : "Not Available"}
-                    </p>
+                <div
+                  className="flex justify-between items-center"
+                  style={{
+                    width: hoveredItem === index ? "95%" : "100%",
+                    paddingTop: hoveredItem === index ? "0" : "0",
+                    height: hoveredItem === index ? "auto" : "auto",
+                  }}
+                >
+                  <div className="w-1/4">
+                    <p className="pl-5 text-5xl">{hall.hallID}</p>
+                  </div>
+
+                  <div>
+                    <div>
+                      <p className="text-xl my-2 mx-0">
+                        Capacity: {hall.capacity}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-center items-center w-36">
+                    <div className="flex justify-center w-20 h-20 rounded-full bg-gray-300 text-black">
+                      <p className="flex justify-center items-center text-4xl">
+                        {
+                          buildings.find(
+                            (building) => building._id === hall.buildingID
+                          ).buildingID
+                        }
+                      </p>
+                    </div>
                   </div>
                 </div>
+
                 <div
                   style={{
                     display: "flex",
+                    justifyContent: "space-between",
                     alignItems: "center",
-                    marginRight: 30,
+                    gridTemplateColumns: "auto auto",
+                    width: "100%",
+                    visibility: hoveredItem === index ? "visible" : "hidden",
+                    height: hoveredItem === index ? "auto" : "0",
+                    transition: "height 1.5s ease-in-out",
+
+                    paddingBottom: hoveredItem === index ? "10px" : "0",
                   }}
                 >
-                  <Button
-                    style={{
-                      backgroundColor:
-                        hoveredItem === index ? "#D9D9D9" : "#723E7A",
-                      color: "#000",
-                      width: "150px",
-                      alignItems: "center",
-                      borderRadius: 25,
-                    }}
-                  >
-                    <h5
+                  <div>
+                    <div
                       style={{
-                        margin: 0,
+                        display: "flex",
+                        flexDirection: "column",
+                        paddingLeft: 30,
+                        transition: "height 0.5s ease-in-out",
                       }}
                     >
-                      Request Here
-                    </h5>
-                  </Button>
-                  <NavigationIcon
-                    sx={{ transform: "rotate(90deg)", color: "#D9D9D9" }}
-                  />
+                      <p className="m-1">Projectors: {hall.projectorCount}</p>
+                      <p className="m-1">
+                        Whiteboard:{" "}
+                        {hall.whiteboardAvailability
+                          ? "Available"
+                          : "Not Available"}
+                      </p>
+                      <p className="m-1">
+                        Mic & Speaker:{" "}
+                        {hall.micAndSpeacker ? "Available" : "Not Available"}
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      marginRight: 30,
+                    }}
+                  >
+                    <Button
+                      onClick={() => setRegistationForm(true)}
+                      style={{
+                        backgroundColor:
+                          hoveredItem === index ? "#D9D9D9" : "#723E7A",
+                        color: "#000",
+                        width: "150px",
+                        alignItems: "center",
+                        borderRadius: 25,
+                      }}
+                    >
+                      <h5
+                        style={{
+                          margin: 0,
+                        }}
+                      >
+                        Request Here
+                      </h5>
+                    </Button>
+                    <NavigationIcon
+                      sx={{ transform: "rotate(90deg)", color: "#D9D9D9" }}
+                    />
+                  </div>
                 </div>
-              </div>
-            </Item>
-          ))}
+              </Item>
+            ))
+          ) : (
+            <div className="w-full h-full">
+              <RequestForm
+                onRegistationFormChange={handleChangedRegistationForm}
+                hall={halls[hoveredItem]}
+                buildings={buildings}
+              />
+            </div>
+          )}
         </Box>
       </CardContent>
     </Card>

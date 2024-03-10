@@ -36,7 +36,16 @@ const hallSchema = new mongoose.Schema({
     reservations: [{
         type: mongoose.Schema.Types.ObjectId,
         ref:  "Reservation",
-    }]
+    }],
+    plannedSessions: [{
+        date: { type: Date, required: true },
+        reservations: [{
+            time_01: { type: mongoose.Schema.Types.ObjectId, ref: "Reservation" },
+            time_02: { type: mongoose.Schema.Types.ObjectId, ref: "Reservation" },
+            time_03: { type: mongoose.Schema.Types.ObjectId, ref: "Reservation" },
+            time_04: { type: mongoose.Schema.Types.ObjectId, ref: "Reservation" },
+        }],
+    }],
 });
 
 export const Hall = mongoose.model("Hall", hallSchema);

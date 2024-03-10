@@ -4,6 +4,7 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
+import RedirectButton from "../RedirectButto"
 
 const Item = styled(Paper)(({ theme, color }) => ({
   backgroundColor: color,
@@ -46,6 +47,12 @@ const NestedGrid = () => {
   const colors = ['#FF9999', '#99FF99', '#9999FF', '#FFFF99', '#FF99FF', '#99FFFF', '#FFCCCC', '#CCFFCC', '#CCCCFF', '#FFFFCC', '#FFCCFF', '#CCFFFF', '#FF6666', '#66FF66', '#6666FF', '#FFFF66', '#FF66FF', '#66FFFF', '#FF9966', '#66FF99'];
 
   return (
+    <div className="flex">
+      <div>
+      <RedirectButton path="/my-timetable" text="Show Daily"  />
+
+      </div>
+    
     <Box sx={{ flexGrow: 1, marginTop: "50px", marginLeft: "50px", marginRight:"0px", border: "2px solid black", borderColor: "black", padding: "40px", width: "90%", borderRadius: "30px", backgroundColor: "lightgrey", "@media screen and (max-width: 768px)": { marginLeft: "0", marginTop: "20px", width: "90%", padding: "20px", } }}>
       <Grid container spacing={2} alignItems="flex-start" justifyContent="space-between" sx={{ overflowX: 'auto', '&::-webkit-scrollbar': { display: 'none', }, }}>
         {/* Weekdays row */}
@@ -71,6 +78,7 @@ const NestedGrid = () => {
         </Grid>
       </Grid>
     </Box>
+    </div>
   );
 };
 

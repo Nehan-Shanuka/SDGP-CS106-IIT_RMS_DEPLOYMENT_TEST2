@@ -4,7 +4,7 @@ const RedirectButton = ({ path, text }) => {
   const buttonStyle = {
     position: 'absolute',
     top: '015px', 
-    right: '80px',
+    right: '100px',
     padding: '10px 20px',
     backgroundColor: 'lightgray',
     color: 'black',

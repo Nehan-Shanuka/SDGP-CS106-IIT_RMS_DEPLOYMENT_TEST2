@@ -3,6 +3,7 @@ import { InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SettingsIcon from "@mui/icons-material/Settings";
+import { Link } from "react-router-dom";
 
 export default function Topbar() {
   return (
@@ -20,9 +21,11 @@ export default function Topbar() {
         <IconButton>
           <SettingsIcon />
         </IconButton>
+        <Link to="/my-profile">
         <IconButton>
           <AccountCircleIcon />
         </IconButton>
+        </Link>
       </Box>
     </Box>
   );

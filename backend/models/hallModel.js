@@ -39,12 +39,12 @@ const hallSchema = new mongoose.Schema({
     }],
     plannedSessions: [{
         date: { type: Date, required: true },
-        reservations: [{
+        reservations: {
             time_01: { type: mongoose.Schema.Types.ObjectId, ref: "Reservation" },
             time_02: { type: mongoose.Schema.Types.ObjectId, ref: "Reservation" },
             time_03: { type: mongoose.Schema.Types.ObjectId, ref: "Reservation" },
             time_04: { type: mongoose.Schema.Types.ObjectId, ref: "Reservation" },
-        }],
+        },
     }],
 });
 

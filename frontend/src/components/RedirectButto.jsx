@@ -1,32 +1,31 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const RedirectButton = ({ path, text }) => {
   const buttonStyle = {
     position: 'absolute',
-    top: '015px', 
+    top: '15px',
     right: '100px',
     padding: '10px 20px',
     backgroundColor: 'lightgray',
     color: 'black',
     textDecoration: 'none',
     borderRadius: '20px',
-    transition: 'background-color 0.3s ease',
-    cursor: 'pointer'
+    cursor: 'pointer',
+     transition: 'background-color 0.3s ease',
   };
 
   const arrowStyle = {
-    marginLeft: '5px'
-  };
-
-  const handleRedirect = () => {
-    window.location.href = path;
+    marginLeft: '5px',
   };
 
   return (
-    <button style={buttonStyle} onClick={handleRedirect}>
-      {text}
-      <span style={arrowStyle}>&#10132;</span>
-    </button>
+    <Link to={path} style={{ textDecoration: 'none' }}>
+      <button style={buttonStyle}>
+        {text}
+        <span style={arrowStyle}>&#10132;</span>
+      </button>
+    </Link>
   );
 };
 

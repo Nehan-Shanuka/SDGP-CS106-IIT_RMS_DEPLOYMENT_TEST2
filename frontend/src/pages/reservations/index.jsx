@@ -48,6 +48,7 @@ export default function Reservation() {
             justifyContent: "space-between",
             padding: 3,
             maxHeight: "100vh",
+            width: "100%",
           }}
         >
           <div>

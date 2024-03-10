@@ -17,6 +17,7 @@ import ProfilePage from "./pages/UserProfile";
 import NestedGrid from "./components/weeklytimetable/NestedGrid";
 import ExpandableReviewReservation from "./pages/expandableReviewPage";
 import UploadsPage from "./pages/Upload";
+import Userprofile from "./pages/UserProfile/index"
 
 
 
@@ -36,6 +37,7 @@ export default function App() {
             <Route path="/student-grouping" element={<UploadsPage  />} />
             <Route path="/review-requests" element={<ExpandableReviewReservation/>} />
             <Route path="/weekly-timetble" element={<WeeklyTimetable/>} />
+            <Route path="/my-profile" element={<Userprofile/>} />
           </Routes>
         </main>
       </div>

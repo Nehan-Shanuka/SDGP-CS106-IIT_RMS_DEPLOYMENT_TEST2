@@ -27,7 +27,7 @@ router.post("/:buildingId", async (request, response) => {
 router.get("/", async (request, response) => {
   try {
 
-    let buildingShortName = request.query.buildingID;
+    let buildingShortName = request.query.buildingID === undefined ? [] : request.query.buildingID;
 
     if (buildingShortName.length === 0) {
       buildingShortName = "All";

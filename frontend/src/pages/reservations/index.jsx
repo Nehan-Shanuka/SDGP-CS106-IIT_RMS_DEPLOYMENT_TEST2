@@ -11,6 +11,7 @@ export default function Reservation() {
   const [courses, setCourses] = useState([]);
   const [buildings, setBuildings] = useState([]);
   const [buildingID, setBuildingID] = useState([]);
+  const [selectedDate, setSelectedDate] = useState();
 
   useEffect(() => {
     const url = `http://localhost:5555/halls?buildingID=${buildingID}`;
@@ -39,6 +40,12 @@ export default function Reservation() {
     setBuildingID(locationName);
   };
 
+  const handleDateChange = (date) => {
+    setSelectedDate(date)
+  }
+
+  console.log("ReservationDate", selectedDate);
+
   return (
     <>
       <section className="flex gap-0 bg-gray-200">
@@ -52,7 +59,7 @@ export default function Reservation() {
           }}
         >
           <div>
-            <Calender />
+            <Calender onDateChange={handleDateChange}/>
             <Time />
             <Location onLocationChange={handleLocationChange} />
             <Button
@@ -80,6 +87,7 @@ export default function Reservation() {
             status={"Reservation"}
             newcourses={courses}
             newbuildings={buildings}
+            date={selectedDate}
           />
         </Card>
       </section>

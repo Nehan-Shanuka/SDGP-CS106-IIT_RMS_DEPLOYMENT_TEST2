@@ -1,14 +1,25 @@
+/* eslint-disable react/prop-types */
 // import * as React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 
-export default function Calender() {
+export default function Calender({ onDateChange }) {
   const [selectedDate, setSelectedDate] = useState(null);
 
-  console.log(selectedDate);
+  // console.log(selectedDate);
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  }
+
+  useEffect(() => {
+    onDateChange(selectedDate);
+  }, [selectedDate, onDateChange]);
+
+  console.log("CalanderDate" ,selectedDate);
 
   return (
     <Card 
@@ -43,7 +54,7 @@ export default function Calender() {
       
       renderInput={(params) => <input {...params} />}
       value={selectedDate}
-      onChange={(newValue) => setSelectedDate(newValue)}
+      onChange={handleDateChange}
       />
     </LocalizationProvider>
     </Card>

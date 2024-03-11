@@ -28,7 +28,7 @@ function ProfilePage() {
       <Button variant="contained" color="error">
         Logout
       </Button> 
-</div>git 
+      </div>
 
         
       </div>

@@ -19,16 +19,26 @@ const Item = styled(Paper)(({ color }) => ({
   borderRadius: 15,
 }));
 
-export default function HallList({ color, status, newcourses, newbuildings }) {
+export default function HallList({
+  color,
+  status,
+  newcourses,
+  newbuildings,
+  date,
+}) {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [registationForm, setRegistationForm] = useState(false);
+  // const [dateSelected, setDateSelected] = useState(date);
 
   const halls = newcourses;
   const buildings = newbuildings;
+  const dateSelected = date;
 
   const handleChangedRegistationForm = (changedRegistationForm) => {
     setRegistationForm(changedRegistationForm);
   };
+
+  // console.log("HallListDate", dateSelected);
 
   return (
     <Card
@@ -177,12 +187,16 @@ export default function HallList({ color, status, newcourses, newbuildings }) {
                 </div>
               </Item>
             ))
+          ) : dateSelected === null ? (
+            alert("Please select a date"),
+            handleChangedRegistationForm(false)
           ) : (
             <div className="w-full h-full">
               <RequestForm
                 onRegistationFormChange={handleChangedRegistationForm}
                 hall={halls[hoveredItem]}
                 buildings={buildings}
+                dateSelected={dateSelected}
               />
             </div>
           )}

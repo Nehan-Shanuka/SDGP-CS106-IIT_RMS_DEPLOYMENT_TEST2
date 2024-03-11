@@ -11,12 +11,11 @@ router.post("/:hallId", async (request, response) => {
   const newReservation = new Reservation(request.body);
   const hall = await Hall.findById(hallId);
 
+  console.log(newReservation.date);
+
   const exsistingPlannedSessionIndex = hall.plannedSessions.findIndex(
     plannedSession => plannedSession.date.toISOString().slice(0, 10) === newReservation.date.toISOString().slice(0, 10)
   ); // findIndex returns -1 if the element is not found
-
-  console.log("plannedSession", hall);
-  console.log("exsistingPlannedSessionIndex", exsistingPlannedSessionIndex);
 
   try {
     const savedReservation = await Reservation.create(newReservation);
@@ -82,6 +81,8 @@ router.post("/:hallId", async (request, response) => {
     await savedReservation.updateOne({ hallID: hallId }); // savedReservation.hallID = hallId;
 
     return response.status(201).json(savedReservation);
+    console.log("success");
+    alert("Reservation added successfully");
   } catch (error) {
     response.status(500).send({ message: error.message });
   }

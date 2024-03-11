@@ -37,7 +37,8 @@ export default function App() {
             <Route path="/student-grouping" element={<UploadsPage  />} />
             <Route path="/review-requests" element={<ExpandableReviewReservation/>} />
             <Route path="/weekly-timetble" element={<WeeklyTimetable/>} />
-            <Route path="/my-profile" element={<Userprofile/>} />
+            <Route path="/ProfilePage" element={<Userprofile/>} />
+
           </Routes>
         </main>
       </div>

@@ -21,7 +21,7 @@ export default function Topbar() {
         <IconButton>
           <SettingsIcon />
         </IconButton>
-        <Link to="/my-profile">
+        <Link to="/ProfilePage">
         <IconButton>
           <AccountCircleIcon />
         </IconButton>

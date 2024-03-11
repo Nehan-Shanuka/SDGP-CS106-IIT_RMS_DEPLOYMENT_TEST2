@@ -20,9 +20,16 @@ function ProfilePage() {
     <div>
       <div className="flex justify-end pr-5 pt-5">
         
-        <Button variant= "contained" color= "info" className="ml-8">
-          Update Profile
-        </Button>
+      <div className="flex justify-end pr-5 pt-5 space-x-2">
+      <Button variant="contained" color="info" style={{ marginRight: '8px' }}>
+      Update Profile
+      </Button>
+
+      <Button variant="contained" color="error">
+        Logout
+      </Button> 
+</div>git 
+
         
       </div>
       <section className="container py-5 mt-10">

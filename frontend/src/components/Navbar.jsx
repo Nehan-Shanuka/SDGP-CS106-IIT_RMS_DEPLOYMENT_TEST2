@@ -13,20 +13,20 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const menus = [
-    { name: 'MyTimetable', link: '/', icon: MdOutlineDashboard },
-    { name: 'Group Timetables', link: '/', icon: FaPeopleGroup },
-    { name: 'Reservation Requests', link: '/', icon: FiMessageSquare },
-    { name: 'Planned Sessions', link: '/', icon: TbReportAnalytics, margin: true },
-    { name: 'Group Formation', link: '/', icon: FiFolder },
-    { name: 'Group Details', link: '/', icon: TbListDetails },
-    { name: 'Review Requests', link: '/', icon: RiSettings4Line },
+    { name: 'MyTimetable', link: 'my-timetable', icon: MdOutlineDashboard },
+    { name: 'Group Timetables', link: 'group-timetable', icon: FaPeopleGroup },
+    { name: 'Reservation Requests', link: 'reservations', icon: FiMessageSquare },
+    { name: 'Planned Sessions', link: 'planned-sessions', icon: TbReportAnalytics, margin: true },
+    { name: 'Group Formation', link: 'student-grouping', icon: FiFolder },
+    { name: 'Group Details', link: 'group-details', icon: TbListDetails },
+    { name: 'Review Requests', link: 'review-requests', icon: RiSettings4Line },
   ];
   const [open, setOpen] = useState(true);
 
   return (
     
       <div
-        className={`bg-[#138d64] min-h-screen ${
+        className={`bg-[#22765a] min-h-screen ${
           open ? 'w-72' : 'w-16'
         } duration-500 text-gray-100 px-4`}
         

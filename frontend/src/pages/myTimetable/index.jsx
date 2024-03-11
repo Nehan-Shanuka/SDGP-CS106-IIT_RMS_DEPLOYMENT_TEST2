@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 import Calender from "../../components/Calender";
 import RedirectButton from "../../components/RedirectButto"
-import WeeklyTimetable from "../../pages/weeklyTimetable/"
+import WeeklyTimetable from "../../pages/weeklyTimetable"
 import { Button, Card } from "@mui/material";
 import { Box } from "@mui/system";
+import { useState } from "react";
 
 
 const timeSlotes = [
@@ -49,10 +51,16 @@ const timeSlotes = [
 ];
 
 export default function MyTimetable() {
+  const [selectedDate, setSelectedDate] = useState();
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date)
+  }
+
   return (
     <div className="flex">
-      <div>
-      <RedirectButton path="/weekly-timetble" text="Show Weekly" />
+      <div className="bg-stone-200">
+      <RedirectButton path="/weekly-timetble" text="Show Weekly"/>
 
       </div>
 
@@ -65,7 +73,7 @@ export default function MyTimetable() {
         }}
       >
         <div>
-          <Calender />
+          <Calender onDateChange={handleDateChange}/>
           <Button
             variant="contained"
             color="primary"

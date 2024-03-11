@@ -18,6 +18,7 @@ export default function PlannedSessions() {
   const [buildings, setBuildings] = useState([]);
   const [buildingID, setBuildingID] = useState([]);
   const [confirmation] = useState(true);
+  const [selectedDate, setSelectedDate] = useState();
 
   useEffect(() => {
     const url = `http://localhost:5555/reservations?confirmation=${confirmation}`;
@@ -58,6 +59,10 @@ export default function PlannedSessions() {
     setBuildingID(locationName);
   };
 
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  }
+
   return (
     <>
       <section className="flex gap-0 bg-gray-200">
@@ -70,7 +75,7 @@ export default function PlannedSessions() {
           }}
         >
           <div>
-            <Calender />
+            <Calender onDateChange={handleDateChange}/>
           </div>
 
           <div>

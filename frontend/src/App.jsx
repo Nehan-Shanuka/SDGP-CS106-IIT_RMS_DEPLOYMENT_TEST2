@@ -18,6 +18,7 @@ import NestedGrid from "./components/weeklytimetable/NestedGrid";
 import ExpandableReviewReservation from "./pages/expandableReviewPage";
 import UploadsPage from "./pages/Upload";
 import Userprofile from "./pages/UserProfile/index"
+import Home from "./pages/home/index"
 
 
 
@@ -27,10 +28,12 @@ export default function App() {
   return (
     <>
       <div className="relative flex h-screen">
-        <SideNavbar isSidebar={isSidebar} />
+        <Navbar isSidebar={isSidebar} />
         <main className="w-full">
           <Topbar setIsSidebar={setIsSidebar} />
           <Routes>
+          <Route path="/" element={<Home/>} />
+
             <Route path="/my-timetable" element={<MyTimetable/>} />
             <Route path="/reservations" element={<Reservation />} />
             <Route path="/planned-sessions" element={<PlannedSessions />} />

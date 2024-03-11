@@ -27,9 +27,8 @@ function ProfilePage() {
 
       <Button variant="contained" color="error">
         Logout
-      </Button> 
+      </Button>
       </div>
-
         
       </div>
       <section className="container py-5 mt-10">

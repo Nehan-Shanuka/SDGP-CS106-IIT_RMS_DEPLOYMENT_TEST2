@@ -4,6 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { Link } from "react-router-dom";
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 
 export default function Topbar() {
   return (
@@ -19,9 +20,12 @@ export default function Topbar() {
       {/* User Icon */}
       <Box display="flex">
         <IconButton>
-          <SettingsIcon />
+        <Link to="/data-upload">
+          <FileUploadIcon/>
+
+          </Link>
         </IconButton>
-        <Link to="/ProfilePage">
+        <Link to="/my-profile">
         <IconButton>
           <AccountCircleIcon />
         </IconButton>
@@ -30,3 +34,4 @@ export default function Topbar() {
     </Box>
   );
 }
+

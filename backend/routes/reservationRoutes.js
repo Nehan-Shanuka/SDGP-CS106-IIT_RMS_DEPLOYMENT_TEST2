@@ -1,23 +1,49 @@
 import express from "express";
 import { Reservation } from "../models/reservationModel.js";
 import { Hall } from "../models/hallModel.js";
+import { Building } from "../models/buildingModel.js";
 
 const router = express.Router();
 
 // Get all reservations
 router.get("/", async (request, response) => {
   try {
-    // Get the confirmation status from the query
+    // Get the confirmation status, modules and buildings from the request query
     let confirmation = request.query.confirmation;
+    let modules = request.query.subject;
+    let buildings = request.query.buildingID;
 
-    // If the confirmation status is not defined, set it to undefined to get all reservations
-    const reservations = await Reservation.find(
-      confirmation === undefined
-        ? {}
-        : {
-            confirmation: confirmation,
-          }
-    );
+    const filter = {};
+
+    // If the confirmation status is defined, set it to the filter
+    if (confirmation !== undefined) {
+      confirmation = request.query.confirmation;
+      filter.confirmation = confirmation;
+    }
+
+    // If the modules are defined, set it to the filter
+    if (modules.length !== 0) {
+      modules = request.query.subject.split(",");
+      filter.subject = { $in: modules };
+    }
+
+    // If the buildings are defined, set it to the filter
+    if (buildings.length !== 0) {
+      buildings = request.query.buildingID.split(",");
+
+      const buildingIDs = await Building.find({
+        buildingID: { $in: [...buildings] },
+      }).select("_id");
+
+      const hallIds = await Hall.find({
+        buildingID: { $in: buildingIDs },
+      }).select("_id");
+      filter.hallID = { $in: hallIds };
+    }
+
+    // Get the reservations according to the filter
+    const reservations = await Reservation.find(filter);
+
     // Return the reservations
     return response.status(201).json(reservations);
   } catch (error) {
@@ -40,7 +66,7 @@ router.post("/:hallId", async (request, response) => {
     await savedReservation.updateOne({ hallID: hallId });
 
     // Return the saved reservation
-    return response.status(201).json(savedReservation); 
+    return response.status(201).json(savedReservation);
   } catch (error) {
     response.status(500).send({ message: error.message });
   }

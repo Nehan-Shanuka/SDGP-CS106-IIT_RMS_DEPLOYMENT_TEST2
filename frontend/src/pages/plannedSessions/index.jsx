@@ -19,9 +19,10 @@ export default function PlannedSessions() {
   const [buildingID, setBuildingID] = useState([]);
   const [confirmation] = useState(true);
   const [selectedDate, setSelectedDate] = useState();
+  const [moduleName, setModuleName] = useState([]);
 
   useEffect(() => {
-    const url = `http://localhost:5555/reservations?confirmation=${confirmation}`;
+    const url = `http://localhost:5555/reservations?confirmation=${confirmation}&subject=${moduleName}&buildingID=${buildingID}`;
     axios
       .get(url)
       .then((response) => {
@@ -30,7 +31,7 @@ export default function PlannedSessions() {
       .catch((error) => {
         console.log(error);
       });
-  }, [confirmation]);
+  }, [confirmation, moduleName, buildingID]);
 
   useEffect(() => {
     const url = `http://localhost:5555/halls?buildingID=${buildingID}`;
@@ -61,7 +62,12 @@ export default function PlannedSessions() {
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
-  }
+  };
+
+  const handleModuleChange = (moduleSelect) => {
+    setModuleName(moduleSelect);
+    console.log("In the method ", moduleName);
+  };
 
   return (
     <>
@@ -75,7 +81,7 @@ export default function PlannedSessions() {
           }}
         >
           <div>
-            <Calender onDateChange={handleDateChange}/>
+            <Calender onDateChange={handleDateChange} />
           </div>
 
           <div>
@@ -83,10 +89,10 @@ export default function PlannedSessions() {
             <Location onLocationChange={handleLocationChange} />
             <Degree />
             <Level />
-            <Module />
+            <Module onModuleChange={handleModuleChange} />
             <Type />
-            <Group />
-            <Button
+            {/* <Group /> */}
+            {/* <Button
               variant="contained"
               color="primary"
               sx={{
@@ -102,7 +108,7 @@ export default function PlannedSessions() {
               }}
             >
               Search
-            </Button>
+            </Button> */}
           </div>
           <ReservationHallList
             color={"#3E737A"}

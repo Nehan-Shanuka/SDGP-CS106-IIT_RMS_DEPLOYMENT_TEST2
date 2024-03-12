@@ -1,14 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
-import { Button, Card } from "@mui/material";
+import { Card } from "@mui/material";
 import Calender from "../../components/Calender";
-import Time from "../../components/TimeSlection";
 import Location from "../../components/LocationSelection";
 import AvailableHallList from "../../components/AvailableHallList";
 import axios from "axios";
 
 export default function Reservation() {
-  const [courses, setCourses] = useState([]);
+  const [halls, setHalls] = useState([]);
   const [buildings, setBuildings] = useState([]);
   const [buildingID, setBuildingID] = useState([]);
   const [selectedDate, setSelectedDate] = useState();
@@ -18,7 +17,7 @@ export default function Reservation() {
     axios
       .get(url)
       .then((response) => {
-        setCourses(response.data);
+        setHalls(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -41,10 +40,8 @@ export default function Reservation() {
   };
 
   const handleDateChange = (date) => {
-    setSelectedDate(date)
-  }
-
-  console.log("ReservationDate", selectedDate);
+    setSelectedDate(date);
+  };
 
   return (
     <>
@@ -59,35 +56,16 @@ export default function Reservation() {
           }}
         >
           <div>
-            <Calender onDateChange={handleDateChange}/>
-            <Time />
+            <Calender onDateChange={handleDateChange} />
             <Location onLocationChange={handleLocationChange} />
-            <Button
-              onClick={() => {}}
-              variant="contained"
-              color="primary"
-              sx={{
-                marginTop: 1,
-                width: "100%",
-                backgroundColor: "#D9D9D9",
-                color: "#000",
-
-                ":hover": {
-                  backgroundColor: "#723E7A",
-                  color: "#fff",
-                },
-              }}
-            >
-              Search
-            </Button>
           </div>
 
           <AvailableHallList
             color={"#723E7A"}
             status={"Reservation"}
-            newcourses={courses}
-            newbuildings={buildings}
-            date={selectedDate}
+            halls={halls}
+            buildings={buildings}
+            dateSelected={selectedDate}
           />
         </Card>
       </section>

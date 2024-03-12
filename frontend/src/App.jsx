@@ -37,11 +37,11 @@ export default function App() {
             <Route path="/my-timetable" element={<MyTimetable/>} />
             <Route path="/reservations" element={<Reservation />} />
             <Route path="/planned-sessions" element={<PlannedSessions />} />
-            <Route path="/student-grouping" element={<UploadsPage  />} />
+            <Route path="/student-grouping" />
             <Route path="/review-requests" element={<ExpandableReviewReservation/>} />
             <Route path="/weekly-timetble" element={<WeeklyTimetable/>} />
-            <Route path="/ProfilePage" element={<Userprofile/>} />
-
+            <Route path="/my-profile" element={<Userprofile/>} />
+            <Route path="/data-upload" element={<UploadsPage />} />
           </Routes>
         </main>
       </div>

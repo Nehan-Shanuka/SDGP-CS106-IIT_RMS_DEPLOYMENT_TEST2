@@ -146,8 +146,8 @@ export default function ExpandableReviewReservation() {
 
                       <div className="relative ml-10">
                         <div>
-                          <p className="text-xl mx-0">{reservation.date}</p>
-                          <p className="my-1 mx-0">{reservation.time}</p>
+                          <p className="text-xl mx-0">Date: {reservation.date.slice(0, 10)}</p>
+                          <p className="my-1 mx-0">Time: {reservation.time}</p>
                         </div>
                       </div>
                     </div>

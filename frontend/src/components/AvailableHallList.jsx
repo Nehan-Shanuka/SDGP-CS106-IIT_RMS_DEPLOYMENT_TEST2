@@ -21,24 +21,16 @@ const Item = styled(Paper)(({ color }) => ({
 
 export default function HallList({
   color,
-  status,
-  newcourses,
-  newbuildings,
-  date,
+  halls,
+  buildings,
+  dateSelected,
 }) {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [registationForm, setRegistationForm] = useState(false);
-  // const [dateSelected, setDateSelected] = useState(date);
-
-  const halls = newcourses;
-  const buildings = newbuildings;
-  const dateSelected = date;
 
   const handleChangedRegistationForm = (changedRegistationForm) => {
     setRegistationForm(changedRegistationForm);
   };
-
-  // console.log("HallListDate", dateSelected);
 
   return (
     <Card
@@ -187,9 +179,10 @@ export default function HallList({
                 </div>
               </Item>
             ))
-          ) : dateSelected === null ? (
+          ) : dateSelected === undefined ? (
             alert("Please select a date"),
             handleChangedRegistationForm(false)
+            // (() => setHoveredItem(null))
           ) : (
             <div className="w-full h-full">
               <RequestForm

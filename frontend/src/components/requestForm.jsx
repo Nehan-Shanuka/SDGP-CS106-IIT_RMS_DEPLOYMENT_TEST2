@@ -2,10 +2,15 @@
 /* eslint-disable react/prop-types */
 import {
   Button,
+  FormControl,
   FormControlLabel,
   FormGroup,
+  InputLabel,
+  ListItemText,
+  MenuItem,
   Radio,
   RadioGroup,
+  Select,
   TextField,
 } from "@mui/material";
 import { useState, useEffect } from "react";
@@ -14,6 +19,16 @@ import Checkbox from "@mui/material/Checkbox";
 import axios from "axios";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+const moduleNames = [
+  "Object Oriented Programming",
+  "Database Management Systems",
+  "Software Development Group Project",
+  "Client Server Architecture",
+  "Machine Learning",
+  "Data Structures and Algorithms",
+  "Mobile Application Development",
+];
 
 export default function RequestForm({
   onRegistationFormChange,
@@ -26,40 +41,54 @@ export default function RequestForm({
   const [disabled, setDisabled] = useState([false, false, false, false]);
   const [radioValue, setRadioValue] = useState();
 
-  // const date = dateSelected;
+  const [moduleName, setModuleName] = useState("");
+  const [open, setOpen] = useState(false);
 
-  // console.log("dateSelected ", date);
+  const [description, setDescription] = useState("");
 
+  // Get the hall id
   const hallID = hall._id;
 
+  // Devide the date into year, month and day
   const year = dateSelected.$y;
   const month = dateSelected.$M;
   const day = dateSelected.$D;
 
-  const newDate = new Date(Date.UTC(year, month, day));
+  // Convert the date to UTC format
+  const convertedDateToUTCFormat = new Date(Date.UTC(year, month, day));
 
-  const newNewDate = newDate.getFullYear() + "-" +  "0" + (newDate.getMonth() + 1) + "-" + newDate.getDate();
-  
-  // console.log("convertedDate ",newNewDate);
+  // Format the date to yyyy-mm-dd
+  const formatedDate =
+    convertedDateToUTCFormat.getFullYear() +
+    "-" +
+    "0" +
+    (convertedDateToUTCFormat.getMonth() + 1) +
+    "-" +
+    convertedDateToUTCFormat.getDate();
 
+  // Check if the date is selected
   useEffect(() => {
     const handleCheckBoxes = () => {
       let dateNotFounded = true;
       hall.plannedSessions.forEach((plannedSession) => {
         const plannedSessionDate = new Date(plannedSession.date);
-        const formatedDate = plannedSessionDate.getFullYear() + "-" +  "0" + (plannedSessionDate.getMonth() + 1) + "-" + plannedSessionDate.getDate();
-        console.log("plannedSession.date", formatedDate);
-        console.log("newNewDate", newNewDate);
-        if (formatedDate === newNewDate) {
+        const formatedReservationDate =
+          plannedSessionDate.getFullYear() +
+          "-" +
+          "0" +
+          (plannedSessionDate.getMonth() + 1) +
+          "-" +
+          plannedSessionDate.getDate();
+        console.log("plannedSession.date", formatedReservationDate);
+        console.log("newNewDate", formatedReservationDate);
+        if (formatedReservationDate === formatedDate) {
           dateNotFounded = false;
           setDisabled([
             plannedSession.reservations.time_01 === null ? false : true,
             plannedSession.reservations.time_02 === null ? false : true,
             plannedSession.reservations.time_03 === null ? false : true,
             plannedSession.reservations.time_04 === null ? false : true,
-          ],
-          // console.log("disabled", disabled)
-          );
+          ]);
         }
       });
       if (dateNotFounded) {
@@ -70,40 +99,41 @@ export default function RequestForm({
     if (dateSelected) {
       handleCheckBoxes();
     }
-  }, [dateSelected, disabled, hall.plannedSessions, newNewDate]);
+  }, [dateSelected]);
 
+  // Handle the request to make a reservation
   const handleRequest = async () => {
-      axios.post(
-        `http://localhost:5555/reservations/${hallID}`,
-        {
-          date: newNewDate,
-          time: checked[0]
-            ? "08.30 - 10.30"
-            : checked[1]
-            ? "10.30 - 12.30"
-            : checked[2]
-            ? "13.30 - 15.30"
-            : "15.30 - 17.30",
-          subject: "OOP",
-          lecturer: "Mr. Cassim",
-          type: radioValue,
-          confirmation: false,
-          description: "Urgent",
-        }
-      )
-  .then((response) => {
-      alert("Reservation added successfully!")
-    })
-    .catch ((error) => {
-      console.log(error);
-    })
+    axios
+      .post(`http://localhost:5555/reservations/${hallID}`, {
+        date: formatedDate,
+        time: checked[0]
+          ? "08.30 - 10.30"
+          : checked[1]
+          ? "10.30 - 12.30"
+          : checked[2]
+          ? "13.30 - 15.30"
+          : "15.30 - 17.30",
+        subject: moduleName,
+        lecturer: "Mr. Sampath Perera",
+        type: radioValue,
+        confirmation: false,
+        description: description,
+      })
+      .then((response) => {
+        alert("Reservation added successfully!");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
+  // Handle the radio button change
   const handleRadioChange = (event) => {
     setRadioValue(event.target.value);
   };
 
-  const handleChange1 = (event) => {
+  // Handle the "all" checkbox change
+  const handleChangeAllCheckBox = (event) => {
     setChecked([
       event.target.checked,
       event.target.checked,
@@ -112,22 +142,24 @@ export default function RequestForm({
     ]);
   };
 
-  const handleChange2 = (event) => {
+  // Handle the checkbox change
+  const handleChangeCheckBox1 = (event) => {
     setChecked([event.target.checked, checked[1], checked[2], checked[3]]);
   };
 
-  const handleChange3 = (event) => {
+  const handleChangeCheckBox2 = (event) => {
     setChecked([checked[0], event.target.checked, checked[2], checked[3]]);
   };
 
-  const handleChange4 = (event) => {
+  const handleChangeCheckBox3 = (event) => {
     setChecked([checked[0], checked[1], event.target.checked, checked[3]]);
   };
 
-  const handleChange5 = (event) => {
+  const handleChangeCheckBox4 = (event) => {
     setChecked([checked[0], checked[1], checked[2], event.target.checked]);
   };
 
+  // Update the registation form active status
   useEffect(
     (changedRegistationForm) => {
       setRegistationForm(changedRegistationForm);
@@ -135,6 +167,26 @@ export default function RequestForm({
     [registationForm],
     onRegistationFormChange
   );
+
+  // Handle the description change
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  };
+
+  // Handle the module name change
+  const handleModuleNameChange = (event) => {
+    setModuleName(event.target.value);
+  };
+
+  // Handle the open and close of the module name select
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  // Handle the open and close of the module name select
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   return (
     <Box
@@ -146,7 +198,6 @@ export default function RequestForm({
         padding: 1 * 3,
       }}
     >
-      {/* {handleCheckBoxes()} */}
       <div>
         <div className="flex justify-between items-center">
           <div className="w-1/4">
@@ -155,7 +206,7 @@ export default function RequestForm({
 
           <div>
             <div>
-              <p className="text-xl">Date: {newNewDate}</p>
+              <p className="text-xl">Date: {formatedDate}</p>
             </div>
           </div>
 
@@ -170,35 +221,6 @@ export default function RequestForm({
             </div>
           </div>
         </div>
-
-        {/* <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gridTemplateColumns: "auto auto",
-            width: "100%",
-            padding: 0 * 5,
-          }}
-        >
-          <div className="flex justify-between w-full">
-            <div className="flex flex-col mx-3">
-              <p>Projectors: {hall.projectorCount}</p>
-              <p>
-                Whiteboard:{" "}
-                {hall.whiteboardAvailability ? "Available" : "Not Available"}
-              </p>
-              <p>
-                Mic & Speaker:{" "}
-                {hall.micAndSpeacker ? "Available" : "Not Available"}
-              </p>
-            </div>
-          </div>
-
-          <div className="flex flex-row-reverse w-60 pr-5">
-            <p>Date: {newNewDate}</p>
-          </div>
-        </div> */}
       </div>
 
       <hr className="w-full bg-white my-4 h-0.5" />
@@ -216,7 +238,7 @@ export default function RequestForm({
                     },
                   }}
                   checked={checked[0] && checked[1] && checked[2] && checked[3]}
-                  onChange={handleChange1}
+                  onChange={handleChangeAllCheckBox}
                   disabled={true}
                   {...label}
                 />
@@ -233,7 +255,7 @@ export default function RequestForm({
                     },
                   }}
                   checked={checked[0]}
-                  onChange={handleChange2}
+                  onChange={handleChangeCheckBox1}
                   disabled={disabled[0]}
                   {...label}
                 />
@@ -250,7 +272,7 @@ export default function RequestForm({
                     },
                   }}
                   checked={checked[1]}
-                  onChange={handleChange3}
+                  onChange={handleChangeCheckBox2}
                   disabled={disabled[1]}
                   {...label}
                 />
@@ -267,7 +289,7 @@ export default function RequestForm({
                     },
                   }}
                   checked={checked[2]}
-                  onChange={handleChange4}
+                  onChange={handleChangeCheckBox3}
                   disabled={disabled[2]}
                   {...label}
                 />
@@ -284,7 +306,7 @@ export default function RequestForm({
                     },
                   }}
                   checked={checked[3]}
-                  onChange={handleChange5}
+                  onChange={handleChangeCheckBox4}
                   disabled={disabled[3]}
                   {...label}
                 />
@@ -372,6 +394,30 @@ export default function RequestForm({
         </div>
       </div>
 
+      <div className="bg-stone-200 rounded mt-5">
+        <FormControl sx={{ width: "100%" }} color="success">
+          <InputLabel id="demo-controlled-open-select-label">
+            Select Module
+          </InputLabel>
+          <Select
+            labelId="demo-controlled-open-select-label"
+            id="demo-controlled-open-select"
+            open={open}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            value={moduleName}
+            label="Module Name"
+            onChange={handleModuleNameChange}
+          >
+            {moduleNames.map((name, index) => (
+              <MenuItem key={index} value={name}>
+                <ListItemText primary={name} />
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </div>
+
       <div className="w-full bg-stone-200 rounded my-5">
         <TextField
           sx={{
@@ -381,6 +427,9 @@ export default function RequestForm({
           label="Brief Description"
           color="success"
           variant="filled"
+          multiline
+          rows={2}
+          onChange={handleDescriptionChange}
         />
       </div>
 
@@ -422,7 +471,7 @@ export default function RequestForm({
                 margin: 0,
               }}
             >
-              Request Here
+              Make Request
             </h5>
           </Button>
         </div>

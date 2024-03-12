@@ -1,63 +1,42 @@
 /* eslint-disable react/prop-types */
 // import * as React from 'react';
-import { useEffect, useState } from 'react';
-import Card from '@mui/material/Card';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
+import { useEffect, useState } from "react";
+
+import { DateCalendar } from "@mui/x-date-pickers";
+import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 export default function Calender({ onDateChange }) {
   const [selectedDate, setSelectedDate] = useState(null);
 
-  // console.log(selectedDate);
-
   const handleDateChange = (date) => {
     setSelectedDate(date);
-  }
+  };
 
   useEffect(() => {
     onDateChange(selectedDate);
   }, [selectedDate, onDateChange]);
 
-  console.log("CalanderDate" ,selectedDate);
-
   return (
-    <Card 
-    sx={{
-      "& .MuiPickersToolbar-root": {
-        paddingTop: 0,
-        paddingBottom: 0,
-      },
-
-      "& .MuiDialogActions-root": {
-        paddingTop: 0,
-        paddingBottom: 0,
-      },
-
-      "& .MuiPickersSlideTransition-root": {
-        minHeight: "200px",
-      },
-
-      "& .MuiDateCalendar-root": {
-        height: "294px",
-      },
-    }}
-    >
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <StaticDatePicker orientation="portrait" 
-      sx={{
-        ".MuiPickersToolbar-root": {
-          visibility: "hidden",
-          height: "0px",
-        },
-      }}
-      
-      renderInput={(params) => <input {...params} />}
-      value={selectedDate}
-      onChange={handleDateChange}
-      />
+      <DemoContainer
+        components={["DateCalendar", "DateCalendar", "DateCalendar"]}
+      >
+        <DemoItem>
+          <DateCalendar
+            value={selectedDate}
+            onChange={handleDateChange}
+            sx={{
+              border: "1px solid #D9D9D9",
+              borderRadius: 2,
+              ":hover": {
+                border: "1px solid black",
+              },
+            }}
+          />
+        </DemoItem>
+      </DemoContainer>
     </LocalizationProvider>
-    </Card>
-    
   );
 }

@@ -1,7 +1,6 @@
 import express from "express";
 import { PORT, MONGODB } from "./config.js";
 import mongoose from "mongoose";
-import courseRoutes from "./routes/courseRoutes.js";
 import buildingRoutes from "./routes/buildingRoutes.js";
 import hallRoutes from "./routes/hallRoutes.js";
 import reservationRoutes from "./routes/reservationRoutes.js";
@@ -17,8 +16,6 @@ app.get("/", (request, response) => {
   console.log(request);
   return response.status(234).send("Welcome to IIT RMS server!");
 });
-
-app.use("/courses", courseRoutes);
 
 app.use("/buildings", buildingRoutes);
 

@@ -77,7 +77,8 @@ export default function PlannedSessions() {
             display: "flex",
             justifyContent: "space-between",
             padding: 3,
-            maxHeight: "100vh",
+            height: "90vh",
+            width: "100%",
           }}
         >
           <div>

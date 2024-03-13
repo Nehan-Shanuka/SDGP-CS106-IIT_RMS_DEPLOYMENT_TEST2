@@ -2,9 +2,8 @@ import { Box, IconButton } from "@mui/material";
 import { InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import SettingsIcon from "@mui/icons-material/Settings";
 import { Link } from "react-router-dom";
-import FileUploadIcon from '@mui/icons-material/FileUpload';
+import FileUploadIcon from "@mui/icons-material/FileUpload";
 
 export default function Topbar() {
   return (
@@ -19,19 +18,17 @@ export default function Topbar() {
 
       {/* User Icon */}
       <Box display="flex">
-        <IconButton>
         <Link to="/data-upload">
-          <FileUploadIcon/>
-
-          </Link>
-        </IconButton>
+          <IconButton>
+            <FileUploadIcon />
+          </IconButton>
+        </Link>
         <Link to="/my-profile">
-        <IconButton>
-          <AccountCircleIcon />
-        </IconButton>
+          <IconButton>
+            <AccountCircleIcon />
+          </IconButton>
         </Link>
       </Box>
     </Box>
   );
 }
-

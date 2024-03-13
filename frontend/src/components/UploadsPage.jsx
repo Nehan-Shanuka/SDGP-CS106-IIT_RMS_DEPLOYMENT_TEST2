@@ -1,55 +1,65 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Button from '@mui/material/Button';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import Uploadicon from '../images/6323.jpg'
-import Card from "@mui/material/Card"; 
+import { styled } from "@mui/material/styles";
+import Button from "@mui/material/Button";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import Uploadicon from "../images/6323.jpg";
+import Card from "@mui/material/Card";
 
-
-const VisuallyHiddenInput = styled('input')({
-  clip: 'rect(0 0 0 0)',
-  clipPath: 'inset(50%)',
+const VisuallyHiddenInput = styled("input")({
+  clip: "rect(0 0 0 0)",
+  clipPath: "inset(50%)",
   height: 1,
-  overflow: 'hidden',
-  position: 'absolute',
+  overflow: "hidden",
+  position: "absolute",
   bottom: 0,
   left: 0,
-  whiteSpace: 'nowrap',
+  whiteSpace: "nowrap",
   width: 1,
-  marginInlineStart: "10"
+  marginInlineStart: "10",
 });
 
 export default function InputFileUpload() {
   return (
-    <div style={{paddingBottom:"6rem", marginLeft:"20px", marginRight:"1rem"}}>
-      
-        <div style={{display:"flex",marginTop:"30px", justifyContent:"space-between", padding:"0 12rem" }}>
+    <div
+      style={{ paddingBottom: "6rem", marginLeft: "20px", marginRight: "1rem" }}
+    >
+      <div
+        style={{
+          display: "flex",
+          marginTop: "30px",
+          justifyContent: "space-between",
+          padding: "0 12rem",
+        }}
+      >
+        <Card sx={{ border: 2, borderColor: "black" }}>
+          <div>
+            <img
+              src={Uploadicon}
+              style={{ width: "10rem", marginLeft: "17%" }}
+            />
 
-          <Card sx={{border:2, borderColor:"black",}}>
-          <div> 
-            <img src={Uploadicon} style={{width:"10rem",marginLeft:"17%"}}/>
-            
             <Button
-              style={{width:"15rem"}}
+              style={{ width: "15rem" }}
               component="label"
               role={undefined}
               variant="contained"
               tabIndex={-1}
               startIcon={<CloudUploadIcon />}
             >
-              Time Tables 
+              Time Tables
               <VisuallyHiddenInput type="file" />
             </Button>
           </div>
-          </Card>     
-        
+        </Card>
 
-        <Card sx={{border:2, borderColor:"black",}}>
+        <Card sx={{ border: 2, borderColor: "black" }}>
           <div>
-            <img src={Uploadicon} style={{width:"10rem",marginLeft:"17%"}}/>
-            
+            <img
+              src={Uploadicon}
+              style={{ width: "10rem", marginLeft: "17%" }}
+            />
+
             <Button
-              style={{width:"15rem"}}
+              style={{ width: "15rem" }}
               component="label"
               role={undefined}
               variant="contained"
@@ -61,18 +71,24 @@ export default function InputFileUpload() {
             </Button>
           </div>
         </Card>
+      </div>
 
-        </div>
-
-        
-
-        <div style={{display:"flex",marginTop:"30px", justifyContent:"space-between", padding:"0 12rem",marginTop:"5rem"}}>
-          
-        <Card sx={{border:2, borderColor:"black",}}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          padding: "0 12rem",
+          marginTop: "5rem",
+        }}
+      >
+        <Card sx={{ border: 2, borderColor: "black" }}>
           <div>
-          <img src={Uploadicon} style={{width:"10rem",marginLeft:"17%"}}/>
+            <img
+              src={Uploadicon}
+              style={{ width: "10rem", marginLeft: "17%" }}
+            />
             <Button
-              style={{width:"15rem"}}
+              style={{ width: "15rem" }}
               component="label"
               role={undefined}
               variant="contained"
@@ -83,27 +99,27 @@ export default function InputFileUpload() {
               <VisuallyHiddenInput type="file" />
             </Button>
           </div>
-          </Card>
-        
+        </Card>
 
-        
-        <Card sx={{border:2, borderColor:"black",}}>
+        <Card sx={{ border: 2, borderColor: "black" }}>
           <div>
-            <img src={Uploadicon} style={{width:"10rem",marginLeft:"17%"}}/>
-              <Button
-                style={{width:"15rem"}}
-                component="label"
-                role={undefined}
-                variant="contained"
-                tabIndex={-1}
-                startIcon={<CloudUploadIcon />}
-              >
+            <img
+              src={Uploadicon}
+              style={{ width: "10rem", marginLeft: "17%" }}
+            />
+            <Button
+              style={{ width: "15rem" }}
+              component="label"
+              role={undefined}
+              variant="contained"
+              tabIndex={-1}
+              startIcon={<CloudUploadIcon />}
+            >
               Resources
               <VisuallyHiddenInput type="file" />
             </Button>
           </div>
         </Card>
-        
       </div>
     </div>
   );

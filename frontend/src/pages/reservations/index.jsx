@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { Card } from "@mui/material";
@@ -6,7 +7,7 @@ import Location from "../../components/LocationSelection";
 import AvailableHallList from "../../components/AvailableHallList";
 import axios from "axios";
 
-export default function Reservation() {
+export default function Reservation({ isSidebarOpen }) {
   const [halls, setHalls] = useState([]);
   const [buildings, setBuildings] = useState([]);
   const [buildingID, setBuildingID] = useState([]);
@@ -50,9 +51,11 @@ export default function Reservation() {
           sx={{
             display: "flex",
             justifyContent: "space-between",
-            padding: 3,
-            maxHeight: "100vh",
+            paddingX: isSidebarOpen ? 3 : 15,
+            paddingY: 3,
+            height: "90vh",
             width: "100%",
+            transitionDelay: "1s",
           }}
         >
           <div>

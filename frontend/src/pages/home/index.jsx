@@ -6,6 +6,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Authenticator from "../authentication";
 
 function Welcome({ onStateChange }) {
   // Define a sample menus array
@@ -87,6 +88,10 @@ function Welcome({ onStateChange }) {
             </div>
           </Grid>
         ))}
+      </div>
+      <div className="flex justify-center">
+        
+      {/* <Authenticator /> */}
       </div>
     </div>
   );

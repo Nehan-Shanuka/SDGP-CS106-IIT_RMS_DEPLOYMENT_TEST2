@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import buildingRoutes from "./routes/buildingRoutes.js";
 import hallRoutes from "./routes/hallRoutes.js";
 import reservationRoutes from "./routes/reservationRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
@@ -24,6 +25,8 @@ app.use("/buildings", buildingRoutes);
 app.use("/halls", hallRoutes);
 
 app.use("/reservations", reservationRoutes);
+
+app.use("/users", userRoutes);
 
 // mongoose
 //   .connect(MONGODB)

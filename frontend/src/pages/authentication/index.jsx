@@ -17,7 +17,13 @@ export default function Authenticator({ userOnBoard }) {
       const auth = getAuth(app);
       const result = await signInWithPopup(auth, provider);
       console.log(result);
-      setUser(result.user);
+      const domain = result.user.email.split("@")[1];
+      console.log(domain);
+      if (domain === "iit.ac.lk" || domain === "gmail.com") {
+        setUser(result.user);
+      } else {
+        alert("Please use your IIT email to login!");
+      }
     } catch (error) {
       console.log(error);
     }

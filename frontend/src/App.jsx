@@ -13,14 +13,34 @@ import Userprofile from "./pages/UserProfile/index";
 import Home from "./pages/home/index";
 import Authenticator from "./pages/authentication";
 import SplashScreen from "./pages/splashScreen";
+import SorryCall from "./components/SorryCall";
+import axios from "axios";
 
 export default function App() {
   const [isSidebar, setIsSidebar] = useState(false);
   const [isWelcome, setIsWelcome] = useState(true);
   const [onBoardUser, setOnBoardUser] = useState();
+  const [users, setUsers] = useState();
+  const [userFromDB, setUserFromDB] = useState();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get("http://localhost:5555/users");
+        if (response.status === 200) {
+          setUsers(response.data);
+          // setOnBoardUser(response.data[0]);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchUser();
+  }, []);
+
 
   useEffect(() => {
     // Simulate loading time
@@ -39,7 +59,13 @@ export default function App() {
 
   const handleUser = (user) => {
     setOnBoardUser(user);
-    setIsAuthenticated(true);
+    users?.map((userFromDB) => {
+      if (userFromDB.email === user.email) {
+        setUserFromDB(userFromDB);
+        setIsAuthenticated(true);
+      }
+    });
+    // setIsAuthenticated(true);
   };
 
   console.log("in app ", isAuthenticated);
@@ -71,10 +97,15 @@ export default function App() {
                 />
                 <Route path="/planned-sessions" element={<PlannedSessions />} />
                 <Route path="/student-grouping" />
-                <Route
+                {userFromDB.adminPrivilege ? (
+                  <Route
                   path="/review-requests"
                   element={<ExpandableReviewReservation />}
                 />
+                ) : (
+                  <Route path="/review-requests" element={<SorryCall />} />
+                )}
+                
                 <Route path="/weekly-timetble" element={<WeeklyTimetable />} />
                 <Route path="/my-profile" element={<Userprofile />} />
                 <Route path="/data-upload" element={<UploadsPage />} />

@@ -122,7 +122,7 @@ export default function ExpandableReviewReservation() {
                 sx={{
                   ...(reservations.length > 1
                     ? { width: "100%" }
-                    : { width: "70%" }),
+                    : { width: "100%" }),
                   ...(reservations.length > 0
                     ? {
                         margin: "auto",

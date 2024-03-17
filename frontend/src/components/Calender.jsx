@@ -2,13 +2,10 @@
 /* eslint-disable react/prop-types */
 // import * as React from 'react';
 import { useEffect, useState } from "react";
-
 import { DateCalendar } from "@mui/x-date-pickers";
 import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { set } from "mongoose";
-import dayjs from "dayjs";
 
 export default function Calender({ onDateChange, onDayChange }) {
   const daysOfWeek = [

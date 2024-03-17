@@ -120,7 +120,6 @@ const NestedGrid = () => {
                                 <span style={{ fontSize: '15px' }}> {/* Apply font size  "Topic" */}
                                   {session.timeSessions[timeKey]?.subject}<br />
                                 </span>
-                                 {session.timeSessions[timeKey]?.lecturer}<br />
                                 
                               </Item>
                             </Tooltip>

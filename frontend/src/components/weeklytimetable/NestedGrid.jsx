@@ -1,86 +1,141 @@
+import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import RedirectButton from "../RedirectButto"
+import RedirectButton from "../RedirectButto"; 
+import axios from "axios";
+import Tooltip from "@mui/material/Tooltip";
 
-const Item = styled(Paper)(({ theme, color }) => ({
+const Item = styled("div")(({ theme, color }) => ({
   backgroundColor: color,
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
   color: theme.palette.text.secondary,
   cursor: "pointer",
-  // width: "190px",
-  // height: "70px",
   borderRadius: "10px",
   margin: "10px",
 }));
 
 const NestedGrid = () => {
-  const itemNames = [
-    { id: "1", text: "Object Oriented Programming", detail1: "3LA || LEC || GP", detail2: "testin 1 ea are the  champian mot lovelekmrgb krgbrkbrbro igjtgちgちy daye", weekday: "Monday" },
-    { id: "2", text: "Object Oriented Programming", detail1: "3LA ~ LEC ~ GP", weekday: "Tuesday" },
-    { id: "3", text: "Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Wednesday" },
-    { id: "4", text: "Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Thursday" },
-    { id: "5", text: "Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Friday" },
-    { id: "6", text: "Object Oriented Programming", detail1: "3LA || LEC || GP", detail2: "testin 1 ea are the  champian mot lovelekmrgb krgbrkbrbro igjtgちgちy daye", weekday: "Monday" },
-    { id: "7", text: "Object Oriented Programming", detail1: "3LA ~ LEC ~ GP", weekday: "Tuesday" },
-    { id: "8", text: "Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Wednesday" },
-    { id: "9", text: "Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Thursday" },
-    { id: "10", text: "Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Friday" },
-    { id: "11", text: "Object Oriented Programming", detail1: "3LA || LEC || GP", detail2: "testin 1 ea are the  champian mot lovelekmrgb krgbrkbrbro igjtgちgちy daye", weekday: "Monday" },
-    { id: "12", text: "Object Oriented Programming", detail1: "3LA ~ LEC ~ GP", weekday: "Tuesday" },
-    { id: "13", text: "Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Wednesday" },
-    { id: "14", text: "Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Thursday" },
-    { id: "15", text: "Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Friday" },
-    { id: "16", text: "16Object Oriented Programming", detail1: "3LA || LEC || GP", detail2: "testin 1 ea are the  champian mot lovelekmrgb krgbrkbrbro igjtgちgちy daye", weekday: "Monday" },
-    { id: "17", text: "17Object Oriented Programming", detail1: "3LA ~ LEC ~ GP", weekday: "Tuesday" },
-    { id: "18", text: "18Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Wednesday" },
-    { id: "19", text: "19Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Thursday" },
-    { id: "20", text: "20Object Oriented Programming", detail1: "3LA  LEC  GP", weekday: "Friday" },
-    // Add more items as needed
-  ];
+  const [timetableData, setTimetableData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const colors = ['#FF9999', '#99FF99', '#9999FF', '#FFFF99', '#FF99FF', '#99FFFF', '#FFCCCC', '#CCFFCC', '#CCCCFF', '#FFFFCC', '#FFCCFF', '#CCFFFF', '#FF6666', '#66FF66', '#6666FF', '#FFFF66', '#FF66FF', '#66FFFF', '#FF9966', '#66FF99'];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:5555/timetables");
+        console.log("Response data:", response.data);
+        setTimetableData(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching timetable data:", error);
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
+  const colors = ['#FF9999', '#99FF99', '#9999FF', '#FFFF99']; 
 
   return (
     <div className="flex">
       <div>
-      <RedirectButton path="/my-timetable" text="Show Daily"  />
-
+        <RedirectButton path="/my-timetable" text="Show Daily" />
       </div>
-    
-    <Box sx={{ flexGrow: 1, marginTop: "50px", marginLeft: "50px", marginRight:"0px", border: "2px solid black", borderColor: "black", padding: "40px", width: "90%", borderRadius: "30px", backgroundColor: "lightgrey", "@media screen and (max-width: 768px)": { marginLeft: "0", marginTop: "20px", width: "90%", padding: "20px", } }}>
-      <Grid container spacing={2} alignItems="flex-start" justifyContent="space-between" sx={{ overflowX: 'auto', '&::-webkit-scrollbar': { display: 'none', }, }}>
-        {/* Weekdays row */}
-        <Grid container item spacing={4}>
-          {/* Render items for each weekday */}
-          {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].map(weekday => (
-            <Grid item xs={12} sm={6} md={4} lg={2.4} key={weekday}>
-              <Box sx={{ backgroundColor: "#fff", padding: "10px", borderRadius: "10px" }}>
-              <Typography variant="h6" sx={{ marginBottom: "20px", textAlign: "center" }}>{weekday}</Typography>
-                {itemNames
-                  .filter(item => item.weekday === weekday)
-                  .map((item, index) => (
-                    <Tooltip key={item.id} title={<><div>{item.detail2}</div></>} interactive placement="top">
-                      <Item color={colors[(item.id - 1) % colors.length]} width="300px" height="90px" borderRadius="30px">
-                        <div style={{ fontSize: '15px' }}>{item.detail1}</div>
-                        <div style={{ fontSize: '12px' }}>{item.text}</div>
-                      </Item>
-                    </Tooltip>
+
+      <Box
+        sx={{
+          flexGrow: 1,
+          marginTop: "50px",
+          marginLeft: "50px",
+          marginRight: "0px",
+          border: "2px solid black",
+          borderColor: "black",
+          padding: "40px",
+          width: "90%",
+          borderRadius: "30px",
+          backgroundColor: "lightgrey",
+          "@media screen and (max-width: 768px)": {
+            marginLeft: "0",
+            marginTop: "20px",
+            width: "90%",
+            padding: "20px",
+          },
+        }}
+      >
+        <Grid
+          container
+          spacing={2}
+          alignItems="flex-start"
+          justifyContent="space-between"
+          sx={{
+            overflowX: "auto",
+            "&::-webkit-scrollbar": { display: "none" },
+          }}
+        >
+          {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].map((weekday, index) => (
+            <Grid item xs={12} sm={6} md={4} lg={2.4} key={index}>
+              <Box
+                sx={{
+                  backgroundColor: "#fff",
+                  padding: "10px",
+                  borderRadius: "10px",
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{ marginBottom: "20px", textAlign: "center" }}
+                >
+                  {weekday}
+                </Typography>
+                {timetableData
+                  .filter(item => 
+                    item.sessions?.some(session => session.day === weekday) &&
+                    item.groupName === "CS-J" &&
+                    item.course === "BSc Computer Science"
+                  )
+                  .map((item, itemIndex) => (
+                    <div key={itemIndex}>
+                      {item.sessions.filter(session => session.day === weekday).map((session, sessionIndex) => (
+                        <div key={sessionIndex}>
+                          {session.timeSessions && Object.keys(session.timeSessions).map((timeKey, colorIndex) => (
+                            <Tooltip key={timeKey} title={session.timeSessions[timeKey]?.lecturer}>
+                              <Item color={colors[colorIndex % colors.length]} style={{ fontSize: '15px' }}>
+                              <span style={{ fontSize: '20px' }}>
+                              {session.timeSessions[timeKey]?.hallID}  {session.timeSessions[timeKey]?.buildingID}  {session.timeSessions[timeKey]?.type.replace("Lecture", "LEC").replace("Tutorial", "TUT")}<br />
+                              </span>
+                                <span style={{ fontSize: '15px' }}> {/* Apply font size  "Topic" */}
+                                  {session.timeSessions[timeKey]?.subject}<br />
+                                </span>
+                                 {session.timeSessions[timeKey]?.lecturer}<br />
+                                
+                              </Item>
+                            </Tooltip>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
                   ))}
               </Box>
             </Grid>
           ))}
         </Grid>
-      </Grid>
-    </Box>
+      </Box>
     </div>
   );
 };
 
 export default NestedGrid;
-

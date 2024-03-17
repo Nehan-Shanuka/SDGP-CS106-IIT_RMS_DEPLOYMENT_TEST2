@@ -20,6 +20,11 @@ export default function PlannedSessions() {
   const [confirmation] = useState(true);
   const [selectedDate, setSelectedDate] = useState();
   const [moduleName, setModuleName] = useState([]);
+  const [day, setDay] = useState();
+
+  const handleDayChange = (day) => {
+    setDay(day);
+  };
 
   useEffect(() => {
     const url = `http://localhost:5555/reservations?confirmation=${confirmation}&subject=${moduleName}&buildingID=${buildingID}`;
@@ -82,7 +87,7 @@ export default function PlannedSessions() {
           }}
         >
           <div>
-            <Calender onDateChange={handleDateChange} />
+            <Calender onDateChange={handleDateChange} onDayChange={handleDayChange} />
           </div>
 
           <div>

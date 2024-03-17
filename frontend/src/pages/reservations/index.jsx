@@ -12,6 +12,11 @@ export default function Reservation({ isSidebarOpen }) {
   const [buildings, setBuildings] = useState([]);
   const [buildingID, setBuildingID] = useState([]);
   const [selectedDate, setSelectedDate] = useState();
+  const [day, setDay] = useState();
+
+  const handleDayChange = (day) => {
+    setDay(day);
+  };
 
   useEffect(() => {
     const url = `http://localhost:5555/halls?buildingID=${buildingID}`;
@@ -59,7 +64,7 @@ export default function Reservation({ isSidebarOpen }) {
           }}
         >
           <div>
-            <Calender onDateChange={handleDateChange} />
+            <Calender onDateChange={handleDateChange} onDayChange={handleDayChange} />
             <Location onLocationChange={handleLocationChange} />
           </div>
 

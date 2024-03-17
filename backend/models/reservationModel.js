@@ -5,9 +5,11 @@ const reservationSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Hall",
     },
+    day: {
+        type: String,
+    },
     date: {
         type: Date,
-        required: true,
     },
     time: {
         type: String,

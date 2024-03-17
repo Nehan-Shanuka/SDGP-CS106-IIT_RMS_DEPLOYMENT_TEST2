@@ -107,7 +107,7 @@ export default function App() {
                 )}
                 
                 <Route path="/weekly-timetble" element={<WeeklyTimetable />} />
-                <Route path="/my-profile" element={<Userprofile />} />
+                <Route path="/my-profile" element={<Userprofile userFromDB={userFromDB} />} />
                 <Route path="/data-upload" element={<UploadsPage />} />
               </Routes>
             </main>

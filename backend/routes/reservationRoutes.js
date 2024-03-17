@@ -10,8 +10,10 @@ router.get("/", async (request, response) => {
   try {
     // Get the confirmation status, modules and buildings from the request query
     let confirmation = request.query.confirmation;
-    let modules = request.query.subject === undefined ? [] : request.query.subject;
-    let buildings = request.query.buildingID === undefined ? [] : request.query.buildingID;
+    let modules =
+      request.query.subject === undefined ? [] : request.query.subject;
+    let buildings =
+      request.query.buildingID === undefined ? [] : request.query.buildingID;
 
     const filter = {};
 
@@ -192,12 +194,14 @@ router.delete("/:id", async (request, response) => {
   try {
     // Get the reservation according to the id
     const reservation = await Reservation.findByIdAndDelete(request.params.id);
+    console.log(reservation);
 
-    if (reservation.confirmation) {
+    if (reservation.confirmation && reservation.date !== undefined) {
       // Get the hallID that the reservation is made for
       const hallId = reservation.hallID;
       // Get the hall according to the hallID
       const hall = await Hall.findById(hallId);
+      console.log(hall);
 
       // Find the index of the planned session's date that the reservation is made for
       const exsistingPlannedSessionIndex = hall.plannedSessions.findIndex(
@@ -222,6 +226,57 @@ router.delete("/:id", async (request, response) => {
           {
             $set: {
               plannedSessions: updatedPlannedSessions,
+            },
+          },
+          { new: true }
+        );
+      }
+
+      // Function to get the time slot key based on savedReservation.time
+      function getTimeSlot(time) {
+        switch (time) {
+          case "08.30 - 10.30":
+            return "time_01";
+          case "10.30 - 12.30":
+            return "time_02";
+          case "13.30 - 15.30":
+            return "time_03";
+          case "15.30 - 17.30":
+            return "time_04";
+          default:
+            return null;
+        }
+      }
+    }
+
+    if (reservation.confirmation && reservation.day !== undefined) {
+      // Get the hallID that the reservation is made for
+      const hallId = reservation.hallID;
+      // Get the hall according to the hallID
+      const hall = await Hall.findById(hallId);
+      console.log(hall);
+
+      // Find the index of the planned session's date that the reservation is made for
+      const exsistingTimetableSessionIndex = hall.timetableSessions.findIndex(
+        (timetableSession) => timetableSession.day === reservation.day
+      ); // findIndex returns -1 if the element is not found
+
+      // If the date exists, update the time under that date
+      if (exsistingTimetableSessionIndex !== -1) {
+        const updatedTimetableSessions = [...hall.timetableSessions];
+        const timeSlot = getTimeSlot(reservation.time);
+
+        // Update the time slot with null
+        updatedTimetableSessions[exsistingTimetableSessionIndex].reservations[
+          timeSlot
+        ] = null;
+
+        // Update the planned sessions
+        await Hall.findByIdAndUpdate(
+          hallId,
+          {
+            $set: {
+              timetableSessions: updatedTimetableSessions,
             },
           },
           { new: true }

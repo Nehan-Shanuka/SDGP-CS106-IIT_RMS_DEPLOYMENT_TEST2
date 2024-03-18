@@ -190,7 +190,6 @@ export default function MyTimetable() {
   const [item, setItem] = useState([]);
 
   useEffect(() => {
-
     console.log("Timetable", timetables);
     // console.log("Day", day);
     // Update the item array whenever the day state changes
@@ -202,151 +201,160 @@ export default function MyTimetable() {
     (slot) => slot.groupName === group
   );
 
+  const generateItems = () => {
+    const item = [];
+    let sessionsArray = [];
 
-const generateItems = () => {
-  const item = [];
-  let sessionsArray = [];
+    console.log("Filtered Timetable", filteredTimetable);
 
-  console.log("Filtered Timetable", filteredTimetable);
-
-  filteredTimetable.forEach((slot) => {
-    slot.sessions.forEach((session) => {
-      console.log("Day", session.day, " - ", day);
-      if (session.day === day) {
-        sessionsArray = [];
-        console.log("Session", sessionsArray);
-        session.timeSessions["time_01"] !== null
-          ? sessionsArray.push(session.timeSessions["time_01"])
-          : sessionsArray.push(null);
-        session.timeSessions["time_02"] !== null
-          ? sessionsArray.push(session.timeSessions["time_02"])
-          : sessionsArray.push(null);
-        session.timeSessions["time_03"] !== null
-          ? sessionsArray.push(session.timeSessions["time_03"])
-          : sessionsArray.push(null);
-        session.timeSessions["time_04"] !== null
-          ? sessionsArray.push(session.timeSessions["time_04"])
-          : sessionsArray.push(null);
-      } else {
-        // sessionsArray = [];
-        // sessionsArray.push(null);
-        // sessionsArray.push(null);
-        // sessionsArray.push(null);
-        // sessionsArray.push(null);
-      }
+    filteredTimetable.forEach((slot) => {
+      slot.sessions.forEach((session) => {
+        console.log("Day", session.day, " - ", day);
+        if (session.day === day) {
+          sessionsArray = [];
+          console.log("Session", sessionsArray);
+          session.timeSessions["time_01"] !== null
+            ? sessionsArray.push(session.timeSessions["time_01"])
+            : sessionsArray.push(null);
+          session.timeSessions["time_02"] !== null
+            ? sessionsArray.push(session.timeSessions["time_02"])
+            : sessionsArray.push(null);
+          session.timeSessions["time_03"] !== null
+            ? sessionsArray.push(session.timeSessions["time_03"])
+            : sessionsArray.push(null);
+          session.timeSessions["time_04"] !== null
+            ? sessionsArray.push(session.timeSessions["time_04"])
+            : sessionsArray.push(null);
+        } else {
+          // sessionsArray = [];
+          // sessionsArray.push(null);
+          // sessionsArray.push(null);
+          // sessionsArray.push(null);
+          // sessionsArray.push(null);
+        }
+      });
     });
-  });
 
-  console.log("Sessions", sessionsArray);
+    console.log("Sessions", sessionsArray);
 
-  for (let i = 0; i < 4; i++) {
-    // console.log("I", i);
-    if (sessionsArray[i] === null || sessionsArray[i] === undefined) {
-      item.push(
-        <Box
-          sx={{
-            backgroundColor: sessionsArray[i] !== null && sessionsArray[i] !== undefined ? "#3E737A" : "#723E7A",
-            color: "#fff",
-            borderRadius: 5,
-            padding: 2,
-            justifyContent: "space-between",
-            width: "23rem",
-          }}
-        >
-          <div className="flex justify-between items-center">
-            <p className="text-xl">
-              {i === 0
-                ? "08.30 - 10.30"
-                : i === 1
-                ? "10.30 - 12.30"
-                : i === 2
-                ? "13.30 - 15.30"
-                : "15.30 - 17.30"}
-            </p>
-            <div>
-              <Button
-                sx={{
-                  backgroundColor:
-                    (sessionsArray[i] !== null) !== null ? "#D9D9D9" : undefined,
-                  color: "#000",
-                }}
-              >
-                {"  -  "}
-              </Button>
-            </div>
-          </div>
-
-          <p className="text-2xl mt-2.5 mb-1.5">Nothing Scheduled</p>
-          <p className="text-xl mt-1.5 mb-1.5">Not Selected</p>
-
-          <div className="flex justify-between items-center">
-            <p className="text-5xl"></p>
-            <div className="flex justify-center items-center text-center text-black w-20 h-20 bg-stone-200 rounded-full relative">
-              <p className="flex items-center text-4xl font-semi-bold text-center">
-                {/* {sessions[i].buildingID} */}
+    for (let i = 0; i < 4; i++) {
+      // console.log("I", i);
+      if (sessionsArray[i] === null || sessionsArray[i] === undefined) {
+        item.push(
+          <Box
+            sx={{
+              backgroundColor:
+                sessionsArray[i] !== null && sessionsArray[i] !== undefined
+                  ? "#3E737A"
+                  : "#723E7A",
+              color: "#fff",
+              borderRadius: 5,
+              padding: 2,
+              justifyContent: "space-between",
+              width: "23rem",
+            }}
+          >
+            <div className="flex justify-between items-center">
+              <p className="text-xl">
+                {i === 0
+                  ? "08.30 - 10.30"
+                  : i === 1
+                  ? "10.30 - 12.30"
+                  : i === 2
+                  ? "13.30 - 15.30"
+                  : "15.30 - 17.30"}
               </p>
+              <div>
+                <Button
+                  sx={{
+                    backgroundColor:
+                      (sessionsArray[i] !== null) !== null
+                        ? "#D9D9D9"
+                        : undefined,
+                    color: "#000",
+                  }}
+                >
+                  {"  -  "}
+                </Button>
+              </div>
             </div>
-          </div>
-        </Box>
-      );
-    } else {
-      item.push(
-        <Box
-          sx={{
-            backgroundColor: sessionsArray[i] !== null ? "#3E737A" : "#723E7A",
-            color: "#fff",
-            borderRadius: 5,
-            padding: 2,
-            justifyContent: "space-between",
-            width: "23rem",
-          }}
-        >
-          <div className="flex justify-between items-center">
-            <p className="text-xl">
-            {i === 0
-                ? "08.30 - 10.30"
-                : i === 1
-                ? "10.30 - 12.30"
-                : i === 2
-                ? "13.30 - 15.30"
-                : "15.30 - 17.30"}
-            </p>
-            <div>
-              <Button
-                sx={{
-                  backgroundColor:
-                    (sessionsArray[i] !== null) !== null ? "#D9D9D9" : undefined,
-                  color: "#000",
-                }}
-              >
-                {sessionsArray[i].type}
-              </Button>
+
+            <p className="text-2xl mt-2.5 mb-1.5">Nothing Scheduled</p>
+            <p className="text-xl mt-1.5 mb-1.5">Not Selected</p>
+
+            <div className="flex justify-between items-center">
+              <p className="text-5xl"></p>
+              <div className="flex justify-center items-center text-center text-black w-20 h-20 bg-stone-200 rounded-full relative">
+                <p className="flex items-center text-4xl font-semi-bold text-center">
+                  {/* {sessions[i].buildingID} */}
+                </p>
+              </div>
             </div>
-          </div>
-
-          <p className="text-2xl mt-2.5 mb-1.5">{sessionsArray[i].subject}</p>
-          <p className="text-xl mt-1.5 mb-1.5">{sessionsArray[i].lecturer}</p>
-
-          <div className="flex justify-between items-center">
-            <p className="text-5xl">{sessionsArray[i].hallID}</p>
-            <div className="flex justify-center items-center text-center text-black w-20 h-20 bg-stone-200 rounded-full relative">
-              <p className="flex items-center text-4xl font-semi-bold text-center">
-                {sessionsArray[i].buildingID}
+          </Box>
+        );
+      } else {
+        item.push(
+          <Box
+            sx={{
+              backgroundColor:
+                sessionsArray[i] !== null ? "#3E737A" : "#723E7A",
+              color: "#fff",
+              borderRadius: 5,
+              padding: 2,
+              justifyContent: "space-between",
+              width: "23rem",
+            }}
+          >
+            <div className="flex justify-between items-center">
+              <p className="text-xl">
+                {i === 0
+                  ? "08.30 - 10.30"
+                  : i === 1
+                  ? "10.30 - 12.30"
+                  : i === 2
+                  ? "13.30 - 15.30"
+                  : "15.30 - 17.30"}
               </p>
+              <div>
+                <Button
+                  sx={{
+                    backgroundColor:
+                      (sessionsArray[i] !== null) !== null
+                        ? "#D9D9D9"
+                        : undefined,
+                    color: "#000",
+                  }}
+                >
+                  {sessionsArray[i].type}
+                </Button>
+              </div>
             </div>
-          </div>
-        </Box>
-      );
+
+            <p className="text-2xl mt-2.5 mb-1.5">{sessionsArray[i].subject}</p>
+            <p className="text-xl mt-1.5 mb-1.5">{sessionsArray[i].lecturer}</p>
+
+            <div className="flex justify-between items-center">
+              <p className="text-5xl">{sessionsArray[i].hallID}</p>
+              <div className="flex justify-center items-center text-center text-black w-20 h-20 bg-stone-200 rounded-full relative">
+                <p className="flex items-center text-4xl font-semi-bold text-center">
+                  {sessionsArray[i].buildingID}
+                </p>
+              </div>
+            </div>
+          </Box>
+        );
+      }
     }
-  }
-  console.log("Item", item);
-  return item;
-}
+    console.log("Item", item);
+    return item;
+  };
 
   return (
-    <div className="flex">
-      <div className="bg-stone-200">
-        <RedirectButton path="/weekly-timetble" text="Show Weekly" />
+    <div className="flex flex-col">
+      <div className="grid justify-items-end">
+        <div className="mr-10">
+          <RedirectButton path="/weekly-timetble" text="Show Weekly" />
+        </div>
       </div>
 
       <Box
@@ -377,98 +385,6 @@ const generateItems = () => {
             }}
           >
             {item}
-            {/* {timeSlotes.map((timeSlot, index) => {
-              return (
-                <Box
-                  key={index}
-                  sx={{
-                    backgroundColor:
-                      timeSlot.type !== null ? "#3E737A" : "#723E7A",
-                    color: "#fff",
-                    borderRadius: 5,
-                    padding: 2,
-                    justifyContent: "space-between",
-                    width: "23rem",
-                  }}
-                >
-                  <div className="flex justify-between items-center">
-                    <p className="text-xl">{timeSlot.time}</p>
-                    <div>
-                      <Button
-                        sx={{
-                          backgroundColor:
-                            timeSlot.building !== null ? "#D9D9D9" : undefined,
-                          color: "#000",
-                        }}
-                      >
-                        {timeSlot.type}
-                      </Button>
-                    </div>
-                  </div>
-
-                  <p className="text-2xl mt-2.5 mb-1.5">
-                    {timeSlot.moduleName}
-                  </p>
-                  <p className="text-xl mt-1.5 mb-1.5">{timeSlot.lecturer}</p>
-
-                  <div className="flex justify-between items-center">
-                    <p className="text-5xl">{timeSlot.hallNumber}</p>
-                    <div className="flex justify-center items-center text-center text-black w-20 h-20 bg-gray-300 rounded-full relative">
-                      <p className="flex items-center text-4xl font-semi-bold text-center">
-                        {timeSlot.building}
-                      </p>
-                    </div>
-                  </div>
-                </Box>
-              );
-            })} */}
-            {/* <Box
-              // key={index}
-              sx={{
-                backgroundColor:
-                  timeSlotes[0].sessions[0].timeSessions[0] !== null
-                    ? "#3E737A"
-                    : "#723E7A",
-                color: "#fff",
-                borderRadius: 5,
-                padding: 2,
-                justifyContent: "space-between",
-                width: "23rem",
-              }}
-            >
-              <div className="flex justify-between items-center">
-                <p className="text-xl">
-                  {timeSlotes[0].sessions[0].timeSessions.time === "time_01"
-                    ? "08.30 - 10.30"
-                    : "10.30 - 12.30"}
-                </p>
-              <div>
-              <Button
-                        sx={{
-                          backgroundColor:
-                          timeSlotes[0].sessions[0].timeSessions[0] !== null !== null ? "#D9D9D9" : undefined,
-                          color: "#000",
-                        }}
-                      >
-                        {timeSlotes[0].sessions[0].timeSessions.time.type}
-                      </Button>
-                    </div>
-                  </div>
-
-                  <p className="text-2xl mt-2.5 mb-1.5">{timeSlotes[0].sessions[0].timeSessions.time_01.subject}</p>
-                  <p className="text-xl mt-1.5 mb-1.5">{timeSlotes[0].sessions[0].timeSessions.time_01.lecturer}</p>
-
-                  <div className="flex justify-between items-center">
-                    <p className="text-5xl">{timeSlotes[0].sessions[0].timeSessions.time_01.hallID}</p>
-                    <div className="flex justify-center items-center text-center text-black w-20 h-20 bg-gray-300 rounded-full relative">
-                      <p className="flex items-center text-4xl font-semi-bold text-center">
-                        {timeSlotes[0].sessions[0].timeSessions.time_01.buildingID}
-                      </p>
-                    </div>
-                  </div>
-            </Box> */}
-            {/* );
-            } )}; */}
           </Card>
         </div>
       </Box>

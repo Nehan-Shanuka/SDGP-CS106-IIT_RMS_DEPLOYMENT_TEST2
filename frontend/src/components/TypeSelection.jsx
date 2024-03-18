@@ -1,4 +1,6 @@
-import { useState } from 'react';
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+import { useEffect, useState } from 'react';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -6,6 +8,8 @@ import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
+import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -23,19 +27,22 @@ const names = [
   'Tutorial',
 ];
 
-export default function MultipleSelectCheckmarks() {
-  const [locationName, setLocationName] = useState([]);
+export default function MultipleSelectCheckmarks({ onTypeChange }) {
+  const [typeName, setTypeName] = useState([]);
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setLocationName(
+    setTypeName(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
   };
-  console.log(locationName);
+
+  useEffect(() => {
+    onTypeChange(typeName);
+  }, [typeName, onTypeChange]);
 
   return (
     <div>
@@ -45,15 +52,21 @@ export default function MultipleSelectCheckmarks() {
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
           multiple
-          value={locationName}
+          value={typeName}
           onChange={handleChange}
           input={<OutlinedInput label="Select Type" />}
-          renderValue={(selected) => selected.join(', ')}
+          renderValue={(selected) => (
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+              {selected.map((value) => (
+                <Chip key={value} label={value} />
+              ))}
+            </Box>
+          )}
           MenuProps={MenuProps}
         >
           {names.map((name) => (
             <MenuItem key={name} value={name}>
-              <Checkbox checked={locationName.indexOf(name) > -1} />
+              <Checkbox checked={typeName.indexOf(name) > -1} />
               <ListItemText primary={name} />
             </MenuItem>
           ))}

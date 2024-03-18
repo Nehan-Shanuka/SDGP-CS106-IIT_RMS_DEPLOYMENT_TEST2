@@ -14,6 +14,7 @@ router.get("/", async (request, response) => {
       request.query.subject === undefined ? [] : request.query.subject;
     let buildings =
       request.query.buildingID === undefined ? [] : request.query.buildingID;
+    let type = request.query.type === undefined ? [] : request.query.type;
 
     const filter = {};
 
@@ -41,6 +42,20 @@ router.get("/", async (request, response) => {
         buildingID: { $in: buildingIDs },
       }).select("_id");
       filter.hallID = { $in: hallIds };
+    }
+
+    // If the type is defined, set it to the filter
+    if (type.length !== 0) {
+      type = request.query.type.split(",");
+      filter.type = { $in: type };
+    }
+
+    if (request.query.day !== undefined) {
+      filter.day = request.query.day;
+    }
+
+    if (request.query.date !== undefined) {
+      filter.date = request.query.date;
     }
 
     // Get the reservations according to the filter

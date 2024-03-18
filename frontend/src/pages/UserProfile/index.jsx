@@ -1,4 +1,6 @@
-import React, { useState,useEffect } from 'react';
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import { useState,useEffect } from 'react';
 import { Button } from '@mui/material';
 import axios from "axios";
 

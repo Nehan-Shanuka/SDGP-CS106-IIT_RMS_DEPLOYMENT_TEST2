@@ -35,11 +35,14 @@ export default function RequestForm({
   hall,
   buildings,
   dateSelected,
+  dayFromCalender,
 }) {
   const [registationForm, setRegistationForm] = useState(false);
   const [checked, setChecked] = useState([false, false, false, false]);
   const [disabled, setDisabled] = useState([false, false, false, false]);
   const [radioValue, setRadioValue] = useState();
+  const [date, setDate] = useState(dateSelected);
+  const [daySelected, setDaySelected] = useState(dayFromCalender);
 
   const [moduleName, setModuleName] = useState("");
   const [open, setOpen] = useState(false);
@@ -53,6 +56,8 @@ export default function RequestForm({
   const year = dateSelected.$y;
   const month = dateSelected.$M;
   const day = dateSelected.$D;
+
+  // console.log(dayFromCalender)
 
   // Convert the date to UTC format
   const convertedDateToUTCFormat = new Date(Date.UTC(year, month, day));
@@ -70,36 +75,95 @@ export default function RequestForm({
   useEffect(() => {
     const handleCheckBoxes = () => {
       let dateNotFounded = true;
-      hall.plannedSessions.forEach((plannedSession) => {
-        const plannedSessionDate = new Date(plannedSession.date);
-        const formatedReservationDate =
-          plannedSessionDate.getFullYear() +
-          "-" +
-          "0" +
-          (plannedSessionDate.getMonth() + 1) +
-          "-" +
-          plannedSessionDate.getDate();
-        console.log("plannedSession.date", formatedReservationDate);
-        console.log("newNewDate", formatedReservationDate);
-        if (formatedReservationDate === formatedDate) {
-          dateNotFounded = false;
+      hall.timetableSessions.forEach((timetableSession) => {
+        // console.log("timetable day", timetableSession.day)
+        // console.log("day", day)
+        if (timetableSession.day === dayFromCalender) {
+          console.log("timeTableSession", dayFromCalender);
+          // console.log("Entered the timetable session", timetableSession.reservations.time_01 === null ? false : true);
+          // dateNotFounded = false;
           setDisabled([
-            plannedSession.reservations.time_01 === null ? false : true,
-            plannedSession.reservations.time_02 === null ? false : true,
-            plannedSession.reservations.time_03 === null ? false : true,
-            plannedSession.reservations.time_04 === null ? false : true,
+            timetableSession.reservations.time_01 !== null,
+            timetableSession.reservations.time_02 !== null,
+            timetableSession.reservations.time_03 !== null,
+            timetableSession.reservations.time_04 !== null,
           ]);
+          // console.log(disabled);
+          hall.plannedSessions.forEach((plannedSession) => {
+            const plannedSessionDate = new Date(plannedSession.date);
+            const formatedReservationDate =
+              plannedSessionDate.getFullYear() +
+              "-" +
+              "0" +
+              (plannedSessionDate.getMonth() + 1) +
+              "-" +
+              plannedSessionDate.getDate();
+            // console.log("plannedSession.date", formatedReservationDate);
+            console.log("newNewDate", formatedReservationDate);
+            if (formatedReservationDate === formatedDate) {
+              // console.log("Entered the planned session", formatedReservationDate);
+              dateNotFounded = false;
+              // console.log(disabled);
+              // console.log(plannedSession.reservations.time_01 === null && disabled[0]);
+              setDisabled([
+                plannedSession.reservations.time_01 !== null || timetableSession.reservations.time_01 !== null,
+                plannedSession.reservations.time_02 !== null || timetableSession.reservations.time_02 !== null,
+                plannedSession.reservations.time_03 !== null || timetableSession.reservations.time_03 !== null,
+                plannedSession.reservations.time_04 !== null || timetableSession.reservations.time_04 !== null,
+              ]);
+              // console.log(disabled);
+            }
+            // console.log(timetableSession.reservations.time_01 !== null)
+            // console.log(timetableSession.reservations.time_02 !== null)
+            // console.log(timetableSession.reservations.time_03 !== null)
+            // console.log(timetableSession.reservations.time_04 !== null)
+            // console.log(plannedSession.reservations.time_01 !== null)
+            // console.log(plannedSession.reservations.time_02 !== null)
+            // console.log(plannedSession.reservations.time_03 !== null)
+            // console.log(plannedSession.reservations.time_04 !== null)
+            console.log(plannedSession.reservations.time_01 !== null || timetableSession.reservations.time_01 !== null," ",
+              plannedSession.reservations.time_02 !== null || timetableSession.reservations.time_02 !== null," ",
+              plannedSession.reservations.time_03 !== null || timetableSession.reservations.time_03 !== null," ",
+              plannedSession.reservations.time_04 !== null || timetableSession.reservations.time_04 !== null,)
+          });
         }
+
+        
       });
-      if (dateNotFounded) {
-        setDisabled([false, false, false, false]);
-      }
+
+      // hall.plannedSessions.forEach((plannedSession) => {
+      //   const plannedSessionDate = new Date(plannedSession.date);
+      //   const formatedReservationDate =
+      //     plannedSessionDate.getFullYear() +
+      //     "-" +
+      //     "0" +
+      //     (plannedSessionDate.getMonth() + 1) +
+      //     "-" +
+      //     plannedSessionDate.getDate();
+      //   // console.log("plannedSession.date", formatedReservationDate);
+      //   // console.log("newNewDate", formatedReservationDate);
+      //   if (formatedReservationDate === formatedDate) {
+      //     console.log("Entered the planned session", formatedReservationDate);
+      //     dateNotFounded = false;
+      //     console.log(disabled);
+      //     console.log(plannedSession.reservations.time_01 === null && disabled[0]);
+      //     setDisabled([
+      //       plannedSession.reservations.time_01 === null && disabled[0],
+      //       plannedSession.reservations.time_02 === null && disabled[1],
+      //       plannedSession.reservations.time_03 === null && disabled[2],
+      //       plannedSession.reservations.time_04 === null && disabled[3],
+      //     ]);
+      //     console.log(disabled);
+      //   }
+      // });
     };
 
-    if (dateSelected) {
+    // console.log("Entered")
+    // if (dateSelected) {
       handleCheckBoxes();
-    }
   }, [dateSelected]);
+
+  // console.log(dateSelected, dayFromCalender)
 
   // Handle the request to make a reservation
   const handleRequest = async () => {

@@ -21,13 +21,14 @@ export default function PlannedSessions() {
   const [selectedDate, setSelectedDate] = useState();
   const [moduleName, setModuleName] = useState([]);
   const [day, setDay] = useState();
+  const [type, setType] = useState([]);
 
   const handleDayChange = (day) => {
     setDay(day);
   };
 
   useEffect(() => {
-    const url = `http://localhost:5555/reservations?confirmation=${confirmation}&subject=${moduleName}&buildingID=${buildingID}`;
+    const url = `http://localhost:5555/reservations?confirmation=${confirmation}&subject=${moduleName}&buildingID=${buildingID}&type=${type}`;
     axios
       .get(url)
       .then((response) => {
@@ -36,7 +37,7 @@ export default function PlannedSessions() {
       .catch((error) => {
         console.log(error);
       });
-  }, [confirmation, moduleName, buildingID]);
+  }, [confirmation, moduleName, buildingID, type, day, selectedDate]);
 
   useEffect(() => {
     const url = `http://localhost:5555/halls?buildingID=${buildingID}`;
@@ -71,8 +72,13 @@ export default function PlannedSessions() {
 
   const handleModuleChange = (moduleSelect) => {
     setModuleName(moduleSelect);
-    console.log("In the method ", moduleName);
   };
+
+  const handleTypeChange = (typeSelect) => {
+    setType(typeSelect);
+  };
+
+  console.log("Hi", selectedDate)
 
   return (
     <>
@@ -88,15 +94,15 @@ export default function PlannedSessions() {
         >
           <div>
             <Calender onDateChange={handleDateChange} onDayChange={handleDayChange} />
+            <Location onLocationChange={handleLocationChange} />
+            <Module onModuleChange={handleModuleChange} />
+            <Type onTypeChange={handleTypeChange} />
           </div>
 
           <div>
-            <Time />
-            <Location onLocationChange={handleLocationChange} />
+            {/* <Time />
             <Degree />
-            <Level />
-            <Module onModuleChange={handleModuleChange} />
-            <Type />
+            <Level /> */}
             {/* <Group /> */}
             {/* <Button
               variant="contained"

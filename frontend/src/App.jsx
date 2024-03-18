@@ -46,7 +46,7 @@ export default function App() {
     // Simulate loading time
     setTimeout(() => {
       setLoading(false);
-    }, 2000); // Adjust the timeout value as needed
+    }, 3000); // Adjust the timeout value as needed
   }, []);
 
   const handleStateChange = (state) => {

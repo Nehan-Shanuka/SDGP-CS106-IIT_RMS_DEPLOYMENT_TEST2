@@ -37,7 +37,7 @@ const SplashScreen = () => {
           borderRadius: ["0%", "0%", "50%", "50%", "0%"],
         }}
         transition={{
-          duration: 2,
+          duration: 3,
           ease: "easeInOut",
           times: [0, 0.2, 0.5, 0.8, 1],
           repeat: Infinity,
@@ -62,7 +62,7 @@ const SplashScreen = () => {
           borderRadius: ["0%", "0%", "50%", "50%", "0%"],
         }}
         transition={{
-          duration: 2,
+          duration: 3,
           ease: "easeInOut",
           times: [0, 0.2, 0.5, 0.8, 1],
           repeat: Infinity,
@@ -86,7 +86,7 @@ const SplashScreen = () => {
           borderRadius: ["0%", "0%", "50%", "50%", "0%"],
         }}
         transition={{
-          duration: 2,
+          duration: 3,
           ease: "easeInOut",
           times: [0, 0.2, 0.5, 0.8, 1],
           repeat: Infinity,
@@ -110,7 +110,7 @@ const SplashScreen = () => {
           borderRadius: ["0%", "0%", "50%", "50%", "0%"],
         }}
         transition={{
-          duration: 2,
+          duration: 3,
           ease: "easeInOut",
           times: [0, 0.2, 0.5, 0.8, 1],
           repeat: Infinity,
@@ -134,7 +134,7 @@ const SplashScreen = () => {
           borderRadius: ["0%", "0%", "50%", "50%", "0%"],
         }}
         transition={{
-          duration: 2,
+          duration: 3,
           ease: "easeInOut",
           times: [0, 0.2, 0.5, 0.8, 1],
           repeat: Infinity,
@@ -159,7 +159,7 @@ const SplashScreen = () => {
           borderRadius: ["0%", "0%", "50%", "50%", "0%"],
         }}
         transition={{
-          duration: 2,
+          duration: 3,
           ease: "easeInOut",
           times: [0, 0.2, 0.5, 0.8, 1],
           repeat: Infinity,
@@ -183,7 +183,7 @@ const SplashScreen = () => {
           borderRadius: ["0%", "0%", "50%", "50%", "0%"],
         }}
         transition={{
-          duration: 2,
+          duration: 3,
           ease: "easeInOut",
           times: [0, 0.2, 0.5, 0.8, 1],
           repeat: Infinity,
@@ -207,7 +207,7 @@ const SplashScreen = () => {
           borderRadius: ["0%", "0%", "50%", "50%", "0%"],
         }}
         transition={{
-          duration: 2,
+          duration: 3,
           ease: "easeInOut",
           times: [0, 0.2, 0.5, 0.8, 1],
           repeat: Infinity,
@@ -232,7 +232,7 @@ const SplashScreen = () => {
           borderRadius: ["0%", "0%", "50%", "50%", "0%"],
         }}
         transition={{
-          duration: 2,
+          duration: 3,
           ease: "easeInOut",
           times: [0, 0.2, 0.5, 0.8, 1],
           repeat: Infinity,
@@ -256,7 +256,7 @@ const SplashScreen = () => {
           borderRadius: ["0%", "0%", "50%", "50%", "0%"],
         }}
         transition={{
-          duration: 2,
+          duration: 3,
           ease: "easeInOut",
           times: [0, 0.2, 0.5, 0.8, 1],
           repeat: Infinity,
@@ -280,7 +280,7 @@ const SplashScreen = () => {
           borderRadius: ["0%", "0%", "50%", "50%", "0%"],
         }}
         transition={{
-          duration: 2,
+          duration: 3,
           ease: "easeInOut",
           times: [0, 0.2, 0.5, 0.8, 1],
           repeat: Infinity,
@@ -304,7 +304,7 @@ const SplashScreen = () => {
           borderRadius: ["0%", "0%", "50%", "50%", "0%"],
         }}
         transition={{
-          duration: 2,
+          duration: 3,
           ease: "easeInOut",
           times: [0, 0.2, 0.5, 0.8, 1],
           repeat: Infinity,
@@ -328,7 +328,7 @@ const SplashScreen = () => {
           borderRadius: ["0%", "0%", "50%", "50%", "0%"],
         }}
         transition={{
-          duration: 2,
+          duration: 3,
           ease: "easeInOut",
           times: [0, 0.2, 0.5, 0.8, 1],
           repeat: Infinity,
@@ -352,7 +352,7 @@ const SplashScreen = () => {
           borderRadius: ["0%", "0%", "50%", "50%", "0%"],
         }}
         transition={{
-          duration: 2,
+          duration: 3,
           ease: "easeInOut",
           times: [0, 0.2, 0.5, 0.8, 1],
           repeat: Infinity,
@@ -376,7 +376,7 @@ const SplashScreen = () => {
           borderRadius: ["0%", "0%", "50%", "50%", "0%"],
         }}
         transition={{
-          duration: 2,
+          duration: 3,
           ease: "easeInOut",
           times: [0, 0.2, 0.5, 0.8, 1],
           repeat: Infinity,
@@ -400,7 +400,7 @@ const SplashScreen = () => {
           borderRadius: ["0%", "0%", "50%", "50%", "0%"],
         }}
         transition={{
-          duration: 2,
+          duration: 3,
           ease: "easeInOut",
           times: [0, 0.2, 0.5, 0.8, 1],
           repeat: Infinity,

@@ -1,9 +1,9 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
 
 const RedirectButton = ({ path, text }) => {
   const buttonStyle = {
-    position: 'absolute',
+    // position: 'absolute',
     top: '15px',
     right: '100px',
     padding: '10px 20px',

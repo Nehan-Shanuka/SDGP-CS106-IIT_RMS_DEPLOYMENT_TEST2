@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable no-unused-vars */
+import { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography"; 
+import Typography from "@mui/material/Typography";
+// import RedirectButton from "../RedirectButto";
 import axios from "axios";
 import Tooltip from "@mui/material/Tooltip";
 
@@ -17,7 +19,7 @@ const Item = styled("div")(({ theme, color }) => ({
   margin: "10px",
 }));
 
-const WeeklyallTimetable = () => {
+const WeeklyallTimetable = ({selectedValue}) => {
   const [timetableData, setTimetableData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -47,10 +49,13 @@ const WeeklyallTimetable = () => {
     return <p>Error: {error}</p>;
   }
 
-  const colors = ['#FF9999', '#99FF99', '#9999FF', '#FFFF99']; 
+  const colors = ["#FF9999", "#99FF99", "#9999FF", "#FFFF99"];
 
   return (
-    <div className="flex">
+    <div className="flex flex-col">
+      <div className="grid justify-items-end">
+
+      </div>
 
       <Box
         sx={{
@@ -82,51 +87,109 @@ const WeeklyallTimetable = () => {
             "&::-webkit-scrollbar": { display: "none" },
           }}
         >
-          {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].map((weekday, index) => (
-            <Grid item xs={12} sm={6} md={4} lg={2.4} key={index}>
-              <Box
-                sx={{
-                  backgroundColor: "#fff",
-                  padding: "10px",
-                  borderRadius: "10px",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  sx={{ marginBottom: "20px", textAlign: "center" }}
+          {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].map(
+            (weekday, index) => (
+              <Grid item xs={12} sm={6} md={4} lg={2.4} key={index}>
+                <Box
+                  sx={{
+                    backgroundColor: "#fff",
+                    padding: "10px",
+                    borderRadius: "10px",
+                  }}
                 >
-                  {weekday}
-                </Typography>
-                {timetableData
-                  .filter(item => 
-                    item.sessions?.some(session => session.day === weekday) &&
-                    item.groupName === "CS-J" &&
-                    item.course === "BSc Computer Science"
-                  )
-                  .map((item, itemIndex) => (
-                    <div key={itemIndex}>
-                      {item.sessions.filter(session => session.day === weekday).map((session, sessionIndex) => (
-                        <div key={sessionIndex}>
-                          {session.timeSessions && Object.keys(session.timeSessions).map((timeKey, colorIndex) => (
-                            <Tooltip key={timeKey} title={session.timeSessions[timeKey]?.lecturer}>
-                              <Item color={colors[colorIndex % colors.length]} style={{ fontSize: '15px' }}>
-                              <span style={{ fontSize: '20px' }}>
-                              {session.timeSessions[timeKey]?.hallID}  {session.timeSessions[timeKey]?.buildingID}  {session.timeSessions[timeKey]?.type.replace("Lecture", "LEC").replace("Tutorial", "TUT")}<br />
-                              </span>
-                                <span style={{ fontSize: '15px' }}> {/* Apply font size  "Topic" */}
-                                  {session.timeSessions[timeKey]?.subject}<br />
-                                </span>
-                                
-                              </Item>
-                            </Tooltip>
+                  <Typography
+                    variant="h6"
+                    sx={{ marginBottom: "20px", textAlign: "center" }}
+                  >
+                    {weekday}
+                  </Typography>
+                  {timetableData
+                    .filter(
+                      (item) =>
+                        item.sessions?.some(
+                          (session) => session.day === weekday
+                        ) &&
+                        item.groupName === selectedValue &&
+                        item.course === "BSc Computer Science"
+                    )
+                    .map((item, itemIndex) => (
+                      <div key={itemIndex}>
+                        {item.sessions
+                          .filter((session) => session.day === weekday)
+                          .map((session, sessionIndex) => (
+                            <div key={sessionIndex}>
+                              {session.timeSessions &&
+                                Object.keys(session.timeSessions).map(
+                                  (timeKey, colorIndex) => (
+                                    <Tooltip
+                                      key={timeKey}
+                                      title={
+                                        session.timeSessions[timeKey]?.lecturer
+                                      }
+                                    >
+                                      <Item
+                                        color={
+                                          session.timeSessions[timeKey] === null
+                                            ? "#723E7A"
+                                            : "#3E737A"
+                                        }
+                                        // style={{ fontSize: "15px" }}
+                                        sx={{ color: "#fff" }}
+                                      >
+                                        {/* <span style={{ fontSize: "20px" }}> */}
+                                          <div className="flex justify-between mx-0">
+                                            <div className="text-[1.4rem]">
+                                              {
+                                                session.timeSessions[timeKey]
+                                                  ?.hallID
+                                              }
+                                            </div>
+                                            <div className="flex items-center bg-[#D9D9D9] w-fit text-black rounded-md text-[1.2rem] text-center px-1 align-center">
+                                              <div>
+                                                {session.timeSessions[
+                                                timeKey
+                                              ]?.type
+                                                .replace("Lecture", "LEC")
+                                                .replace("Tutorial", "TUT")}
+                                              </div>
+                                            </div>
+                                            <div className="flex items-center bg-[#D9D9D9] w-fit text-black rounded-full text-[1.2rem] text-center px-1 align-center">
+                                              <div>
+                                                {
+                                                session.timeSessions[timeKey]
+                                                  ?.buildingID
+                                              }
+                                              </div>
+                                              
+                                            </div>
+                                          </div>
+                                        {/* </span> */}
+                                        <div>
+                                          <div className="text-sm my-1">
+                                            {timeKey === "time_01" ? "08.30 - 10.30" : timeKey === "time_02" ? "10.30 - 12.30" : timeKey === "time_03" ? "13.30 - 15.30" : "15.30 - 17.30"}
+                                          </div>
+                                        </div>
+                                        <div className="text-base my-2">
+                                          {/* Apply font size  "Topic" */}
+                                          {session.timeSessions[timeKey]
+                                            ?.subject ===
+                                          "Object Oriented Programming"
+                                            ? "OOP"
+                                            : session.timeSessions[timeKey]
+                                                ?.subject}
+                                        </div>
+                                      </Item>
+                                    </Tooltip>
+                                  )
+                                )}
+                            </div>
                           ))}
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-              </Box>
-            </Grid>
-          ))}
+                      </div>
+                    ))}
+                </Box>
+              </Grid>
+            )
+          )}
         </Grid>
       </Box>
     </div>

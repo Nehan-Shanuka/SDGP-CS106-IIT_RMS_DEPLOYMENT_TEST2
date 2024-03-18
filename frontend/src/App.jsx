@@ -14,8 +14,8 @@ import Home from "./pages/home/index";
 import Authenticator from "./pages/authentication";
 import SplashScreen from "./pages/splashScreen";
 import SorryCall from "./components/SorryCall";
-import Grouptimetable from "./pages/grouptimetable/index";
 import axios from "axios";
+import Grouptimetable from "./pages/grouptimetable";
 
 export default function App() {
   const [isSidebar, setIsSidebar] = useState(false);

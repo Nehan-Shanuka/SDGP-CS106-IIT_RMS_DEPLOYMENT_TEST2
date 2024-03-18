@@ -3,13 +3,14 @@ import BasicSelect from '../../components/BasicSelect.jsx';
 import WeeklyallTimetable from '../../components/WeeklyallTimetable.jsx';
 
 function Grouptimetable() {
-  const values = ['10', '20', '30', '40'];
-  const labels = ['Ten', 'Twenty', 'Thirty', 'Forty'];
+  const values = ["CS-A","CS-J","CS-G","CS-B"];
+  const labels = ["CS-A","CS-J","CS-G","CS-B"];
+  const selectedValue = "CS-J";
 
   return (
     <div>
       <BasicSelect values={values} labels={labels} />
-      <WeeklyallTimetable/>
+      <WeeklyallTimetable selectedValue={selectedValue}/>
     </div>
   );
 }

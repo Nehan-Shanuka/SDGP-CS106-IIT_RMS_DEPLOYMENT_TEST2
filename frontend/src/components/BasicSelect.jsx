@@ -9,9 +9,9 @@ export default function BasicSelect({ values, labels, onSelect }) {
   const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
-    const selectedValue = event.target.value; // Store the selected value
-    setAge(selectedValue); // Update age state with the selected value
-    onSelect(selectedValue); // Call the onSelect callback with the selected value
+    const selectedValue = event.target.value;
+    setAge(selectedValue);
+    onSelect(selectedValue);
   };
 
   return (
@@ -26,7 +26,7 @@ export default function BasicSelect({ values, labels, onSelect }) {
           onChange={handleChange}
         >
           {values.map((value, index) => (
-            <MenuItem key={value} value={value}>
+            <MenuItem key={index} value={value}>
               {labels[index]}
             </MenuItem>
           ))}

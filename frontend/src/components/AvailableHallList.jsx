@@ -19,12 +19,7 @@ const Item = styled(Paper)(({ color }) => ({
   borderRadius: 15,
 }));
 
-export default function HallList({
-  color,
-  halls,
-  buildings,
-  dateSelected,
-}) {
+export default function AvailableHallList({ color, halls, buildings, dateSelected, day }) {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [registationForm, setRegistationForm] = useState(false);
 
@@ -100,11 +95,11 @@ export default function HallList({
                   <div className="flex justify-center items-center w-36">
                     <div className="flex justify-center w-20 h-20 rounded-full bg-gray-300 text-black">
                       <p className="flex justify-center items-center text-4xl">
-                        {
-                          buildings.find(
-                            (building) => building._id === hall.buildingID
-                          ).buildingID
-                        }
+                        {buildings.map((building, index) => {
+                          if (building._id === hall.buildingID) {
+                            return building.buildingID;
+                          }
+                        })}
                       </p>
                     </div>
                   </div>
@@ -179,10 +174,8 @@ export default function HallList({
                 </div>
               </Item>
             ))
-          ) : dateSelected === undefined ? (
-            alert("Please select a date"),
-            handleChangedRegistationForm(false)
-            // (() => setHoveredItem(null))
+          ) : dateSelected === null ? (
+            (alert("Please select a date"), handleChangedRegistationForm(false))
           ) : (
             <div className="w-full h-full">
               <RequestForm
@@ -190,6 +183,7 @@ export default function HallList({
                 hall={halls[hoveredItem]}
                 buildings={buildings}
                 dateSelected={dateSelected}
+                dayFromCalender={day}
               />
             </div>
           )}

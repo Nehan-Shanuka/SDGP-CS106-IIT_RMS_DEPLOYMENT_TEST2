@@ -63,6 +63,9 @@ export default function ExpandableReviewReservation() {
       })
       .catch((error) => {
         console.log(error);
+        alert(
+          "Another reservation is already confirmed! Drop the reservation."
+        );
       });
   };
 
@@ -87,171 +90,164 @@ export default function ExpandableReviewReservation() {
   };
 
   return (
-    <div className="w-full flex justify-center item-center">
-      <Box
+    <Card
+      sx={{
+        paddingX: 10,
+        paddingTop: 1,
+        paddingBottom: 3,
+        height: "90vh",
+      }}
+    >
+      <Card
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
+          height: "100%",
+          width: "100%",
+          gap: 3,
+          paddingY: 3,
+          paddingX: 3,
+          backgroundColor: "#D9D9D9",
+          borderRadius: 5,
+          overflowY: "auto",
+          scrollBehavior: "smooth",
+          "&::-webkit-scrollbar": {
+            display: "none", // Hide scrollbar for Chrome
+          },
         }}
       >
-        <div
-          style={{
-            overflowY: "auto",
-            scrollBehavior: "smooth",
-            "&::-webkit-scrollbar": {
-              display: "none", // Hide scrollbar for Chrome
-            },
-          }}
-        >
-          <Card
-            sx={{
-              display: "grid",
-              gridTemplateColumns: "auto auto",
-              gap: 3,
-              padding: 3,
-              backgroundColor: "#D9D9D9",
-              maxHeight: "85vh",
-              borderRadius: 5,
-              overflowY: "auto",
-              scrollBehavior: "smooth",
-              "&::-webkit-scrollbar": {
-                display: "none", // Hide scrollbar for Chrome
-              },
-            }}
-          >
-            {reservations.map((reservation, index) => {
-              return (
-                <Box
-                  key={index}
-                  sx={{
-                    backgroundColor: "#3E737A",
-                    // timeSlot.type !== null ? "#3E737A" : "#723E7A",
-                    color: "#fff",
-                    borderRadius: 5,
-                    padding: 2,
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <div className="flex justify-between items-center">
-                    <div className="flex">
-                      <div className="w-28 item-center">
-                        <p className="pl-5 text-5xl text-center">
-                          {halls.map((hall, index) => {
-                            if (hall._id === reservation.hallID) {
-                              return hall.hallID;
-                            }
-                          })}
-                        </p>
-                      </div>
-
-                      <div className="relative ml-10">
-                        <div>
-                          <p className="text-xl mx-0">Date: {reservation.date.slice(0, 10)}</p>
-                          <p className="my-1 mx-0">Time: {reservation.time}</p>
-                        </div>
-                      </div>
+        <div className="grid gap-3 grid-cols-2">
+          {reservations.map((reservation, index) => {
+            return (
+              <Box
+                key={index}
+                sx={{
+                  ...(reservations.length > 1
+                    ? { width: "100%" }
+                    : { width: "100%" }),
+                  ...(reservations.length > 0
+                    ? {
+                        margin: "auto",
+                        backgroundColor: "#3E737A",
+                        color: "#fff",
+                        borderRadius: 5,
+                        padding: 2,
+                        justifyContent: "space-between",
+                        height: "auto",
+                        // maxWidth: "511.8px",
+                      }
+                    : {}),
+                }}
+              >
+                <div className="flex justify-between items-center">
+                  <div className="flex">
+                    <div className="w-28 item-center">
+                      <p className="pl-5 text-5xl text-center">
+                        {halls.map((hall, index) => {
+                          if (hall._id === reservation.hallID) {
+                            return hall.hallID;
+                          }
+                        })}
+                      </p>
                     </div>
 
-                    <div className="flex pr-5 pl-10">
-                      <div className="flex justify-center w-20 h-20 rounded-full bg-stone-200 text-black">
-                        <p className="flex justify-center items-center text-4xl">
-                          {halls.map((hall, index) => {
-                            if (hall._id === reservation.hallID) {
-                              return buildings.map((building, index) => {
-                                if (building._id === hall.buildingID) {
-                                  return building.buildingID;
-                                }
-                              });
-                            }
-                          })}
+                    <div className="relative ml-10">
+                      <div>
+                        <p className="text-xl mx-0">
+                          Date: {reservation.date.slice(0, 10)}
                         </p>
+                        <p className="my-1 mx-0">Time: {reservation.time}</p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="flex justify-between px-5 py-5">
+                  <div className="flex pr-5 pl-10">
+                    <div className="flex justify-center w-20 h-20 rounded-full bg-stone-200 text-black">
+                      <p className="flex justify-center items-center text-4xl">
+                        {halls.map((hall, index) => {
+                          if (hall._id === reservation.hallID) {
+                            return buildings.map((building, index) => {
+                              if (building._id === hall.buildingID) {
+                                return building.buildingID;
+                              }
+                            });
+                          }
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-between px-5 py-5">
+                  <div className="bg-stone-200 px-3 py-1 rounded-3xl flex items-center">
+                    <p className="text-xl text-black">{reservation.lecturer}</p>
+                  </div>
+                  <div className="">
                     <div className="bg-stone-200 px-3 py-1 rounded-3xl flex items-center">
-                      <p className="text-xl text-black">
-                        {reservation.lecturer}
-                      </p>
-                    </div>
-                    <div className="">
-                      <div className="bg-stone-200 px-3 py-1 rounded-3xl flex items-center">
-                        <p className="text-xl text-black">{reservation.type}</p>
-                      </div>
+                      <p className="text-xl text-black">{reservation.type}</p>
                     </div>
                   </div>
+                </div>
 
-                  <div className="flex justify-between px-5">
-                    <div className="bg-stone-200 rounded-2xl w-full mr-10">
-                      <p className="text-black px-2">{reservation.subject}</p>
-                      <p className="text-black px-2">{reservation.course}</p>
-                      <p className="text-black px-2">
-                        {reservation.tutorialGroups.join("/ ")}
-                      </p>
-                      <p className="text-black px-2">
-                        {reservation.description}
-                      </p>
-                    </div>
+                <div className="flex justify-between px-5">
+                  <div className="bg-stone-200 rounded-2xl w-full mr-10">
+                    <p className="text-black px-2">{reservation.subject}</p>
+                    <p className="text-black px-2">{reservation.course}</p>
+                    <p className="text-black px-2">
+                      {reservation.tutorialGroups.join("/ ")}
+                    </p>
+                    <p className="text-black px-2">{reservation.description}</p>
+                  </div>
 
-                    <div className="grid pl-5">
-                      <Button
-                        onClick={() =>
-                          handleConfirmReservation(reservation._id)
-                        }
-                        sx={{
-                          backgroundColor: "#9DF06A",
+                  <div className="grid pl-5">
+                    <Button
+                      onClick={() => handleConfirmReservation(reservation._id)}
+                      sx={{
+                        backgroundColor: "#9DF06A",
+                        border: 0.5,
+                        borderColor: "#9DF06A",
+                        color: "#000",
+                        borderRadius: 5,
+                        paddingY: 1,
+                        paddingX: 5,
+
+                        ":hover": {
+                          backgroundColor: "#3E737A",
                           border: 0.5,
                           borderColor: "#9DF06A",
-                          color: "#000",
-                          borderRadius: 5,
-                          paddingTop: 1,
-                          paddingBottom: 1,
-                          paddingLeft: 3,
-                          paddingRight: 3,
+                          color: "#fff",
+                        },
+                      }}
+                    >
+                      Accept
+                    </Button>
+                    <Button
+                      onClick={() => handleDropReservation(reservation._id)}
+                      sx={{
+                        backgroundColor: "#EF6666",
+                        border: 0.5,
+                        borderColor: "#EF6666",
+                        color: "#000",
+                        borderRadius: 5,
+                        marginTop: 1,
+                        paddingY: 1,
+                        paddingX: 5,
 
-                          ":hover": {
-                            backgroundColor: "#3E737A",
-                            border: 0.5,
-                            borderColor: "#9DF06A",
-                            color: "#fff",
-                          },
-                        }}
-                      >
-                        Accept
-                      </Button>
-                      <Button
-                        onClick={() => handleDropReservation(reservation._id)}
-                        sx={{
-                          backgroundColor: "#EF6666",
+                        ":hover": {
+                          backgroundColor: "#3E737A",
                           border: 0.5,
                           borderColor: "#EF6666",
-                          color: "#000",
-                          borderRadius: 5,
-                          paddingTop: 1,
-                          paddingBottom: 1,
-                          paddingLeft: 2,
-                          paddingRight: 2,
-                          marginTop: 1,
-
-                          ":hover": {
-                            backgroundColor: "#3E737A",
-                            border: 0.5,
-                            borderColor: "#EF6666",
-                            color: "#fff",
-                          },
-                        }}
-                      >
-                        Decline
-                      </Button>
-                    </div>
+                          color: "#fff",
+                        },
+                      }}
+                    >
+                      Decline
+                    </Button>
                   </div>
-                </Box>
-              );
-            })}
-          </Card>
+                </div>
+              </Box>
+            );
+          })}
         </div>
-      </Box>
-    </div>
+      </Card>
+    </Card>
   );
 }

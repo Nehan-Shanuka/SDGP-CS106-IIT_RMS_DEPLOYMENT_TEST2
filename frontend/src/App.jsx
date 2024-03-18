@@ -1,50 +1,119 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react"
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import SideNavbar from "./pages/global/SideNavbar"
 import Topbar from "./pages/global/Topbar";
 import MyTimetable from "./pages/myTimetable";
 import WeeklyTimetable from "./pages/weeklyTimetable";
 import Reservation from "./pages/reservations";
 import PlannedSessions from "./pages/plannedSessions";
-import StudentGrouping from "./pages/studentGrouping";
-import ReviewReservations from "./pages/reviewReservations";
-import Welcome from "./pages/home";
-import SigninForme from "./pages/registation";
 import Navbar from "./components/Navbar";
-// import intro from "./components/FlashScreen";
-import ProfilePage from "./pages/UserProfile";
-import NestedGrid from "./components/weeklytimetable/NestedGrid";
 import ExpandableReviewReservation from "./pages/expandableReviewPage";
 import UploadsPage from "./pages/Upload";
-import Userprofile from "./pages/UserProfile/index"
-import Home from "./pages/home/index"
-
-
+import Userprofile from "./pages/UserProfile/index";
+import Home from "./pages/home/index";
+import Authenticator from "./pages/authentication";
+import SplashScreen from "./pages/splashScreen";
+import SorryCall from "./components/SorryCall";
+import axios from "axios";
 
 export default function App() {
-  const [isSidebar, setIsSidebar] = useState(true);
+  const [isSidebar, setIsSidebar] = useState(false);
+  const [isWelcome, setIsWelcome] = useState(true);
+  const [onBoardUser, setOnBoardUser] = useState();
+  const [users, setUsers] = useState();
+  const [userFromDB, setUserFromDB] = useState();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get("http://localhost:5555/users");
+        if (response.status === 200) {
+          setUsers(response.data);
+          // setOnBoardUser(response.data[0]);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchUser();
+  }, []);
+
+
+  useEffect(() => {
+    // Simulate loading time
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000); // Adjust the timeout value as needed
+  }, []);
+
+  const handleStateChange = (state) => {
+    setIsWelcome(state);
+  };
+
+  const handleOpen = (open) => {
+    setIsSidebar(open);
+  };
+
+  const handleUser = (user) => {
+    setOnBoardUser(user);
+    users?.map((userFromDB) => {
+      if (userFromDB.email === user.email) {
+        setUserFromDB(userFromDB);
+        setIsAuthenticated(true);
+      }
+    });
+    // setIsAuthenticated(true);
+  };
+
+  console.log("in app ", isAuthenticated);
+  console.log("in app", onBoardUser);
 
   return (
     <>
-      <div className="relative flex h-screen">
-        <Navbar isSidebar={isSidebar} />
-        <main className="w-full">
-          <Topbar setIsSidebar={setIsSidebar} />
-          <Routes>
-          <Route path="/" element={<Home/>} />
-
-            <Route path="/my-timetable" element={<MyTimetable/>} />
-            <Route path="/reservations" element={<Reservation />} />
-            <Route path="/planned-sessions" element={<PlannedSessions />} />
-            <Route path="/student-grouping" />
-            <Route path="/review-requests" element={<ExpandableReviewReservation/>} />
-            <Route path="/weekly-timetble" element={<WeeklyTimetable/>} />
-            <Route path="/my-profile" element={<Userprofile/>} />
-            <Route path="/data-upload" element={<UploadsPage />} />
-          </Routes>
-        </main>
-      </div>
+      {loading ? <SplashScreen /> : (
+      !isAuthenticated ? (
+        <Authenticator userOnBoard={handleUser} />
+      ) : (isWelcome ? (
+        <Home onStateChange={handleStateChange} />
+      ) : (
+        !isWelcome && (
+          <div
+            className={`${
+              isWelcome && "overflow-hidden"
+            }relative flex h-screen`}
+          >
+            <Navbar onSidebarOpen={handleOpen} />
+            <main className="w-full">
+              <Topbar />
+              <Routes>
+                <Route path="/" element={<MyTimetable />} />
+                <Route path="/my-timetable" element={<MyTimetable />} />
+                <Route
+                  path="/reservations"
+                  element={<Reservation isSidebarOpen={isSidebar} />}
+                />
+                <Route path="/planned-sessions" element={<PlannedSessions />} />
+                <Route path="/student-grouping" />
+                {userFromDB.adminPrivilege ? (
+                  <Route
+                  path="/review-requests"
+                  element={<ExpandableReviewReservation />}
+                />
+                ) : (
+                  <Route path="/review-requests" element={<SorryCall />} />
+                )}
+                
+                <Route path="/weekly-timetble" element={<WeeklyTimetable />} />
+                <Route path="/my-profile" element={<Userprofile userFromDB={userFromDB} />} />
+                <Route path="/data-upload" element={<UploadsPage />} />
+              </Routes>
+            </main>
+          </div>
+        )
+      )))}
     </>
-  )
+  );
 }

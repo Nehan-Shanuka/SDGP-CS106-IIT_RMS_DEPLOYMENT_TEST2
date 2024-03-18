@@ -14,6 +14,7 @@ import Home from "./pages/home/index";
 import Authenticator from "./pages/authentication";
 import SplashScreen from "./pages/splashScreen";
 import SorryCall from "./components/SorryCall";
+import Grouptimetable from "./pages/grouptimetable/index";
 import axios from "axios";
 
 export default function App() {
@@ -105,7 +106,7 @@ export default function App() {
                 ) : (
                   <Route path="/review-requests" element={<SorryCall />} />
                 )}
-                
+                <Route path="/group-timetable" element={<Grouptimetable />} />
                 <Route path="/weekly-timetble" element={<WeeklyTimetable />} />
                 <Route path="/my-profile" element={<Userprofile userFromDB={userFromDB} />} />
                 <Route path="/data-upload" element={<UploadsPage />} />

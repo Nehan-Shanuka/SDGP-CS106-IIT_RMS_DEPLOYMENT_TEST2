@@ -5,11 +5,13 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function BasicSelect({ values, labels }) {
+export default function BasicSelect({ values, labels, onSelect }) {
   const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    const selectedValue = event.target.value; // Store the selected value
+    setAge(selectedValue); // Update age state with the selected value
+    onSelect(selectedValue); // Call the onSelect callback with the selected value
   };
 
   return (

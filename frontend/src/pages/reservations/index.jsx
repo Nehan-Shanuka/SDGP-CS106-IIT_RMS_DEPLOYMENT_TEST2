@@ -74,6 +74,7 @@ export default function Reservation({ isSidebarOpen }) {
             halls={halls}
             buildings={buildings}
             dateSelected={selectedDate}
+            day={day}
           />
         </Card>
       </section>

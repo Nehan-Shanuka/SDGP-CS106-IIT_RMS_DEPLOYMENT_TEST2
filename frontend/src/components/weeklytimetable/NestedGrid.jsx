@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
@@ -19,7 +20,7 @@ const Item = styled("div")(({ theme, color }) => ({
   margin: "10px",
 }));
 
-const NestedGrid = () => {
+const NestedGrid = ({ user }) => {
   const [timetableData, setTimetableData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -50,6 +51,8 @@ const NestedGrid = () => {
   }
 
   const colors = ["#FF9999", "#99FF99", "#9999FF", "#FFFF99"];
+
+  console.log("user", user);
 
   return (
     <div className="flex flex-col">
@@ -111,8 +114,8 @@ const NestedGrid = () => {
                         item.sessions?.some(
                           (session) => session.day === weekday
                         ) &&
-                        item.groupName === "CS-J" &&
-                        item.course === "BSc Computer Science"
+                        item.groupName === user?.group &&
+                        item.course === user?.course
                     )
                     .map((item, itemIndex) => (
                       <div key={itemIndex}>

@@ -22,11 +22,12 @@ const VisuallyHiddenInput = styled("input")({
 
 export default function InputFileUpload() {
   const [file, setFile] = useState(null);
-  
+  const [uploadMessage, setUploadMessage] = useState(null);
+  const [openSnackbar, setOpenSnackbar] = useState(false); // State to control Snackbar visibility
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
-
+    setUploadMessage(null);
   };
 
   const handleFileUpload = async () => {
@@ -74,7 +75,6 @@ export default function InputFileUpload() {
 
     setOpenSnackbar(false);
   };
-
   
 
 

@@ -79,6 +79,7 @@ export default function RequestForm({
         // console.log("timetable day", timetableSession.day)
         // console.log("day", day)
         if (timetableSession.day === dayFromCalender) {
+          dateNotFounded = false;
           console.log("timeTableSession", dayFromCalender);
           // console.log("Entered the timetable session", timetableSession.reservations.time_01 === null ? false : true);
           // dateNotFounded = false;
@@ -126,6 +127,9 @@ export default function RequestForm({
               plannedSession.reservations.time_03 !== null || timetableSession.reservations.time_03 !== null," ",
               plannedSession.reservations.time_04 !== null || timetableSession.reservations.time_04 !== null,)
           });
+        }
+        if (dateNotFounded) {
+          setDisabled([false, false, false, false]);
         }
 
         

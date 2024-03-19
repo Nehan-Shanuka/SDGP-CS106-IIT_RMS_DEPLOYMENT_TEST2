@@ -1,11 +1,10 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import RedirectButton from "../RedirectButto";
+// import RedirectButton from "../RedirectButto";
 import axios from "axios";
 import Tooltip from "@mui/material/Tooltip";
 
@@ -20,7 +19,7 @@ const Item = styled("div")(({ theme, color }) => ({
   margin: "10px",
 }));
 
-const NestedGrid = ({ user }) => {
+const WeeklyallTimetable = ({selectedValue}) => {
   const [timetableData, setTimetableData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -52,14 +51,10 @@ const NestedGrid = ({ user }) => {
 
   const colors = ["#FF9999", "#99FF99", "#9999FF", "#FFFF99"];
 
-  console.log("user", user);
-
   return (
     <div className="flex flex-col">
       <div className="grid justify-items-end">
-        <div className="mr-10">
-          <RedirectButton path="/my-timetable" text="Show Daily" />
-        </div>
+
       </div>
 
       <Box
@@ -114,8 +109,8 @@ const NestedGrid = ({ user }) => {
                         item.sessions?.some(
                           (session) => session.day === weekday
                         ) &&
-                        item.groupName === user?.group &&
-                        item.course === user?.course
+                        item.groupName === selectedValue &&
+                        item.course === "BSc Computer Science"
                     )
                     .map((item, itemIndex) => (
                       <div key={itemIndex}>
@@ -201,4 +196,4 @@ const NestedGrid = ({ user }) => {
   );
 };
 
-export default NestedGrid;
+export default WeeklyallTimetable;

@@ -1,9 +1,12 @@
-import { styled } from "@mui/material/styles";
+import React, { useState } from "react";
 import axios from "axios";
+import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import Uploadicon from "../images/6323.jpg";
 import Card from "@mui/material/Card";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -17,8 +20,6 @@ const VisuallyHiddenInput = styled("input")({
   width: 1,
   marginInlineStart: "10",
 });
-
-
 
 export default function InputFileUpload() {
   const [file, setFile] = useState(null);
@@ -75,29 +76,16 @@ export default function InputFileUpload() {
 
     setOpenSnackbar(false);
   };
-  
-
 
   return (
-    <div
-      style={{ paddingBottom: "6rem", marginLeft: "20px", marginRight: "1rem" }}
-    >
-      <div
-        style={{
-          display: "flex",
-          marginTop: "30px",
-          justifyContent: "space-between",
-          padding: "0 12rem",
-        }}
-      >
+
+    <div style={{ paddingBottom: "6rem", marginLeft: "20px", marginRight: "1rem" }}>
+      <div style={{ display: "flex", marginTop: "30px", justifyContent: "space-between", padding: "0 12rem" }}>
         <Card sx={{ border: 2, borderColor: "black" }}>
           <div>
-            <img
-              src={Uploadicon}
-              style={{ width: "10rem", marginLeft: "17%" }}
-            />
+            <img src={Uploadicon} style={{ width: "10rem", marginLeft: "17%" }} />
 
-<Button
+            <Button
               style={{ width: "15rem" }}
               component="label"
               role={undefined}
@@ -181,7 +169,13 @@ export default function InputFileUpload() {
             </Button>
           </div>
         </Card>
+        
       </div>
+      <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleCloseSnackbar}>
+        <MuiAlert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
+          {uploadMessage}
+        </MuiAlert>
+      </Snackbar>
     </div>
   );
 }

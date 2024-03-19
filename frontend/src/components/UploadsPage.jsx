@@ -1,4 +1,5 @@
 import { styled } from "@mui/material/styles";
+import axios from "axios";
 import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import Uploadicon from "../images/6323.jpg";
@@ -17,7 +18,17 @@ const VisuallyHiddenInput = styled("input")({
   marginInlineStart: "10",
 });
 
+
+
 export default function InputFileUpload() {
+  const [file, setFile] = useState(null);
+  
+
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
+  };
+
+
   return (
     <div
       style={{ paddingBottom: "6rem", marginLeft: "20px", marginRight: "1rem" }}

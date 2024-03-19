@@ -191,11 +191,11 @@ export default function MyTimetable() {
 
   useEffect(() => {
     console.log("Timetable", timetables);
-    // console.log("Day", day);
+    console.log("Day", day);
     // Update the item array whenever the day state changes
     setItem(generateItems());
     // console.log("Item", item);
-  }, [day]);
+  }, [day, timetables, group]);
 
   const filteredTimetable = timetables.filter(
     (slot) => slot.groupName === group

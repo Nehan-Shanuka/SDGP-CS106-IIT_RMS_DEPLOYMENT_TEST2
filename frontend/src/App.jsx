@@ -107,7 +107,7 @@ export default function App() {
                   <Route path="/review-requests" element={<SorryCall />} />
                 )}
                 <Route path="/group-timetable" element={<Grouptimetable />} />
-                <Route path="/weekly-timetble" element={<WeeklyTimetable />} />
+                <Route path="/weekly-timetble" element={<WeeklyTimetable user={userFromDB} />} />
                 <Route path="/my-profile" element={<Userprofile userFromDB={userFromDB} />} />
                 <Route path="/data-upload" element={<UploadsPage />} />
               </Routes>

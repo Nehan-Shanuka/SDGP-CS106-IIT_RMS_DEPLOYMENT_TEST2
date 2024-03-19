@@ -174,9 +174,10 @@ export default function AvailableHallList({ color, halls, buildings, dateSelecte
                 </div>
               </Item>
             ))
-          ) : dateSelected === null ? (
+          ) : dateSelected === null || dateSelected === undefined ? (
             (alert("Please select a date"), handleChangedRegistationForm(false))
           ) : (
+            // (console.log("Date Selected", dateSelected)),
             <div className="w-full h-full">
               <RequestForm
                 onRegistationFormChange={handleChangedRegistationForm}

@@ -97,7 +97,7 @@ export default function InputFileUpload() {
               style={{ width: "10rem", marginLeft: "17%" }}
             />
 
-            <Button
+<Button
               style={{ width: "15rem" }}
               component="label"
               role={undefined}
@@ -106,8 +106,9 @@ export default function InputFileUpload() {
               startIcon={<CloudUploadIcon />}
             >
               Time Tables
-              <VisuallyHiddenInput type="file" />
+              <VisuallyHiddenInput type="file" onChange={handleFileChange} />
             </Button>
+            <Button onClick={handleFileUpload}>Upload</Button>
           </div>
         </Card>
 

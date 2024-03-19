@@ -26,7 +26,56 @@ export default function InputFileUpload() {
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
+
   };
+
+  const handleFileUpload = async () => {
+    try {
+      if (!file) {
+        setUploadMessage("No file selected");
+        setOpenSnackbar(true); // Show Snackbar for no file selected
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = async (event) => {
+        try {
+          const fileContent = event.target.result;
+
+          // Parse the JSON content
+          const timetableData = JSON.parse(fileContent);
+
+          // Make a POST request to your backend API endpoint
+          const response = await axios.post("http://localhost:5555/timetables", timetableData);
+
+          // Handle response as needed
+          setUploadMessage("File uploaded successfully");
+          setOpenSnackbar(true);
+          console.log("File uploaded successfully", response.data);
+        } catch (error) {
+          setUploadMessage("Error uploading file");
+          setOpenSnackbar(true); // Show Snackbar for error uploading file
+          console.error("Error parsing JSON or uploading file", error);
+        }
+      };
+
+      reader.readAsText(file);
+    } catch (error) {
+      setUploadMessage("Error uploading file");
+      setOpenSnackbar(true); // Show Snackbar for error uploading file
+      console.error("Error uploading file", error);
+    }
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnackbar(false);
+  };
+
+  
 
 
   return (

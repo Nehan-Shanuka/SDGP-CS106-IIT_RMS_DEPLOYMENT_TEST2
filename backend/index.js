@@ -6,6 +6,8 @@ import hallRoutes from "./routes/hallRoutes.js";
 import reservationRoutes from "./routes/reservationRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import timetableRoutes from "./routes/timetableRoutes.js";
+import studentRoutes from "./routes/studentRoutes.js";
+import groupRoutes from "./routes/groupRoutes.js";
 import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
@@ -30,6 +32,10 @@ app.use("/reservations", reservationRoutes);
 app.use("/users", userRoutes);
 
 app.use("/timetables", timetableRoutes);
+
+app.use("/students", studentRoutes);
+
+app.use("/groups", groupRoutes);
 
 // mongoose
 //   .connect(MONGODB)

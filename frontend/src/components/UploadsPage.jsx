@@ -24,18 +24,18 @@ const VisuallyHiddenInput = styled("input")({
 export default function InputFileUpload() {
   const [file, setFile] = useState(null);
   const [uploadMessage, setUploadMessage] = useState(null);
-  const [openSnackbar, setOpenSnackbar] = useState(false); // State to control Snackbar visibility
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
     setUploadMessage(null);
   };
 
-  const handleFileUpload = async () => {
+  const handleFileUpload = async (dataType) => {
     try {
       if (!file) {
         setUploadMessage("No file selected");
-        setOpenSnackbar(true); // Show Snackbar for no file selected
+        setOpenSnackbar(true);
         return;
       }
 
@@ -43,20 +43,38 @@ export default function InputFileUpload() {
       reader.onload = async (event) => {
         try {
           const fileContent = event.target.result;
+          const parsedData = JSON.parse(fileContent);
 
-          // Parse the JSON content
-          const timetableData = JSON.parse(fileContent);
+          // Determine the type of data and send it to the appropriate endpoint
+          let endpoint;
+          switch (dataType) {
+            case "timetables":
+              endpoint = "http://localhost:5555/timetables";
+              break;
+            case "resources":
+              endpoint = "http://localhost:5555/halls";
+              break;
+            case "students":
+              endpoint = "http://localhost:5555/students";
+              break;
+            case "lecturers":
+              endpoint = "http://localhost:5555/lecturers";
+              break;
+            default:
+              setUploadMessage("Invalid data type");
+              setOpenSnackbar(true);
+              return;
+          }
 
-          // Make a POST request to your backend API endpoint
-          const response = await axios.post("http://localhost:5555/timetables", timetableData);
+          // Make a POST request to the backend API endpoint
+          const response = await axios.post(endpoint, parsedData);
 
-          // Handle response as needed
           setUploadMessage("File uploaded successfully");
           setOpenSnackbar(true);
           console.log("File uploaded successfully", response.data);
         } catch (error) {
           setUploadMessage("Error uploading file");
-          setOpenSnackbar(true); // Show Snackbar for error uploading file
+          setOpenSnackbar(true);
           console.error("Error parsing JSON or uploading file", error);
         }
       };
@@ -64,7 +82,7 @@ export default function InputFileUpload() {
       reader.readAsText(file);
     } catch (error) {
       setUploadMessage("Error uploading file");
-      setOpenSnackbar(true); // Show Snackbar for error uploading file
+      setOpenSnackbar(true);
       console.error("Error uploading file", error);
     }
   };
@@ -78,13 +96,11 @@ export default function InputFileUpload() {
   };
 
   return (
-
     <div style={{ paddingBottom: "6rem", marginLeft: "20px", marginRight: "1rem" }}>
       <div style={{ display: "flex", marginTop: "30px", justifyContent: "space-between", padding: "0 12rem" }}>
         <Card sx={{ border: 2, borderColor: "black" }}>
           <div>
             <img src={Uploadicon} style={{ width: "10rem", marginLeft: "17%" }} />
-
             <Button
               style={{ width: "15rem" }}
               component="label"
@@ -92,21 +108,17 @@ export default function InputFileUpload() {
               variant="contained"
               tabIndex={-1}
               startIcon={<CloudUploadIcon />}
+              onClick={() => handleFileUpload("timetables")}
             >
-              Time Tables
+              Upload Timetable JSON File
               <VisuallyHiddenInput type="file" onChange={handleFileChange} />
             </Button>
-            <Button onClick={handleFileUpload}>Upload</Button>
           </div>
         </Card>
 
         <Card sx={{ border: 2, borderColor: "black" }}>
           <div>
-            <img
-              src={Uploadicon}
-              style={{ width: "10rem", marginLeft: "17%" }}
-            />
-
+            <img src={Uploadicon} style={{ width: "10rem", marginLeft: "17%" }} />
             <Button
               style={{ width: "15rem" }}
               component="label"
@@ -114,28 +126,17 @@ export default function InputFileUpload() {
               variant="contained"
               tabIndex={-1}
               startIcon={<CloudUploadIcon />}
+              onClick={() => handleFileUpload("resources")}
             >
-              Student List
-              <VisuallyHiddenInput type="file" />
+              Upload Resources JSON File
+              <VisuallyHiddenInput type="file" onChange={handleFileChange} />
             </Button>
           </div>
         </Card>
-      </div>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          padding: "0 12rem",
-          marginTop: "5rem",
-        }}
-      >
         <Card sx={{ border: 2, borderColor: "black" }}>
           <div>
-            <img
-              src={Uploadicon}
-              style={{ width: "10rem", marginLeft: "17%" }}
-            />
+            <img src={Uploadicon} style={{ width: "10rem", marginLeft: "17%" }} />
             <Button
               style={{ width: "15rem" }}
               component="label"
@@ -143,19 +144,17 @@ export default function InputFileUpload() {
               variant="contained"
               tabIndex={-1}
               startIcon={<CloudUploadIcon />}
+              onClick={() => handleFileUpload("students")}
             >
-              Lecturer Details
-              <VisuallyHiddenInput type="file" />
+              Upload Student List JSON File
+              <VisuallyHiddenInput type="file" onChange={handleFileChange} />
             </Button>
           </div>
         </Card>
 
         <Card sx={{ border: 2, borderColor: "black" }}>
           <div>
-            <img
-              src={Uploadicon}
-              style={{ width: "10rem", marginLeft: "17%" }}
-            />
+            <img src={Uploadicon} style={{ width: "10rem", marginLeft: "17%" }} />
             <Button
               style={{ width: "15rem" }}
               component="label"
@@ -163,13 +162,13 @@ export default function InputFileUpload() {
               variant="contained"
               tabIndex={-1}
               startIcon={<CloudUploadIcon />}
+              onClick={() => handleFileUpload("lecturers")}
             >
-              Resources
-              <VisuallyHiddenInput type="file" />
+              Upload Lecturer Details JSON File
+              <VisuallyHiddenInput type="file" onChange={handleFileChange} />
             </Button>
           </div>
         </Card>
-        
       </div>
       <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleCloseSnackbar}>
         <MuiAlert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>

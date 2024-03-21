@@ -1,7 +1,7 @@
 import React from "react";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 
-export default function SimpleTypewriter({ words }) {
+export default function SimpleTypewriter({ words ,text}) {
   const [typeEffect] = useTypewriter({
     words: words,
     loop: {},
@@ -11,7 +11,7 @@ export default function SimpleTypewriter({ words }) {
 
   return (
     <h1 style={{ margin: "50px", fontSize:"30px"}}>
-      I am a  
+      {text}  
       <span style={{ fontWeight: "bold", color: "green" }}>{typeEffect}</span>
       <span style={{ color: "red" }}>
         <Cursor />

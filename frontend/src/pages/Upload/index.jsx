@@ -1,10 +1,12 @@
 // In UploadPage.js
 import UploadsPage from "../../components/UploadsPage";
+import SimpleTypewriter from "../../components/SimpleTypewriting";
 
 export default function UploadPage() {
   return (
     <div className="uploads-container">
-      <UploadsPage />
+      {/* <UploadsPage /> */}
+      <SimpleTypewriter words={["Spencer Building","Java Building ","Dialog Building","Ramakrishna Building"]} text={"Upload " }/>
       
     
 

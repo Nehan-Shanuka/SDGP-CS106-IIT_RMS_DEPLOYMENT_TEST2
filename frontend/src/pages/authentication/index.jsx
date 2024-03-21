@@ -122,7 +122,7 @@ export default function Authenticator({ userOnBoard }) {
           onClick={handleAuthenticatorClick}
         >
           <div className="flex">
-            <img src={GOOGLE} alt="google" className="w-8 h-8 rounded-full mx-auto"/>
+            {/* <img src={GOOGLE} alt="google" className="w-8 h-8 rounded-full mx-auto"/> */}
           {/* <div className="bg-purple-950 py-3 px-10 rounded-lg text-white"> */}
           <h1>LOGIN WITH GOOGLE</h1>
           {/* </div> */}

@@ -50,14 +50,15 @@ const NestedGrid = ({ user }) => {
     return <p>Error: {error}</p>;
   }
 
-  const colors = ["#FF9999", "#99FF99", "#9999FF", "#FFFF99"];
-
   console.log("user", user);
 
   return (
     <div className="flex flex-col">
-      <div className="grid justify-items-end">
-        <div className="mr-10">
+      <div className="flex justify-between mx-16">
+        <div className="grid items-center bg-[#D9D9D9] px-3 rounded-md">
+          <h1 className="text-xl">{user.group} TIMETABLE</h1>
+        </div>
+        <div className="">
           <RedirectButton path="/my-timetable" text="Show Daily" />
         </div>
       </div>
@@ -65,11 +66,8 @@ const NestedGrid = ({ user }) => {
       <Box
         sx={{
           flexGrow: 1,
-          marginTop: "50px",
-          marginLeft: "50px",
-          marginRight: "0px",
-          border: "2px solid black",
-          borderColor: "black",
+          margin: "auto",
+          marginTop: 5,
           padding: "40px",
           width: "90%",
           borderRadius: "30px",

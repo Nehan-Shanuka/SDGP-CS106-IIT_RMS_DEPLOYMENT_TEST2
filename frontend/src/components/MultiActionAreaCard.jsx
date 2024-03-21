@@ -7,7 +7,7 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 
-export default function MultiActionAreaCard({type,img,path}) {
+export default function MultiActionAreaCard({type,img,path,texts}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -22,8 +22,7 @@ export default function MultiActionAreaCard({type,img,path}) {
             {type}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            {texts}
           </Typography>
         </CardContent>
       </CardActionArea>

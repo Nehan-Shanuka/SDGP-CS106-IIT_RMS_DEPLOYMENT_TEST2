@@ -1,9 +1,9 @@
 import React from "react";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 
-export default function SimpleTypewriter() {
+export default function SimpleTypewriter({ words }) {
   const [typeEffect] = useTypewriter({
-    words: ['  sanuth', '  hansaja'],
+    words: words,
     loop: {},
     typeSpeed: 80,
     deleteSpeed:40

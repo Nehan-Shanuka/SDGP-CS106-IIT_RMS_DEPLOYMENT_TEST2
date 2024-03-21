@@ -6,7 +6,7 @@ export default function UploadPage() {
   return (
     <div className="uploads-container">
       {/* <UploadsPage /> */}
-      <SimpleTypewriter words={["Spencer Building","Java Building ","Dialog Building","Ramakrishna Building"]} text={"Upload " }/>
+      <SimpleTypewriter words={["Timetable File "," Hall Details ","Lecturer List","Ramakrishna Building"]} text={"Upload " }/>
       
     
 

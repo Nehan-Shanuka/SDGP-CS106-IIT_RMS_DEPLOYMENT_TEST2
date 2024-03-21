@@ -19,7 +19,7 @@ const Item = styled(Paper)(({ color }) => ({
   borderRadius: 15,
 }));
 
-export default function AvailableHallList({ color, halls, buildings, dateSelected, day }) {
+export default function AvailableHallList({ color, halls, buildings, dateSelected, day, isSidebarOpen }) {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [registationForm, setRegistationForm] = useState(false);
 
@@ -30,7 +30,7 @@ export default function AvailableHallList({ color, halls, buildings, dateSelecte
   return (
     <Card
       sx={{
-        width: "45%",
+        width: isSidebarOpen ? "55%" : "50%",
         backgroundColor: "#D9D9D9",
         borderRadius: 5,
         alignItems: "center",
@@ -93,7 +93,7 @@ export default function AvailableHallList({ color, halls, buildings, dateSelecte
                   </div>
 
                   <div className="flex justify-center items-center w-36">
-                    <div className="flex justify-center w-20 h-20 rounded-full bg-gray-300 text-black">
+                    <div className="flex justify-center w-20 h-20 rounded-full bg-[#D9D9D9] text-black">
                       <p className="flex justify-center items-center text-4xl">
                         {buildings.map((building, index) => {
                           if (building._id === hall.buildingID) {

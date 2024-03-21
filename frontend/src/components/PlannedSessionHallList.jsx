@@ -19,7 +19,7 @@ const Item = styled(Paper)(({ color }) => ({
 
 export default function ReservationHallList({
   color,
-  status,
+  isSidebarOpen,
   newcourses,
   newhalls,
   newbuildings,
@@ -33,7 +33,7 @@ export default function ReservationHallList({
   return (
     <Card
       sx={{
-        width: "45%",
+        width: isSidebarOpen ? "55%" : "50%",
         backgroundColor: "#D9D9D9",
         borderRadius: 5,
         alignItems: "center",
@@ -103,7 +103,7 @@ export default function ReservationHallList({
                 </div>
 
                 <div className="flex justify-center items-center w-36">
-                  <div className="flex justify-center w-20 h-20 rounded-full bg-gray-200 text-black">
+                  <div className="flex justify-center w-20 h-20 rounded-full bg-[#D9D9D9] text-black">
                     <p className="flex justify-center items-center text-4xl">
                       {halls.map((hall, index) => {
                         if (hall._id === reservation.hallID) {

@@ -16,6 +16,7 @@ import SplashScreen from "./pages/splashScreen";
 import SorryCall from "./components/SorryCall";
 import axios from "axios";
 import Grouptimetable from "./pages/grouptimetable";
+import UnderManintainCall from "./components/underDevelopMSG";
 
 export default function App() {
   const [isSidebar, setIsSidebar] = useState(false);
@@ -88,7 +89,7 @@ export default function App() {
           >
             <Navbar onSidebarOpen={handleOpen} />
             <main className="w-full">
-              <Topbar />
+              <Topbar user={userFromDB} />
               <Routes>
                 <Route path="/" element={<MyTimetable />} />
                 <Route path="/my-timetable" element={<MyTimetable />} />
@@ -96,8 +97,9 @@ export default function App() {
                   path="/reservations"
                   element={<Reservation isSidebarOpen={isSidebar} />}
                 />
-                <Route path="/planned-sessions" element={<PlannedSessions />} />
-                <Route path="/student-grouping" />
+                <Route path="/planned-sessions" element={<PlannedSessions isSidebarOpen={isSidebar} />} />
+                <Route path="/student-grouping" element={<UnderManintainCall />} />
+                <Route path="/group-details" element={<UnderManintainCall />} />
                 {userFromDB.adminPrivilege ? (
                   <Route
                   path="/review-requests"

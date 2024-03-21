@@ -23,9 +23,9 @@ export default function UploadPage() {
   }
 }}>
   <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1rem" }}>
-  <MultiActionAreaCard type={"Timetable"} img={img1} />
-    <MultiActionAreaCard type={"Studets"} img={img2}/>
-    <MultiActionAreaCard type={"Users"} img={img3}  />
+  <MultiActionAreaCard type={"Timetable"} img={img1} path={"/weekly-timetble"} />
+    <MultiActionAreaCard type={"Studets"} img={img2} path={"/weekly-timetble"}/>
+    <MultiActionAreaCard type={"Users"} img={img3} path={"/weekly-timetble"} />
   </div>
 </Card>
 

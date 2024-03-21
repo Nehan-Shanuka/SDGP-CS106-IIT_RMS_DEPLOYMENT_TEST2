@@ -4,8 +4,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-export default function MultiActionAreaCard({type,img}) {
+
+export default function MultiActionAreaCard({type,img,path}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -26,10 +28,14 @@ export default function MultiActionAreaCard({type,img}) {
         </CardContent>
       </CardActionArea>
       <CardActions>
+      <Link to={path} style={{ textDecoration: 'none' }}>
         <Button size="small" color="primary">
-          Share
+          Click Here
+
         </Button>
+        </Link>
       </CardActions>
+
     </Card>
   );
 }

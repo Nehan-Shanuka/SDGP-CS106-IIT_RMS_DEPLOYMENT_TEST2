@@ -78,7 +78,7 @@ function Welcome({ onStateChange }) {
       </Grid> */}
       {/* <div className="flex justify-center w-screen h-screen bg-[#D9D9D9]"> */}
       <div className="grid items-center">
-        <h1 className="h-fit pb-24 text-[5rem] text-[#fff]  opacity-40 sm:text-[10rem] md:text-[15rem] lg:text-[20rem] xl:text-[50rem] overflow-hidden" style={{ transform: `scale(${scale})`, transition: 'transform 0.5s ease-in-out', textShadow: '4px 4px 8px rgba(0, 0, 0, 0.5)', }}>
+        <h1 className="h-fit pb-24 text-[5rem] text-[#fff]  opacity-40 sm:text-[10rem] md:text-[15rem] lg:text-[20rem] xl:text-[50rem] overflow-hidden" style={{ transform: `scale(${scale})`, transition: 'transform 0.7s ease-in-out', textShadow: '4px 4px 8px rgba(0, 0, 0, 0.5)', }}>
           IIT
         </h1>
       </div>

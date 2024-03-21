@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
@@ -19,7 +20,7 @@ const Item = styled("div")(({ theme, color }) => ({
   margin: "10px",
 }));
 
-const WeeklyallTimetable = ({selectedValue}) => {
+const WeeklyallTimetable = ({ selectedValue }) => {
   const [timetableData, setTimetableData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -60,15 +61,12 @@ const WeeklyallTimetable = ({selectedValue}) => {
       <Box
         sx={{
           flexGrow: 1,
-          marginTop: "50px",
-          marginLeft: "50px",
-          marginRight: "0px",
-          border: "2px solid black",
-          borderColor: "black",
+          margin: "auto",
+          marginTop: 5,
           padding: "40px",
           width: "90%",
           borderRadius: "30px",
-          backgroundColor: "lightgrey",
+          backgroundColor: "#D9D9D9",
           "@media screen and (max-width: 768px)": {
             marginLeft: "0",
             marginTop: "20px",

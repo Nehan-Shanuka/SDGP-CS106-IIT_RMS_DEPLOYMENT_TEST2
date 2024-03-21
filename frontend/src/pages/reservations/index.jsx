@@ -56,7 +56,7 @@ export default function Reservation({ isSidebarOpen }) {
           sx={{
             display: "flex",
             justifyContent: "space-between",
-            paddingX: isSidebarOpen ? 3 : 15,
+            paddingX: isSidebarOpen ? 10 : 15,
             paddingY: 3,
             height: "90vh",
             width: "100%",
@@ -70,7 +70,7 @@ export default function Reservation({ isSidebarOpen }) {
 
           <AvailableHallList
             color={"#723E7A"}
-            status={"Reservation"}
+            isSidebarOpen={isSidebarOpen}
             halls={halls}
             buildings={buildings}
             dateSelected={selectedDate}

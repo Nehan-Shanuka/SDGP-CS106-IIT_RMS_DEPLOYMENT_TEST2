@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { Button, Card } from "@mui/material";
@@ -12,7 +13,7 @@ import Type from "../../components/TypeSelection";
 import Group from "../../components/GroupSelection";
 import axios from "axios";
 
-export default function PlannedSessions() {
+export default function PlannedSessions({ isSidebarOpen }) {
   const [reservations, setReservations] = useState([]);
   const [halls, setHalls] = useState([]);
   const [buildings, setBuildings] = useState([]);
@@ -87,7 +88,8 @@ export default function PlannedSessions() {
           sx={{
             display: "flex",
             justifyContent: "space-between",
-            padding: 3,
+            paddingX: isSidebarOpen ? 10 : 15,
+            paddingY: 3,
             height: "90vh",
             width: "100%",
           }}
@@ -124,7 +126,7 @@ export default function PlannedSessions() {
           </div>
           <ReservationHallList
             color={"#3E737A"}
-            status={"Planned Sessions"}
+            isSidebarOpen={isSidebarOpen}
             newcourses={reservations}
             newhalls={halls}
             newbuildings={buildings}

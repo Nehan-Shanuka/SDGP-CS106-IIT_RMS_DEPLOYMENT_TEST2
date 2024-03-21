@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import BasicSelect from '../../components/BasicSelect.jsx';
 import WeeklyallTimetable from '../../components/WeeklyallTimetable.jsx';
 
@@ -17,7 +17,9 @@ function Grouptimetable() {
 
   return (
     <div>
+      <div className='pl-16'>
       <BasicSelect values={values} labels={labels} onSelect={handleSelectChange} />
+      </div>
       <WeeklyallTimetable selectedValue={selectedValue} />
     </div>
   );

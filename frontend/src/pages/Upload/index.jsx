@@ -23,7 +23,7 @@ export default function UploadPage() {
   }
 }}>
   <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1rem" }}>
-  <MultiActionAreaCard type={"Timetable"} img={img1} path={"/weekly-timetble"} texts={"This is a dedicated platform designed for students to effortlessly upload their timetables.It streamlines the process, saving time and ensuring all schedules are easily accessible. "} />
+  <MultiActionAreaCard type={"Timetable"} img={img1} path={"/student-upload"} texts={"This is a dedicated platform designed for students to effortlessly upload their timetables.It streamlines the process, saving time and ensuring all schedules are easily accessible. "} />
     <MultiActionAreaCard type={"Studets"} img={img2} path={"/weekly-timetble"} texts={"Submit your student list here to generate groupings. It's a straightforward way to organize students efficiently without the hassle of manual grouping. Simplify your coordination process! "}/>
     <MultiActionAreaCard type={"Users"} img={img3} path={"/weekly-timetble"}  texts={"Input your user list here to grant web access. It's a streamlined process to ensure users can easily access the website. Simplify user management and enhance accessibility "}/>
   </div>

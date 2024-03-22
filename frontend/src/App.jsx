@@ -73,6 +73,7 @@ export default function App() {
   };
 
   console.log("in app ", isAuthenticated);
+  console.log("in app user", userFromDB);
   console.log("in app", onBoardUser);
 
   return (

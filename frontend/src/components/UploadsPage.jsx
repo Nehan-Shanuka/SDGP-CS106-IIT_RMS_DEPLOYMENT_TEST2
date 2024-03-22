@@ -7,6 +7,8 @@ import Uploadicon from "../images/6323.jpg";
 import Card from "@mui/material/Card";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import SimpleTypewriter from "./SimpleTypewriting"
+
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -96,6 +98,8 @@ export default function InputFileUpload() {
   };
 
   return (
+
+  
     <div style={{ paddingBottom: "6rem", marginLeft: "20px", marginRight: "1rem" }}>
       <div style={{ display: "flex", marginTop: "30px", justifyContent: "space-between", padding: "0 12rem" }}>
         <Card sx={{ border: 2, borderColor: "black" }}>
@@ -175,6 +179,12 @@ export default function InputFileUpload() {
           {uploadMessage}
         </MuiAlert>
       </Snackbar>
+<div>
+<SimpleTypewriter words={["sanuth", "hansaja", "thusheera"]} />
+
+</div>
+
+
     </div>
   );
 }

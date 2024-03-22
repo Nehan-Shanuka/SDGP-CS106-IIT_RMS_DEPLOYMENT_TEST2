@@ -180,7 +180,7 @@ export default function InputFileUpload() {
         </MuiAlert>
       </Snackbar>
 <div>
-<SimpleTypewriter words={["sanuth", "hansaja", "thusheera"]} />
+
 
 </div>
 

@@ -23,7 +23,7 @@ const ParagraphWithReadMore = ({ title, text, maxChars, image }) => {
       <div style={{ display: 'flex', justifyContent: 'center', background: 'white' }}>
         <div className="paragraph-box">
           <div style={{ display:'flex', justifyContent: 'center', border: '1px solid black', padding: '10px', backgroundColor: 'green'}}>
-            <h2>{title}</h2>
+          <h2 style={{ fontSize: "20px" ,color: "white", fontWeight: 'bold'}}>{title}</h2>
           </div>
           <div className="content">
             <p>

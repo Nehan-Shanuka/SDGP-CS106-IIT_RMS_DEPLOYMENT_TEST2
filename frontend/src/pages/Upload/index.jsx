@@ -28,10 +28,6 @@ export default function UploadPage() {
     <MultiActionAreaCard type={"Users"} img={img3} path={"/weekly-timetble"}  texts={"Input your user list here to grant web access. It's a streamlined process to ensure users can easily access the website. Simplify user management and enhance accessibility "}/>
   </div>
 </Card>
-
-
-
-
     </div>
 
 

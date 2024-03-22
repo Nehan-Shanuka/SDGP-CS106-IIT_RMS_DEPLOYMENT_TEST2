@@ -5,10 +5,9 @@ import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import Uploadicon from "../images/6323.jpg";
 import Card from "@mui/material/Card";
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
-import SimpleTypewriter from "./SimpleTypewriting"
-
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import SimpleTypewriter from "./SimpleTypewriting";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -51,16 +50,20 @@ export default function InputFileUpload() {
           let endpoint;
           switch (dataType) {
             case "timetables":
-              endpoint = "http://localhost:5555/timetables";
+              endpoint =
+                "https://sdgp-cs-106-iit-rms-deployment-test-2.vercel.app/timetables";
               break;
             case "resources":
-              endpoint = "http://localhost:5555/halls";
+              endpoint =
+                "https://sdgp-cs-106-iit-rms-deployment-test-2.vercel.app/halls";
               break;
             case "students":
-              endpoint = "http://localhost:5555/students";
+              endpoint =
+                "https://sdgp-cs-106-iit-rms-deployment-test-2.vercel.app/students";
               break;
             case "lecturers":
-              endpoint = "http://localhost:5555/lecturers";
+              endpoint =
+                "https://sdgp-cs-106-iit-rms-deployment-test-2.vercel.app/lecturers";
               break;
             default:
               setUploadMessage("Invalid data type");
@@ -90,7 +93,7 @@ export default function InputFileUpload() {
   };
 
   const handleCloseSnackbar = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
 
@@ -98,13 +101,23 @@ export default function InputFileUpload() {
   };
 
   return (
-
-  
-    <div style={{ paddingBottom: "6rem", marginLeft: "20px", marginRight: "1rem" }}>
-      <div style={{ display: "flex", marginTop: "30px", justifyContent: "space-between", padding: "0 12rem" }}>
+    <div
+      style={{ paddingBottom: "6rem", marginLeft: "20px", marginRight: "1rem" }}
+    >
+      <div
+        style={{
+          display: "flex",
+          marginTop: "30px",
+          justifyContent: "space-between",
+          padding: "0 12rem",
+        }}
+      >
         <Card sx={{ border: 2, borderColor: "black" }}>
           <div>
-            <img src={Uploadicon} style={{ width: "10rem", marginLeft: "17%" }} />
+            <img
+              src={Uploadicon}
+              style={{ width: "10rem", marginLeft: "17%" }}
+            />
             <Button
               style={{ width: "15rem" }}
               component="label"
@@ -122,7 +135,10 @@ export default function InputFileUpload() {
 
         <Card sx={{ border: 2, borderColor: "black" }}>
           <div>
-            <img src={Uploadicon} style={{ width: "10rem", marginLeft: "17%" }} />
+            <img
+              src={Uploadicon}
+              style={{ width: "10rem", marginLeft: "17%" }}
+            />
             <Button
               style={{ width: "15rem" }}
               component="label"
@@ -140,7 +156,10 @@ export default function InputFileUpload() {
 
         <Card sx={{ border: 2, borderColor: "black" }}>
           <div>
-            <img src={Uploadicon} style={{ width: "10rem", marginLeft: "17%" }} />
+            <img
+              src={Uploadicon}
+              style={{ width: "10rem", marginLeft: "17%" }}
+            />
             <Button
               style={{ width: "15rem" }}
               component="label"
@@ -158,7 +177,10 @@ export default function InputFileUpload() {
 
         <Card sx={{ border: 2, borderColor: "black" }}>
           <div>
-            <img src={Uploadicon} style={{ width: "10rem", marginLeft: "17%" }} />
+            <img
+              src={Uploadicon}
+              style={{ width: "10rem", marginLeft: "17%" }}
+            />
             <Button
               style={{ width: "15rem" }}
               component="label"
@@ -174,17 +196,20 @@ export default function InputFileUpload() {
           </div>
         </Card>
       </div>
-      <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleCloseSnackbar}>
-        <MuiAlert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+      >
+        <MuiAlert
+          onClose={handleCloseSnackbar}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
           {uploadMessage}
         </MuiAlert>
       </Snackbar>
-<div>
-
-
-</div>
-
-
+      <div></div>
     </div>
   );
 }

@@ -29,7 +29,7 @@ export default function PlannedSessions({ isSidebarOpen }) {
   };
 
   useEffect(() => {
-    const url = `http://localhost:5555/reservations?confirmation=${confirmation}&subject=${moduleName}&buildingID=${buildingID}&type=${type}`;
+    const url = `https://sdgp-cs-106-iit-rms-deployment-test-2.vercel.app/reservations?confirmation=${confirmation}&subject=${moduleName}&buildingID=${buildingID}&type=${type}`;
     axios
       .get(url)
       .then((response) => {
@@ -41,7 +41,7 @@ export default function PlannedSessions({ isSidebarOpen }) {
   }, [confirmation, moduleName, buildingID, type, day, selectedDate]);
 
   useEffect(() => {
-    const url = `http://localhost:5555/halls?buildingID=${buildingID}`;
+    const url = `https://sdgp-cs-106-iit-rms-deployment-test-2.vercel.app/halls?buildingID=${buildingID}`;
     axios
       .get(url)
       .then((response) => {
@@ -54,7 +54,7 @@ export default function PlannedSessions({ isSidebarOpen }) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5555/buildings")
+      .get("https://sdgp-cs-106-iit-rms-deployment-test-2.vercel.app/buildings")
       .then((response) => {
         setBuildings(response.data);
       })
@@ -79,7 +79,7 @@ export default function PlannedSessions({ isSidebarOpen }) {
     setType(typeSelect);
   };
 
-  console.log("Hi", selectedDate)
+  console.log("Hi", selectedDate);
 
   return (
     <>
@@ -95,7 +95,10 @@ export default function PlannedSessions({ isSidebarOpen }) {
           }}
         >
           <div>
-            <Calender onDateChange={handleDateChange} onDayChange={handleDayChange} />
+            <Calender
+              onDateChange={handleDateChange}
+              onDayChange={handleDayChange}
+            />
             <Location onLocationChange={handleLocationChange} />
             <Module onModuleChange={handleModuleChange} />
             <Type onTypeChange={handleTypeChange} />

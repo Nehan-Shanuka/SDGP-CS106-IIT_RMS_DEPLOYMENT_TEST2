@@ -44,13 +44,14 @@ export default function Calender({ onDateChange, onDayChange }) {
           <DateCalendar
             value={selectedDate}
             onChange={handleDateChange}
-            sx={{
-              border: "1px solid #D9D9D9",
-              borderRadius: 2,
-              ":hover": {
-                border: "1px solid black",
-              },
-            }}
+            // sx={{
+            //   border: "1px solid #D9D9D9",
+            //   borderRadius: 2,
+            //   ":hover": {
+            //     border: "1px solid black",
+            //   },
+            // }}
+            className="border-4 border-stone-200 rounded-lg hover:border-[#3E737A]"
           />
         </DemoItem>
       </DemoContainer>

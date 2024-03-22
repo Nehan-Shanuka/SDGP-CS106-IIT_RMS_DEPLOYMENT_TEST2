@@ -33,7 +33,7 @@ export default function App() {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          "https://sdgp-cs-106-iit-rms-deployment-test-3.vercel.app/users"
+          "https://sdgp-cs-106-iit-rms-deployment-test-4.vercel.app/users"
         );
         if (response.status === 200) {
           setUsers(response.data);

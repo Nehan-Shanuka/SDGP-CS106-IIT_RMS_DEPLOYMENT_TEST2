@@ -18,6 +18,14 @@ app.use(express.json());
 
 app.use(cors());
 
+// Enable CORS for all requests
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://sdgp-cs-106-iit-rms-deployment-test-3.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
 app.get("/", (request, response) => {
   console.log(request);
   return response.status(234).send("Welcome to IIT RMS server!");

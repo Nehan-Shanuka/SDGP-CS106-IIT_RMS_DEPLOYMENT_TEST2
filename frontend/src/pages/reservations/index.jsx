@@ -19,7 +19,7 @@ export default function Reservation({ isSidebarOpen }) {
   };
 
   useEffect(() => {
-    const url = `https://sdgp-cs-106-iit-rms-deployment-test-3.vercel.app/halls?buildingID=${buildingID}`;
+    const url = `https://sdgp-cs-106-iit-rms-deployment-test-4.vercel.app/halls?buildingID=${buildingID}`;
     axios
       .get(url)
       .then((response) => {
@@ -32,7 +32,7 @@ export default function Reservation({ isSidebarOpen }) {
 
   useEffect(() => {
     axios
-      .get("https://sdgp-cs-106-iit-rms-deployment-test-3.vercel.app/buildings")
+      .get("https://sdgp-cs-106-iit-rms-deployment-test-4.vercel.app/buildings")
       .then((response) => {
         setBuildings(response.data);
       })

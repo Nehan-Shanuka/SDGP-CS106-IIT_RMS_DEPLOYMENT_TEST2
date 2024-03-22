@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 export default function MultiActionAreaCard({type,img,path,texts}) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card >
       <CardActionArea>
         <CardMedia
           component="img"

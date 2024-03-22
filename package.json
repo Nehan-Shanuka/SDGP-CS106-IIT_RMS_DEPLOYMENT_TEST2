@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "firebase": "^10.9.0",
-    "react-simple-typewriter": "^5.0.1"
-  }
-}

@@ -51,19 +51,19 @@ export default function InputFileUpload() {
           switch (dataType) {
             case "timetables":
               endpoint =
-                "https://sdgp-cs-106-iit-rms-deployment-test-4.vercel.app/timetables";
+                "https://sdgp-cs106-iit-rms-deployment.onrender.com/timetables";
               break;
             case "resources":
               endpoint =
-                "https://sdgp-cs-106-iit-rms-deployment-test-4.vercel.app/halls";
+                "https://sdgp-cs106-iit-rms-deployment.onrender.com/halls";
               break;
             case "students":
               endpoint =
-                "https://sdgp-cs-106-iit-rms-deployment-test-4.vercel.app/students";
+                "https://sdgp-cs106-iit-rms-deployment.onrender.com/students";
               break;
             case "lecturers":
               endpoint =
-                "https://sdgp-cs-106-iit-rms-deployment-test-4.vercel.app/lecturers";
+                "https://sdgp-cs106-iit-rms-deployment.onrender.com/lecturers";
               break;
             default:
               setUploadMessage("Invalid data type");

@@ -184,7 +184,7 @@ export default function RequestForm({
   const handleRequest = async () => {
     axios
       .post(
-        `https://sdgp-cs-106-iit-rms-deployment-test-4.vercel.app/reservations/${hallID}`,
+        `https://sdgp-cs106-iit-rms-deployment.onrender.com/reservations/${hallID}`,
         {
           date: formatedDate,
           time: checked[0]

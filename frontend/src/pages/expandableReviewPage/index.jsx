@@ -12,7 +12,7 @@ export default function ExpandableReviewReservation() {
   const [buildingID, setBuildingID] = useState([]);
 
   useEffect(() => {
-    const url = `https://sdgp-cs-106-iit-rms-deployment-test-4.vercel.app/reservations?confirmation=${confirmation}`;
+    const url = `https://sdgp-cs106-iit-rms-deployment.onrender.com/reservations?confirmation=${confirmation}`;
     axios
       .get(url)
       .then((response) => {
@@ -24,7 +24,7 @@ export default function ExpandableReviewReservation() {
   }, [confirmation]);
 
   useEffect(() => {
-    const url = `https://sdgp-cs-106-iit-rms-deployment-test-4.vercel.app/halls?buildingID=${buildingID}`;
+    const url = `https://sdgp-cs106-iit-rms-deployment.onrender.com/halls?buildingID=${buildingID}`;
     axios
       .get(url)
       .then((response) => {
@@ -37,7 +37,7 @@ export default function ExpandableReviewReservation() {
 
   useEffect(() => {
     axios
-      .get("https://sdgp-cs-106-iit-rms-deployment-test-4.vercel.app/buildings")
+      .get("https://sdgp-cs106-iit-rms-deployment.onrender.com/buildings")
       .then((response) => {
         setBuildings(response.data);
       })
@@ -49,13 +49,13 @@ export default function ExpandableReviewReservation() {
   const handleConfirmReservation = (id) => {
     axios
       .put(
-        `https://sdgp-cs-106-iit-rms-deployment-test-4.vercel.app/reservations/${id}`,
+        `https://sdgp-cs106-iit-rms-deployment.onrender.com/reservations/${id}`,
         { confirmation: true }
       )
       .then((response) => {
         axios
           .get(
-            `https://sdgp-cs-106-iit-rms-deployment-test-4.vercel.app/reservations?confirmation=${confirmation}`
+            `https://sdgp-cs106-iit-rms-deployment.onrender.com/reservations?confirmation=${confirmation}`
           )
           .then((response) => {
             setReservations(response.data);
@@ -75,12 +75,12 @@ export default function ExpandableReviewReservation() {
   const handleDropReservation = (id) => {
     axios
       .delete(
-        `https://sdgp-cs-106-iit-rms-deployment-test-4.vercel.app/reservations/${id}`
+        `https://sdgp-cs106-iit-rms-deployment.onrender.com/reservations/${id}`
       )
       .then((response) => {
         axios
           .get(
-            `https://sdgp-cs-106-iit-rms-deployment-test-4.vercel.app/reservations?confirmation=${confirmation}`
+            `https://sdgp-cs106-iit-rms-deployment.onrender.com/reservations?confirmation=${confirmation}`
           )
           .then((response) => {
             setReservations(response.data);

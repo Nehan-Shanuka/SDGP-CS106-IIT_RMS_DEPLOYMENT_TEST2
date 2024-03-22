@@ -29,7 +29,7 @@ const WeeklyallTimetable = ({ selectedValue }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://sdgp-cs-106-iit-rms-deployment-test-4.vercel.app/timetables"
+          "https://sdgp-cs106-iit-rms-deployment.onrender.com/timetables"
         );
         console.log("Response data:", response.data);
         setTimetableData(response.data);

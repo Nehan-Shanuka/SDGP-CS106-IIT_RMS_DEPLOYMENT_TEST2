@@ -76,9 +76,23 @@ export default function InputFileUpload() {
       </label>
       <VisuallyHiddenInput id="file-upload" type="file" onChange={handleFileChange} />
       {file && (
-        <Button variant="outlined" onClick={handleCancel} color="error" sx={{ marginBottom: 1 }}>
-          Cancel
-        </Button>
+       <Button 
+       variant="outlined" 
+       onClick={handleCancel} 
+       color="error" 
+       sx={{
+         marginBottom: 1,
+         color: 'red', // Text color
+         borderColor: 'red', // Border color
+         '&:hover': {
+           backgroundColor: 'red', // Background color on hover
+           color: 'white', // Text color on hover
+         },
+       }}
+     >
+       Cancel
+     </Button>
+     
       )}
       <Button variant="outlined" onClick={handleUpload} sx={{ marginBottom: 1 }}>
         Upload

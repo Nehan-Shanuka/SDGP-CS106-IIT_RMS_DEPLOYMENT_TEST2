@@ -2,6 +2,7 @@ import { Card } from '@mui/material';
 import React, { useState } from 'react';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 
+
 const ParagraphWithReadMore = ({ title, text, maxChars, image }) => {
   const [showFullText, setShowFullText] = useState(false);
 
@@ -20,13 +21,14 @@ const ParagraphWithReadMore = ({ title, text, maxChars, image }) => {
           padding: "10px" // Adjust padding for smaller screens
         }
       }} >
-      <div style={{ display: 'flex', justifyContent: 'center', background: 'white' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', background: 'white',  }}>
+        
         <div className="paragraph-box">
           <div style={{ display:'flex', justifyContent: 'center', border: '1px solid black', padding: '10px', backgroundColor: 'green'}}>
           <h2 style={{ fontSize: "20px" ,color: "white", fontWeight: 'bold'}}>{title}</h2>
           </div>
           <div className="content">
-            <p>
+            <p style={{color:""}}>
               {showFullText ? text : `${text.slice(0, maxChars)}...`}
               {text.length > maxChars && (
                 <Button onClick={toggleShowFullText} size="small" color="primary">

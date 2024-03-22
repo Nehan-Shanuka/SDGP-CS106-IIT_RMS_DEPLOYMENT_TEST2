@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-import { useState,useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Button } from '@mui/material';
 import axios from "axios";
 
@@ -45,16 +43,13 @@ function ProfilePage({userFromDB}) {
 
   return (
     <div>
-      <div className="flex justify-end pr-5 pt-5">
+      <div className="flex justify-end mt-[-30px]">
         
       <div className="flex justify-end pr-5 pt-5 space-x-2">
       {/* <Button variant="contained" color="info" style={{ marginRight: '8px' }}>
       Update Profile
       </Button> */}
 
-      {/* <Button variant="contained" color="error">
-        Logout
-      </Button> */}
       </div>
         
       </div>
@@ -62,7 +57,7 @@ function ProfilePage({userFromDB}) {
         <div className="flex flex-col lg:flex-row justify-center items-start gap-10" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',marginTop: 'auto'}}>
           <div className="w-full lg:w-1/4 bg-gray-300 rounded-lg p-8 text-center">
             <img src={userData.profilePicture} alt="avatar" className="rounded-full w-36 h-34 mx-auto mb-4" />
-            {/* <p className="text-gray-600 mb-1">{userFromDB.name}</p> */}
+            { <p className="text-gray-600 mb-1">{userFromDB.name}</p> }
             <div className="flex justify-center gap-1">
               {/* <button className="bg-blue-500 text-white py-2 px-5 rounded">{userData.level}</button>
               <button className="bg-blue-500 text-white py-2 px-5 rounded">{userData.course}</button> */}
@@ -72,6 +67,8 @@ function ProfilePage({userFromDB}) {
 
   <div  className="w-full  lg:w-2/3 bg-gray-300 rounded-lg p-7" style={{ flexDirection: 'column', alignItems: 'center',marginTop: 'auto'}}>
             <UserInfo label="Full Name : " value={userFromDB.name} />
+            <UserInfo label="Email : " value={userFromDB.email} />
+            <UserInfo label="Role : " value={userFromDB.role} />
             
             
             
@@ -79,6 +76,13 @@ function ProfilePage({userFromDB}) {
 
 
         </div>
+        <div className=' ml-[46%] mt-[1%]'>
+
+        
+          <Button variant="contained" color="error" className=''>
+          Logout
+          </Button> 
+      </div>
         
       </section>
     </div>

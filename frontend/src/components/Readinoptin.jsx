@@ -1,7 +1,8 @@
 import { Card } from '@mui/material';
 import React, { useState } from 'react';
+import { Button, CardActionArea, CardActions } from '@mui/material';
 
-const ParagraphWithReadMore = ({ title, text, maxChars }) => {
+const ParagraphWithReadMore = ({ title, text, maxChars, image }) => {
   const [showFullText, setShowFullText] = useState(false);
 
   const toggleShowFullText = () => {
@@ -9,7 +10,6 @@ const ParagraphWithReadMore = ({ title, text, maxChars }) => {
   };
 
   return (
-    
     <Card sx={{
         backgroundColor: "#f0f0f0",
         padding: "20px",
@@ -20,22 +20,28 @@ const ParagraphWithReadMore = ({ title, text, maxChars }) => {
           padding: "10px" // Adjust padding for smaller screens
         }
       }} >
-   <div style={{ display: 'flex', justifyContent: 'center', background: 'white' }}>
-  <div className="paragraph-box">
-    <div style={{ display:'flex', justifyContent: 'center', border: '1px solid black', padding: '10px', backgroundColor: 'red'}}>
-      <h2>{title}</h2>
-    </div>
-    <div className="content">
-      <p>
-        {showFullText ? text : `${text.slice(0, maxChars)}...`}
-        {!showFullText && (
-          <button onClick={toggleShowFullText}>Read More</button>
-        )}
-      </p>
-    </div>
-  </div>
-</div>
-
+      <div style={{ display: 'flex', justifyContent: 'center', background: 'white' }}>
+        <div className="paragraph-box">
+          <div style={{ display:'flex', justifyContent: 'center', border: '1px solid black', padding: '10px', backgroundColor: 'green'}}>
+            <h2>{title}</h2>
+          </div>
+          <div className="content">
+            <p>
+              {showFullText ? text : `${text.slice(0, maxChars)}...`}
+              {text.length > maxChars && (
+                <Button onClick={toggleShowFullText} size="small" color="primary">
+                  {showFullText ? 'Read Less' : 'Read More'}
+                </Button>
+              )}
+            </p>
+            {showFullText && image && (
+              <div style={{ textAlign: 'center' }}>
+                <img src={image} alt="Additional Image" style={{ maxWidth: '100%', maxHeight: '300px' }} />
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     </Card>
   );
 };

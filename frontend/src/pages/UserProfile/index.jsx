@@ -8,6 +8,9 @@ function ProfilePage({userFromDB}) {
   //  const [loading, setLoading] = useState(true);
    const [error, setError] = useState(null);
 
+
+  console.log("newuser:",userFromDB);
+
   const userData = {
     name: 'Lionel Messi',
     indexNo: '101010',
@@ -20,26 +23,7 @@ function ProfilePage({userFromDB}) {
     profilePicture: 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp',
   };
 
-  console.log("newuser:",userFromDB);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get("http://localhost:5555/users");
-  //       console.log("Response data:", response.data);
-  //       const currentUserEmail = 'example@example.com'; // Replace this with the actual email
-  //       const currentUser = response.data.find(user => user.email === user.email);
-  //       setuserData(response.data);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.error("Error fetching timetable data:", error);
-  //       setError(error.message);
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
+  
 
   return (
     <div>
@@ -65,22 +49,19 @@ function ProfilePage({userFromDB}) {
           </div>
 
 
-  <div  className="w-full  lg:w-2/3 bg-gray-300 rounded-lg p-7" style={{ flexDirection: 'column', alignItems: 'center',marginTop: 'auto'}}>
-            <UserInfo label="Full Name : " value={userFromDB.name} />
-            <UserInfo label="Email : " value={userFromDB.email} />
-            <UserInfo label="Role : " value={userFromDB.role} />
-            
-            
-            
-          </div>
+      <div  className="w-full  lg:w-2/3 bg-gray-300 rounded-lg p-7" style={{ flexDirection: 'column', alignItems: 'center',marginTop: 'auto'}}>
+          <UserInfo label="Full Name : " value={userFromDB.name} />
+          <UserInfo label="Email : " value={userFromDB.email} />
+          <UserInfo label="Role : " value={userFromDB.role} />
+      </div>
 
 
         </div>
+        
         <div className=' ml-[46%] mt-[1%]'>
 
-        
           <Button variant="contained" color="error" className=''>
-          Logout
+            Logout
           </Button> 
       </div>
         
